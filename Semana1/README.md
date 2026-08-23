@@ -8,11 +8,11 @@ Presentar el enfoque del curso, revisar los fundamentos mínimos de transformers
 
 La semana considera:
 
-- presentación del curso
-- repaso de atención, causalidad, tokens y embeddings
-- introducción a la idea de sistema de IA compuesto
-- primera actividad experimental en notebook
-- prueba diagnóstica individual para casa
+- presentación del curso,
+- repaso de atención, causalidad, tokens y embeddings,
+- introducción a la idea de sistema de IA compuesto,
+- primera actividad experimental en notebook,
+- prueba de entrada individual para casa.
 
 #### Material
 
@@ -23,11 +23,11 @@ Los cuadernos, lecturas y actividades de esta semana se incorporarán de forma i
 Desde la primera semana se aplicará la secuencia básica del curso:
 
 ```text
-baseline
-modificación
-experimento
-métrica
-resultado
-análisis de error
-conclusión
+baseline,
+modificación,
+experimento,
+métrica,
+resultado,
+análisis de error,
+conclusión.
 ```
