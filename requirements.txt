@@ -1,0 +1,9 @@
+# Dependencias de alto nivel del curso.
+# PyTorch se instala por separado porque CPU y CUDA utilizan índices distintos.
+
+jupyterlab>=4.4,<5
+ipykernel>=6.29,<7
+matplotlib>=3.9,<4
+numpy>=2.0,<3
+nbformat>=5.10,<6
+nbconvert>=7.16,<8
