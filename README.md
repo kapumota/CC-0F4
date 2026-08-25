@@ -64,28 +64,50 @@ Aprendizaje contrastivo, dual encoders, CLIP, OpenCLIP, embeddings texto-imagen,
 
 #### Programación semanal
 
-| Semana | Tema central |
-|---|---|
-| 1 | Presentación del curso, sistemas de IA compuestos, transformer, atención, causalidad, tokens, prueba diagnóstica |
-| 2 | Embeddings, logits, softmax, decoding, ventana de contexto, KV cache |
-| 3 | Prompting, structured generation, JSON Schema, validación, context engineering |
-| 4 | Embeddings para retrieval, chunking, similitud, vector stores, dense retrieval, FAISS |
-| 5 | BM25, recuperación híbrida, reranking, RAG |
-| 6 | Tools, function calling, contratos, validación, errores, retries, timeouts |
-| 7 | Evaluación de retrieval y RAG, Recall@k, MRR, nDCG, grounding, error analysis |
-| 8 | Proyecto parcial |
-| 9 | Workflows, agentes, planificación, ReAct, verificación, criterios de parada |
-| 10 | Estado y memoria, working memory, episodic memory, semantic memory |
-| 11 | Sistemas multiagente, supervisor-worker, handoffs, blackboard, trazas |
-| 12 | Optimización, prompt, contexto, retrieval, tools, test-time compute, SFT, LoRA, QLoRA |
-| 13 | Evaluación de agentes, graders, LLM-as-Judge, pass@k, pass^k |
-| 14 | Aprendizaje contrastivo, CLIP, OpenCLIP, recuperación multimodal |
-| 15 | Multimodal RAG, generación grounded, integración, demostraciones |
-| 16 | Proyecto final |
+#### Programación semanal
+
+| Semana | Tema central | Evaluación oral |
+|---|---|---|
+| 1 | Presentación del curso, sistemas de IA compuestos, transformer, atención, causalidad, tokens, prueba diagnóstica | - |
+| 2 | Embeddings, logits, softmax, decoding, ventana de contexto, KV cache | - |
+| 3 | Prompting, generación estructurada, JSON Schema, validación, ingenieria de contexto | **E1** |
+| 4 | Embeddings para retrieval, chunking, similitud, vector stores, dense retrieval, FAISS | - |
+| 5 | BM25, recuperación híbrida, reranking, RAG | **E2** |
+| 6 | Tools, function calling, contratos, validación, errores, retries, timeouts | - |
+| 7 | Evaluación de retrieval y RAG, Recall@k, MRR, nDCG, grounding, error analysis | **E3** |
+| 8 | Proyecto parcial | - |
+| 9 | Workflows, agentes, planificación, ReAct, verificación, criterios de parada | - |
+| 10 | Estado y memoria, working memory, episodic memory, semantic memory | - |
+| 11 | Sistemas multiagente, supervisor-worker, handoffs, blackboard, trazas | **E4** |
+| 12 | Optimización, prompt, contexto, retrieval, tools, test-time compute, SFT, LoRA, QLoRA | - |
+| 13 | Evaluación de agentes, graders, LLM-as-Judge, pass@k, pass^k | - |
+| 14 | Aprendizaje contrastivo, CLIP, OpenCLIP, recuperación multimodal | **E5** |
+| 15 | Multimodal RAG, generación grounded, integración, demostraciones | - |
+| 16 | Proyecto final | - |
 
 #### Exposiciones de investigación
 
 Durante el semestre se realizarán **5 exposiciones evaluadas** sobre temas contemporáneos relacionados con el curso.
+
+Los temas podrán incluir atención eficiente, FlashAttention, GQA, ColBERT, GraphRAG, constrained decoding, MCP, memoria persistente, sistemas multiagente, automatic prompt optimization, test-time compute, LLM-as-Judge, VLM, Document AI y agentes multimodales.
+
+Cada exposición deberá presentar problema, fuente primaria, idea principal, método, limitaciones, pequeño experimento o demostración y conclusión.
+
+La exposición debe mostrar comprensión y análisis crítico, no solo resumir documentación.
+
+#### Exposiciones de investigación
+
+Durante el semestre se realizarán **5 exposiciones evaluadas con defensa oral**, distribuidas en las semanas 3, 5, 7, 11 y 14.
+
+| Evaluación | Semana | Eje temático de referencia |
+|---|---:|---|
+| **E1** | 3 | Transformers, prompting, generación estructurada o ingeniería de contexto |
+| **E2** | 5 | Retrieval, recuperación híbrida, reranking o RAG |
+| **E3** | 7 | Evaluación de retrieval/RAG, grounding, métricas o análisis de errores |
+| **E4** | 11 | Agentes, memoria, sistemas multiagente, coordinación o trazas |
+| **E5** | 14 | Aprendizaje contrastivo, VLM, CLIP/OpenCLIP o recuperación multimodal |
+
+El eje temático indica la relación esperada con el avance del curso. El tema específico y la fuente primaria de cada exposición serán asignados o aprobados con anticipación.
 
 Los temas podrán incluir atención eficiente, FlashAttention, GQA, ColBERT, GraphRAG, constrained decoding, MCP, memoria persistente, sistemas multiagente, automatic prompt optimization, test-time compute, LLM-as-Judge, VLM, Document AI y agentes multimodales.
 
