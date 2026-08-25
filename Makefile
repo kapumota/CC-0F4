@@ -12,7 +12,7 @@ BUILD_DIR ?= .build
 CUADERNO1 := Semana1/Cuaderno1-CC-0F4.ipynb
 LAB1 := Semana1/Laboratorio1-CC-0F4.ipynb
 LECTURA1 := Semana1/Lectura1-CC-0F4.md
-RESUMEN1 := Semana1/Resumen1-Attention-Is-All-You-Need.md
+LECTURA2 := Semana1/Lectura2-CC-0F4.md
 README1 := Semana1/README.md
 ENTORNO := ENTORNO.md
 
@@ -25,7 +25,7 @@ help:
 	@echo "CC-0F4 - entorno reproducible"
 	@echo ""
 	@echo "Entorno local:"
-	@echo "  make setup                    Crea .venv"
+	@echo "  make setup                    Crea .ccf04"
 	@echo "  make install-cpu              Instala dependencias + PyTorch CPU"
 	@echo "  make install-gpu              Instala dependencias + PyTorch CUDA 12.8"
 	@echo "  make doctor                   Muestra versiones y dispositivo disponible"
@@ -47,10 +47,10 @@ help:
 	@echo "  make clean                    Elimina caches y artefactos"
 
 setup:
-	$(PYTHON) -m venv .venv
+	$(PYTHON) -m venv .ccf04
 	@echo "Activa el entorno:"
-	@echo "  Linux/WSL: source .venv/bin/activate"
-	@echo "  Windows PowerShell: .venv\\Scripts\\Activate.ps1"
+	@echo "  Linux/WSL: source .ccf04/bin/activate"
+	@echo "  Windows PowerShell: .ccf04\\Scripts\\Activate.ps1"
 
 install-base:
 	$(PIP) install --upgrade pip
@@ -82,7 +82,7 @@ check-files:
 	@test -f $(CUADERNO1)
 	@test -f $(LAB1)
 	@test -f $(LECTURA1)
-	@test -f $(RESUMEN1)
+	@test -f $(LECTURA2)
 	@echo "Archivos requeridos: OK"
 
 validate-notebooks:
