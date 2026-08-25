@@ -13,14 +13,13 @@ Al finalizar la semana debes poder:
 - distinguir un modelo de un sistema de IA compuesto,
 - explicar `texto -> tokens -> IDs -> embeddings -> posición`,
 - describir el papel de $Q$, $K$ y $V$,
-- reconstruir scaled dot-product attention,
+- reconstruir la atención de producto punto escalado,
 - explicar por qué la causalidad proviene de la máscara y no de `softmax`,
 - reconocer Multi-Head Attention, residual, LayerNorm y FFN,
 - distinguir encoder-only, encoder-decoder y decoder-only,
 - verificar propiedades mediante invariantes,
 - localizar la matemática dentro de una implementación real,
 - formular una conclusión proporcional a la evidencia experimental.
-
 
 #### Material de la semana
 
@@ -29,7 +28,7 @@ Al finalizar la semana debes poder:
 | [`Cuaderno1-CC-0F4.ipynb`](Cuaderno1-CC-0F4.ipynb) | Material canónico de clase: Transformer, posición, atención, causalidad, MHA y bloque Transformer |
 | [`Laboratorio1-CC-0F4.ipynb`](Laboratorio1-CC-0F4.ipynb) | Laboratorio experimental del jueves |
 | [`Lectura1-CC-0F4.md`](Lectura1-CC-0F4.md) | Lectura técnica sobre Transformer y extensiones |
-| [`Resumen1-Attention-Is-All-You-Need.md`](Resumen1-Attention-Is-All-You-Need.md) | Resumen crítico guiado del paper central de la semana |
+| [`Lectura2-CC-0F4.md`](Lectura2-CC-0F4.md) | Lectura crítica guiada de *Attention Is All You Need* |
 
 Recursos externos usados durante la semana:
 
@@ -37,15 +36,32 @@ Recursos externos usados durante la semana:
 - **Annotated Deep Learning Paper Implementations:** https://github.com/kapumota/annotated_deep_learning_paper_implementations
 - **Attention Is All You Need:** https://arxiv.org/abs/1706.03762
 
-
 #### Lunes - Fundamentos y arquitectura
 
 El lunes se trabaja la secuencia conceptual:
 
 ```text
-sistema de IA compuesto -> Transformer como componente -> tokens -> embeddings -> posición -> Q/K/V
--> atención producto-punto escalado -> máscara causal -> Multi-Head Attention -> residual + LayerNorm + FFN
--> encoder/decoder
+sistema de IA compuesto
+  ->
+Transformer como componente
+  ->
+tokens
+  ->
+embeddings
+  ->
+posición
+  ->
+Q/K/V
+  ->
+atención de producto punto escalado
+  ->
+máscara causal
+  ->
+Multi-Head Attention
+  ->
+residual + LayerNorm + FFN
+  ->
+encoder/decoder
 ```
 
 Material principal:
@@ -53,7 +69,7 @@ Material principal:
 ```text
 Cuaderno1-CC-0F4.ipynb
 Lectura1-CC-0F4.md
-Resumen1-Attention-Is-All-You-Need.md
+Lectura2-CC-0F4.md
 ```
 
 Attention AI Lab se usa para observar full attention frente a causal attention y para mostrar la transición:
@@ -90,13 +106,10 @@ En el laboratorio se exige:
 Toda actividad experimental debe poder expresarse mediante:
 
 ```text
-pregunta -> hipótesis -> baseline -> modificación controlada -> métrica -> resultado -> análisis de error
--> limitación -> conclusión
+pregunta -> hipótesis -> baseline -> modificación controlada -> métrica -> resultado -> análisis de error -> limitación -> conclusión
 ```
 
 Una celda que ejecuta sin error no demuestra por sí sola que el componente sea correcto.
-
-
 
 #### Entrega del laboratorio
 
@@ -118,15 +131,11 @@ La entrega se realiza mediante la plataforma de evaluación indicada por el doce
 
 La defensa oral puede ser solicitada durante la sesión.
 
-
-
 #### Prueba diagnóstica
 
 La prueba diagnóstica de entrada se distribuye y entrega mediante una **plataforma de evaluación externa al repositorio**.
 
 No se publica en `CC-0F4` y no forma parte de los archivos de `Semana1/`.
-
-
 
 #### Entorno mínimo
 
@@ -145,45 +154,60 @@ nbconvert
 
 Para instalación local y uso de Docker consulta:
 
-```text
-docs/ENTORNO.md
-```
+[`../ENTORNO.md`](../ENTORNO.md)
 
 Desde la raíz del repositorio:
 
 ```bash
 make help
 make check
-make check-semana1
+make execute-cuaderno1
 ```
-
-
 
 #### Criterio de cierre de Semana 1
 
 La semana está cerrada cuando puedes sostener técnicamente:
 
-$$ 
-X \longrightarrow Q,K,V \longrightarrow \frac{QK^\top}{\sqrt{d_k}} \longrightarrow +M \longrightarrow \text{softmax} \longrightarrow AV \longrightarrow \text{MHA}
+$$
+X
+\longrightarrow
+Q,K,V
+\longrightarrow
+\frac{QK^\top}{\sqrt{d_k}}
+\longrightarrow
++M
+\longrightarrow
+\mathrm{softmax}
+\longrightarrow
+AV
+\longrightarrow
+\mathrm{MHA}
 $$
 
+En atención causal:
 
-En **causal attention**, definimos:
-
-$$
-M_{ij} = \begin{cases} 
-0 & \text{si } j \leq i \\
--\infty & \text{si } j > i 
+$$ M_{ij} =
+\begin{cases}
+0, & j\le i,\\
+-\infty, & j>i.
 \end{cases}
 $$
 
 Esto produce:
 
 $$
-A_{ij} = \frac{\exp\left(\frac{Q_i K_j^\top}{\sqrt{d_k}} + M_{ij}\right)}{\sum_{l=1}^{n} \exp\left(\frac{Q_i K_l^\top}{\sqrt{d_k}} + M_{il}\right)} \approx 0 \quad \text{para } j > i
+A_{ij}\approx 0
+\qquad
+\text{para }j>i.
 $$
 
-La evidencia mínima no es "el código corre", sino:
+La evidencia mínima no es:
+
+```text
+el código corre
+```
+
+sino:
 
 ```text
 configuración registrada + propiedad definida + métrica + resultado + limitación + conclusión defendible
