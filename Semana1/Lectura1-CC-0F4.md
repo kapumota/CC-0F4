@@ -48,7 +48,7 @@ Los **embeddings posicionales aprendidos** asignan un vector entrenable a cada p
 
 **RoPE (Rotary Position Embedding)** rota pares de dimensiones de Q y K según la posición. La propiedad relevante es que el producto interno entre queries y keys rotadas depende naturalmente de la diferencia de posiciones. En un baseline moderno que usa RoPE, no es necesario sumar además una PE sinusoidal absoluta. Una combinación RoPE + PE absoluta puede estudiarse como ablation, pero no debe aparecer accidentalmente como configuración canónica.
 
-**ALiBi (Attention with Linear Biases)** no añade embeddings posicionales a las representaciones de entrada. Introduce una penalización lineal dependiente de la distancia directamente sobre los logits de atención. Las pendientes de las cabeceras siguen una progresión geométrica definida por el algoritmo oficial, para números de cabeceras que no son potencia de dos, el código oficial especifica una construcción adicional. Esto debe distinguirse de aproximaciones didácticas con pendientes arbitrarias.
+**ALiBi (Attention with Linear Biases)** no añade embeddings posicionales a las representaciones de entrada. Introduce una penalización lineal dependiente de la distancia directamente sobre los logits de atención. Las pendientes de las heads siguen una progresión geométrica definida por el algoritmo oficial, para números de heads que no son potencia de dos, el código oficial especifica una construcción adicional. Esto debe distinguirse de aproximaciones didácticas con pendientes arbitrarias.
 
 #### Optimización de atención: FlashAttention, MQA y GQA
 
