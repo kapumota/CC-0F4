@@ -54,7 +54,6 @@ Al finalizar la semana debes poder:
 | [`Laboratorio2-CC-0F4.ipynb`](Laboratorio2-CC-0F4.ipynb) | Laboratorio experimental del jueves |
 | [`Lectura3-CC-0F4.md`](Lectura3-CC-0F4.md) | Lectura crítica de *The Curious Case of Neural Text Degeneration* |
 | [`Lectura4-CC-0F4.md`](Lectura4-CC-0F4.md) | Lectura crítica de *GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints* |
-| [`Exposiciones2-CC-0F4.md`](Exposiciones2-CC-0F4.md) | Guía de microexposiciones formativas y búsqueda asistida de literatura |
 
 Las microexposiciones de Semana 2 son de **refuerzo**. No sustituyen la evaluación E1 de Semana 3.
 
