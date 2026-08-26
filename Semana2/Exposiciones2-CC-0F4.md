@@ -25,7 +25,7 @@ Consensus
 
 Por ello, no se espera que el estudiante ya domine estas herramientas.
 
-Antes de preparar la exposición se realiza una ruta guiada común para aprender qué hace cada herramienta, qué no hace y qué evidencia debe conservarse.
+La guía explica para qué sirve cada una. **Cada grupo solo debe usar dos herramientas con funciones distintas y verificar la fuente primaria.**
 
 #### Relación con el Laboratorio 2
 
@@ -42,18 +42,8 @@ Cada grupo dispone de:
 
 ```text
 7 min exposición
-
-3 min
-defensa
-
-total
-10 min por grupo
-```
-
-Por tanto:
-
-```text
-hasta 10 grupos -> 100 min
+3 min defensa
+total: 10 min por grupo
 ```
 
 Si existen menos grupos, la sesión termina antes.
@@ -94,7 +84,6 @@ Regla:
 
 ```text
 herramienta -> orienta
-
 fuente primaria -> sustenta
 ```
 
@@ -110,7 +99,7 @@ No se acepta como evidencia final:
 
 #### Primera vez - tutorial guiado común
 
-Antes de que cada grupo investigue su tema, todos realizan el mismo recorrido.
+Antes de que cada grupo investigue su tema, el docente puede mostrar un recorrido breve con un mismo caso.
 
 Caso de práctica:
 
@@ -130,35 +119,33 @@ Fuente:
 https://arxiv.org/abs/2305.13245
 ```
 
-Objetivo del tutorial:
+Objetivo:
 
 ```text
-misma pregunta -> seis herramientas -> seis funciones diferentes
+misma pregunta -> herramientas diferentes -> funciones diferentes
 ```
 
 No se busca producir una revisión exhaustiva.
 
 Se busca entender el workflow.
 
-#### Paso 0 - Crear el registro de búsqueda
+#### Paso 0 - Registro mínimo
 
-Antes de abrir una herramienta crea esta tabla.
+Antes de comenzar, registra:
 
 | Campo | Registro |
 |---|---|
-| Fecha | |
-| Tema | GQA |
-| Pregunta | How does grouped-query attention change decoder inference compared with multi-head attention? |
-| Seed paper | Ainslie et al. (2023) |
-| Herramienta | |
+| Tema | |
+| Pregunta | |
+| Herramienta 1 | |
 | Query o acción | |
-| Paper encontrado | |
-| Por qué parece relevante | |
+| Herramienta 2 | |
+| Seed paper | |
+| Paper relacionado | |
+| Fuente primaria verificada | |
 | Claim | |
-| Evidencia verificada | |
+| Evidencia | |
 | Limitación | |
-
-Cada vez que cambies de herramienta registra la acción realizada.
 
 La trazabilidad forma parte de la actividad.
 
@@ -170,22 +157,18 @@ Sitio:
 https://elicit.com/
 ```
 
-Uso en esta actividad:
+Uso:
 
 ```text
-pregunta en lenguaje natural -> búsqueda semántica -> papers candidatos -> selección inicial
+pregunta en lenguaje natural -> búsqueda semántica -> papers candidatos
 ```
 
-Procedimiento de primera vez:
+Procedimiento mínimo:
 
-1. abre Elicit,
-2. inicia una búsqueda de papers,
-3. escribe una pregunta, no un párrafo largo,
-4. revisa título, año, abstract y tipo de publicación,
-5. identifica el paper primario,
-6. selecciona uno o dos papers relacionados,
-7. registra por qué cada paper parece relevante,
-8. abre la fuente original antes de aceptar un claim.
+1. formula una pregunta concreta,
+2. identifica el paper primario,
+3. selecciona un paper relacionado,
+4. abre la fuente original antes de aceptar un claim.
 
 Query de práctica:
 
@@ -195,23 +178,13 @@ KV-cache requirements and model quality compared with
 multi-head attention in autoregressive Transformers?
 ```
 
-Qué debes obtener:
+Producto esperado:
 
 ```text
-paper primario + 1 paper relacionado + 1 claim candidato
+1 seed paper + 1 paper relacionado
 ```
 
-Qué NO debes hacer:
-
-```text
-copiar el resumen de Elicit -> ponerlo en la diapositiva -> llamarlo evidencia
-```
-
-Pregunta de control:
-
-> ¿El paper que Elicit mostró es el trabajo que propone el método, una evaluación posterior o solo un paper que lo menciona?.
-
-#### Paso 2 - ResearchRabbit: navegar desde un seed paper
+#### Paso 2 - ResearchRabbit: explorar desde un seed paper
 
 Sitio:
 
@@ -219,44 +192,26 @@ Sitio:
 https://www.researchrabbit.ai/
 ```
 
-ResearchRabbit se usa principalmente para explorar literatura mediante relaciones entre papers.
-
-Procedimiento:
-
-1. crea un proyecto o búsqueda,
-2. busca el seed paper por título o DOI/arXiv,
-3. selecciona uno o más seed papers,
-4. genera la red de trabajos relacionados,
-5. inspecciona `Similar Work`,
-6. inspecciona referencias o trabajos anteriores,
-7. inspecciona trabajos que citan al seed,
-8. guarda solo los papers cuya relación puedas explicar.
-
-Para GQA intenta localizar:
+Uso:
 
 ```text
-antecedente -> Multi-Query Attention
-
-seed -> GQA
-
-trabajo posterior -> modelo o sistema que adopte GQA
+seed paper -> trabajos anteriores/similares/posteriores
 ```
 
-Producto mínimo:
+Procedimiento mínimo:
 
-| Tipo | Paper | Relación con el seed |
-|---|---|---|
-| Anterior | | |
-| Similar | | |
-| Posterior | | |
+1. busca el seed paper,
+2. revisa trabajos relacionados,
+3. selecciona uno cuya relación puedas explicar,
+4. abre el paper seleccionado.
 
-Error típico:
+Producto esperado:
 
-> "Está conectado en ResearchRabbit, entonces demuestra lo mismo."
+```text
+1 paper relacionado + explicación de la relación
+```
 
-Eso es incorrecto.
-
-Una conexión sirve para descubrir qué leer, no para sustituir la lectura.
+Una conexión sirve para descubrir qué leer, no para demostrar un claim.
 
 #### Paso 3 - Connected Papers: observar el vecindario conceptual
 
@@ -266,42 +221,25 @@ Sitio:
 https://www.connectedpapers.com/
 ```
 
-Busca el mismo seed paper.
+Uso:
 
-Connected Papers construye un grafo de similitud.
+```text
+seed paper -> grafo de similitud -> prior works/derivative works
+```
 
 Importante:
 
 ```text
-grafo de Connected Papers != árbol de citaciones
+grafo de Connected Papers != árbol exacto de citaciones
 ```
 
-Papers próximos pueden ser similares porque comparten referencias o patrones de citación aunque no se citen directamente.
-
-Procedimiento:
-
-1. introduce el título, DOI o identificador del seed,
-2. construye el grafo,
-3. localiza el paper origen,
-4. inspecciona los clusters cercanos,
-5. identifica un paper que no habías encontrado,
-6. revisa `Prior Works`,
-7. revisa `Derivative Works`,
-8. abre el paper seleccionado en su fuente original.
-
-Producto mínimo:
+Producto esperado:
 
 ```text
-1 prior work + 1 paper del grafo + 1 derivative work
+1 prior work o 1 derivative work
 ```
 
-Para cada uno responde:
-
-> ¿Por qué este paper cambia, amplía o contextualiza mi comprensión del seed?.
-
-No se acepta:
-
-> "Lo seleccioné porque estaba cerca en el grafo."
+No se acepta seleccionar un paper únicamente porque aparece cerca en el grafo.
 
 #### Paso 4 - Scite: revisar el contexto de citación
 
@@ -311,20 +249,13 @@ Sitio:
 https://scite.ai/
 ```
 
-Scite no se usa aquí para contar simplemente citas.
-
-Se usa para inspeccionar cómo aparece citado un trabajo.
-
-Busca el seed paper por:
+Uso:
 
 ```text
-título
-DOI
-arXiv
-autor
+paper -> citation statements -> contexto
 ```
 
-Cuando existan Smart Citations, revisa contextos clasificados como:
+Puede mostrar categorías como:
 
 ```text
 supporting
@@ -332,39 +263,22 @@ mentioning
 contrasting
 ```
 
-Procedimiento:
-
-1. abre el reporte del paper,
-2. revisa los citation statements,
-3. selecciona una cita relevante para tu claim,
-4. lee el contexto completo disponible,
-5. abre el paper citante,
-6. determina si realmente apoya, limita o contradice el claim que estás investigando.
-
 Importante:
 
 ```text
 supporting != paper correcto
-
 contrasting != paper incorrecto
 ```
 
-La clasificación es una señal para navegar la evidencia, no un score de calidad.
+La clasificación orienta la revisión. No sustituye la lectura del paper citante.
 
-Producto mínimo:
+Producto esperado:
 
-| Campo | Registro |
-|---|---|
-| Claim investigado | |
-| Paper citante | |
-| Tipo de cita mostrado | |
-| Contexto | |
-| Interpretación del grupo | |
-| ¿Fue necesario reducir el claim? | |
+```text
+1 cita relevante + interpretación del grupo
+```
 
-Si no existe una cita `contrasting`, no debes inventarla ni forzar una.
-
-#### Paso 5 - SciSpace: leer y extraer evidencia del paper
+#### Paso 5 - SciSpace: leer y extraer evidencia
 
 Sitio:
 
@@ -372,15 +286,7 @@ Sitio:
 https://scispace.com/
 ```
 
-En esta actividad se usan dos funciones:
-
-```text
-Literature Review + Chat with PDF
-```
-
-Primero puedes buscar el tema en Literature Review.
-
-Después abre o carga el paper primario en Chat with PDF.
+Puede utilizarse para búsqueda o para consultar un PDF.
 
 No preguntes solamente:
 
@@ -388,46 +294,29 @@ No preguntes solamente:
 Summarize this paper.
 ```
 
-Haz preguntas estructurales.
-
-Prompt recomendado:
+Usa una pregunta estructurada:
 
 ```text
 Using only this paper, identify:
 
-1. the inference problem being addressed,
+1. the problem,
 2. the baseline,
-3. the architectural or algorithmic modification,
-4. the variable changed,
-5. the resource affected,
-6. the evaluation metrics,
-7. the main experimental result,
-8. one limitation stated or directly supported by the paper.
+3. the method,
+4. the metric,
+5. the main result,
+6. one limitation.
 
-For every answer, indicate the section, table or figure that should be checked in the original paper.
-
-Do not add claims that are not supported by this paper.
+Indicate the section, table or figure
+that should be checked in the original paper.
 ```
 
 Después:
 
 ```text
-respuesta SciSpace -> abrir sección /tabla/figura -> verificar -> registrar evidencia
+respuesta -> sección/tabla/figura -> verificación manual
 ```
 
-Producto mínimo:
-
-| Campo | Evidencia verificada |
-|---|---|
-| Problema | |
-| Baseline | |
-| Método | |
-| Métrica | |
-| Resultado | |
-| Tabla/figura/sección | |
-| Limitación | |
-
-#### Paso 6 - Consensus: contrastar una pregunta de investigación
+#### Paso 6 - Consensus: contrastar una pregunta
 
 Sitio:
 
@@ -435,112 +324,94 @@ Sitio:
 https://consensus.app/
 ```
 
-Consensus es un buscador académico asistido por IA.
-
-Úsalo para una pregunta científica concreta.
-
-Para esta práctica:
+Uso:
 
 ```text
-What evidence compares grouped-query attention with multi-head attention for inference efficiency and model quality?
+pregunta científica -> papers relevantes -> síntesis inicial
 ```
 
-Puedes usar `Paper Search` si quieres explorar papers sin depender primero de una síntesis.
-
-Si la pregunta es verdaderamente binaria y existen suficientes trabajos relevantes, Consensus puede mostrar su Consensus Meter.
-
-No fuerces una pregunta técnica compleja a formato `yes/no` solo para obtener un meter.
-
-Procedimiento:
-
-1. formula una pregunta concreta,
-2. revisa qué papers recupera,
-3. identifica si aparece el paper primario,
-4. selecciona un paper que también haya aparecido en otra herramienta,
-5. compara la síntesis con el abstract y la fuente primaria,
-6. registra una discrepancia, limitación o coincidencia.
-
-Producto mínimo:
+Ejemplo:
 
 ```text
-1 paper coincidente con otra herramienta + 1 observación sobre la síntesis + 1 verificación en la fuente primaria
+What evidence compares grouped-query attention with
+multi-head attention for inference efficiency and model quality?
 ```
 
-Pregunta de control:
+Producto esperado:
 
-> ¿Consensus encontró evidencia nueva o solamente sintetizó papers que ya habíamos localizado?.
+```text
+1 paper relevante + 1 claim para verificar en la fuente primaria
+```
 
-#### Qué aprendiste de las seis herramientas
+No interpretes la síntesis automática como consenso definitivo del campo.
 
-Al terminar la práctica guiada deberías poder explicar:
+#### Qué debes recordar de las seis herramientas
 
-| Herramienta | Uso principal en CC-0F4 | No confundir con |
+| Herramienta | Uso principal | No confundir con |
 |---|---|---|
-| Elicit | descubrimiento semántico y screening inicial | fuente primaria |
-| ResearchRabbit | navegación iterativa por red de literatura | prueba de un claim |
-| Connected Papers | mapa visual de similitud, prior y derivative works | árbol exacto de citaciones |
-| Scite | contexto de citaciones | score universal de calidad |
-| SciSpace | búsqueda, lectura y extracción asistida | lectura final del paper |
-| Consensus | búsqueda y síntesis de evidencia académica | consenso definitivo del campo |
+| Elicit | descubrimiento semántico | fuente primaria |
+| ResearchRabbit | navegación por literatura | prueba de un claim |
+| Connected Papers | mapa de similitud | árbol exacto de citaciones |
+| Scite | contexto de citación | score universal de calidad |
+| SciSpace | búsqueda y lectura asistida | verificación final |
+| Consensus | búsqueda y síntesis | consenso definitivo |
 
 La idea central es:
 
 ```text
 Elicit/SciSpace/Consensus -> encontrar y orientar
-
-ResearchRabbit/Connected Papers -> expandir el espacio de literatura
-
-Scite -> contrastar cómo se cita
-
+ResearchRabbit/Connected Papers -> explorar relaciones
+Scite -> revisar contexto de citación
 paper original -> verificar
 ```
 
 #### Workflow obligatorio para la exposición real
 
-Después del tutorial, cada grupo investiga su tema.
-
-No es obligatorio usar las seis herramientas en profundidad.
-
-Sí es obligatorio cubrir tres roles:
+Cada grupo utiliza:
 
 ```text
-1 herramienta de descubrimiento + 1 herramienta de red + Scite o revisión explícita de citas + fuente primaria
+1 herramienta de descubrimiento + 1 herramienta de exploración o contraste + fuente primaria
 ```
 
-Ejemplo válido:
+Ejemplos válidos:
 
 ```text
-Elicit -> ResearchRabbit -> Scite -> arXiv/conferencia
+Elicit -> ResearchRabbit -> arXiv
 ```
-
-Otro ejemplo válido:
 
 ```text
-SciSpace -> Connected Papers -> Scite -> DOI/conferencia
+SciSpace -> Scite -> paper de conferencia
 ```
 
-Consensus puede utilizarse como contraste adicional.
+```text
+Consensus -> Connected Papers -> DOI
+```
+
+No es obligatorio utilizar las seis herramientas.
 
 #### Temas de exposición
 
-La asignación depende del número de grupos.
+Los temas base son:
 
 | # | Tema | Seed paper sugerido | Pregunta central |
 |---:|---|---|---|
 | 1 | FlashAttention | Dao et al. (2022), arXiv:2205.14135 | ¿Cómo puede attention exacta reducir IO sin cambiar su resultado matemático? |
-| 2 | MQA / GQA | Ainslie et al. (2023), arXiv:2305.13245 | ¿Qué cambia al reducir KV heads y cuál es el trade-off? |
+| 2 | MQA/GQA | Ainslie et al. (2023), arXiv:2305.13245 | ¿Qué cambia al reducir KV heads y cuál es el trade-off? |
 | 3 | MLA | DeepSeek-V2 (2024), arXiv:2405.04434 | ¿Qué significa comprimir K/V en una representación latente? |
 | 4 | SWA y contexto largo | Mistral 7B (2023), arXiv:2310.06825 | ¿Qué se gana y qué se restringe al limitar el rango visible? |
-| 5 | PagedAttention / vLLM | Kwon et al. (2023), arXiv:2309.06180 | ¿Por qué administrar KV cache es también un problema de sistemas? |
+| 5 | PagedAttention/vLLM | Kwon et al. (2023), arXiv:2309.06180 | ¿Por qué administrar KV cache es también un problema de sistemas? |
 | 6 | Speculative Decoding | Leviathan et al. (2022/2023), arXiv:2211.17192 | ¿Cómo reducir pasos seriales preservando la distribución objetivo? |
-| 7 | RoPE vs ALiBi | RoFormer, arXiv:2104.09864, ALiBi, arXiv:2108.12409 | ¿Cómo incorporan posición y qué evidencia existe sobre extrapolación? |
-| 8 | KV Cache Quantization | KIVI, arXiv:2402.02750 | ¿Qué cambia al cuantizar K/V y qué costos adicionales aparecen? |
-| 9 | Prefill vs Decode | DistServe, arXiv:2401.09670 | ¿Por qué prefill y decode tienen objetivos y cuellos de botella diferentes? |
-| 10 | Decoding y Neural Text Degeneration | Holtzman et al., arXiv:1904.09751 | ¿Cómo cambia el comportamiento con greedy, sampling, top-k y top-p? |
 
-Si existen menos grupos se utilizan los primeros temas necesarios.
+Si existen más grupos pueden utilizarse:
 
-Si existen más de diez grupos, se puede repetir un tema, pero los grupos deben estudiar claims diferentes, papers posteriores diferentes o limitaciones diferentes.
+| # | Tema | Seed paper sugerido |
+|---:|---|---|
+| 7 | RoPE vs ALiBi | RoFormer/ALiBi |
+| 8 | KV Cache Quantization | KIVI |
+| 9 | Prefill vs Decode | DistServe |
+| 10 | Decoding y Neural Text Degeneration | Holtzman et al. |
+
+Cada grupo trabaja únicamente su tema.
 
 #### Pregunta de investigación por tema
 
@@ -583,35 +454,7 @@ How can a draft model reduce serial target-model decoding while
 preserving the target distribution?
 ```
 
-#### Registro obligatorio de búsqueda
-
-Cada grupo entrega esta tabla.
-
-| Campo | Contenido |
-|---|---|
-| Tema | |
-| Pregunta | |
-| Herramienta de descubrimiento | |
-| Query exacta | |
-| Herramienta de red | |
-| Seed paper | |
-| Paper anterior | |
-| Paper posterior o relacionado | |
-| Scite / contexto de citación | |
-| Fuente primaria verificada | |
-| Claim principal | |
-| Evidencia | |
-| Tabla/figura/sección | |
-| Limitación | |
-| Claim después de la auditoría | |
-
-La diferencia entre `Claim principal` y `Claim después de la auditoría` es intencional.
-
-Un buen proceso de investigación puede terminar con un claim más pequeño pero mejor defendido.
-
 #### Prompt base para descubrimiento
-
-Puede utilizarse en Elicit, SciSpace o Consensus, adaptándolo a la interfaz.
 
 ```text
 Research question:
@@ -625,14 +468,11 @@ For each candidate identify:
 2. whether it is a primary method paper or later evaluation,
 3. baseline,
 4. proposed mechanism,
-5. resource affected,
-6. evaluation metric,
-7. main reported result,
-8. stated limitation.
+5. evaluation metric,
+6. main reported result,
+7. stated limitation.
 
-Prioritize original papers and sources that can be verified
-through arXiv, DOI, conference proceedings or publisher pages.
-
+Prioritize original papers and verifiable sources.
 Do not strengthen a claim beyond what the paper reports.
 ```
 
@@ -646,46 +486,19 @@ Using only the supplied primary paper, extract:
 3. method,
 4. variable modified,
 5. resource affected,
-6. experimental setup,
-7. metric,
-8. main quantitative result,
-9. limitation,
-10. one claim that would be unsafe to generalize.
+6. metric,
+7. main result,
+8. limitation.
 
-For items 6-9, indicate the section, table or figure that
-should be verified manually.
+Indicate the section, table or figure that should be verified manually.
 
 If the paper does not support an item, write:
 NOT ESTABLISHED BY THIS PAPER.
 ```
 
-#### Prompt de auditoría final
-
-```text
-Audit this technical claim:
-
-[CLAIM]
-
-Evidence supplied:
-- primary paper,
-- one earlier or related paper,
-- one later or citing paper.
-
-Return:
-1. what the primary paper demonstrates,
-2. experimental conditions,
-3. what it does not demonstrate,
-4. whether later literature supports, limits or contradicts it,
-5. assumptions required to transfer the claim to another model,
-   runtime or hardware setting,
-6. a narrower defensible version of the claim.
-
-Do not strengthen the claim beyond the supplied evidence.
-```
-
 #### Producto de la exposición
 
-La presentación tiene como máximo cuatro bloques conceptuales.
+La presentación tiene como máximo cuatro bloques conceptuales:
 
 ```text
 1. problema + baseline
@@ -706,51 +519,30 @@ Debe contener una tabla final:
 | Recurso afectado | |
 | Métrica | |
 | Resultado principal | |
-| Condiciones experimentales | |
 | Limitación | |
-| Paper relacionado | |
-| Claim auditado | |
 | Relación con Experimento A o B | |
-
-#### Diapositiva obligatoria de trazabilidad
-
-Una diapositiva debe mostrar:
-
-```text
-pregunta -> query -> herramienta 1 -> seed paper -> herramienta 2 -> paper relacionado
--> Scite/cita -> fuente primaria -> claim final
-```
-
-No hace falta mostrar capturas de todas las interfaces.
-
-Lo importante es que la búsqueda pueda reconstruirse.
 
 #### Preguntas que se debe tener en cuenta
 
 1. ¿Por qué elegiste ese seed paper?
-2. ¿Qué encontró Elicit, SciSpace o Consensus que no sabías al comenzar?
-3. ¿Qué añadió ResearchRabbit o Connected Papers?
-4. ¿Qué significa una conexión en Connected Papers?
-5. ¿Qué significa una Smart Citation de Scite y qué NO significa?
-6. ¿Qué claim cambió después de leer el paper?
-7. ¿Qué tabla, figura o sección respalda tu resultado principal?
-8. ¿Contra qué baseline se compara?
-9. ¿La mejora es analítica, estimada o medida?
-10. ¿El método cambia arquitectura, kernel, runtime o decoding?
-11. ¿El resultado depende del hardware?
-12. ¿La técnica reduce compute, IO, KV cache, fragmentación o más de uno?
-13. ¿Qué paper posterior limita o amplía el trabajo original?
-14. ¿Qué afirmación no podrías defender solo con el abstract?
-15. ¿Qué parte conecta directamente con Experimento A o Experimento B?
-16. ¿Qué herramienta fue menos útil para tu pregunta y por qué?.
+2. ¿Qué encontró la primera herramienta?
+3. ¿Qué añadió la segunda herramienta?
+4. ¿Qué tabla, figura o sección respalda tu resultado principal?
+5. ¿Contra qué baseline se compara?
+6. ¿La mejora es analítica, estimada o medida?
+7. ¿El método cambia arquitectura, kernel, runtime o decoding?
+8. ¿El resultado depende del hardware?
+9. ¿Qué afirmación no podrías defender solo con el abstract?
+10. ¿Qué parte conecta directamente con Experimento A o Experimento B?
+11. ¿Qué claim tuviste que reducir después de revisar la fuente primaria?
+12. ¿Qué herramienta fue menos útil para tu pregunta y por qué?.
 
 #### Criterio de calidad
 
 Una exposición fuerte muestra:
 
 ```text
-pregunta precisa + búsqueda trazable + seed paper justificado + fuente primaria + red de literatura + contexto de citación
-+ mecanismo entendido + evidencia cuantitativa + limitación + claim proporcional a la evidencia
+pregunta precisa + fuente primaria + mecanismo entendido + evidencia + limitación + conexión experimental
 ```
 
 No se considera suficiente:
@@ -767,21 +559,17 @@ muchos papers -> sin pregunta -> sin baseline -> sin evidencia verificable
 
 #### Checklist antes de exponer
 
-El grupo debe poder responder "sí" a estas preguntas:
+El grupo debe poder responder "sí":
 
 - ¿Tenemos una pregunta concreta?
 - ¿Identificamos el paper primario?
-- ¿Sabemos por qué es primario?
-- ¿Registramos las queries utilizadas?
-- ¿Usamos una herramienta de descubrimiento?
-- ¿Usamos una herramienta de red?
-- ¿Revisamos contexto de citación o literatura citante?
+- ¿Usamos dos herramientas con funciones distintas?
 - ¿Abrimos la fuente original?
-- ¿Podemos señalar tabla, figura o sección?
+- ¿Podemos señalar una tabla, figura, sección o ecuación?
 - ¿Tenemos un baseline?
 - ¿Podemos nombrar la métrica?
 - ¿Conocemos al menos una limitación?
-- ¿Nuestro claim final es más preciso que un eslogan?
+- ¿Nuestro claim es proporcional a la evidencia?
 - ¿Podemos conectarlo con el Laboratorio 2?.
 
 #### Regla final
@@ -792,11 +580,8 @@ No reemplazan el juicio científico.
 
 ```text
 buscar != leer
-
 leer != verificar
-
 verificar != generalizar
-
 muchas citas != evidencia suficiente
 ```
 
