@@ -52,16 +52,17 @@ Al finalizar la semana debes poder:
 |---|---|
 | [`Cuaderno2-CC-0F4.ipynb`](Cuaderno2-CC-0F4.ipynb) | Material canónico del lunes: logits, softmax, decoding, autoregresión, contexto y KV cache |
 | [`Laboratorio2-CC-0F4.ipynb`](Laboratorio2-CC-0F4.ipynb) | Laboratorio experimental del jueves |
-| [`Lectura3-CC-0F4.md`](Lectura3-CC-0F4.md) | Lectura crítica de *The Curious Case of Neural Text Degeneration* |
-| [`Lectura4-CC-0F4.md`](Lectura4-CC-0F4.md) | Lectura crítica de *GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints* |
+| [`Exposiciones2-CC-0F4.md`](Exposiciones2-CC-0F4.md) | Guía de búsqueda académica y exposiciones de refuerzo |
 
-Las microexposiciones de Semana 2 son de **refuerzo**. No sustituyen la evaluación E1 de Semana 3.
+Las exposiciones de Semana 2 son de **refuerzo**. No sustituyen la evaluación E1 de Semana 3.
+
+No hay una lectura adicional obligatoria para toda la clase en esta semana. Cada grupo consulta la fuente primaria correspondiente a su tema de exposición.
 
 #### Experimento A - Decoding
 
 Pregunta:
 
-> ¿Cómo cambia la distribución y la diversidad de generación cuando se modifica únicamente la política de decoding?.
+> ¿Cómo cambia la distribución y la diversidad de generación cuando se modifica únicamente la política de decoding?
 
 Configuración fija:
 
@@ -163,7 +164,9 @@ Si existen más grupos se pueden utilizar:
 5. Speculative Decoding.
 6. PagedAttention.
 
-Cada exposición debe partir de una fuente primaria y usar al menos dos herramientas con funciones distintas, por ejemplo:
+Cada exposición debe partir de una fuente primaria y usar **dos herramientas con funciones distintas**.
+
+Por ejemplo:
 
 ```text
 descubrimiento/síntesis
@@ -175,6 +178,8 @@ ResearchRabbit/Connected Papers
 contraste de citas
 Scite
 ```
+
+No es obligatorio utilizar todas las herramientas.
 
 La salida de una herramienta de IA no se considera evidencia primaria.
 
@@ -191,7 +196,7 @@ pregunta -> hipótesis -> baseline -> una modificación -> métrica -> resultado
 Para inferencia se añade una distinción obligatoria:
 
 ```text
-modelo != política de decoding != runtime !=hardware
+modelo != política de decoding != runtime != hardware
 ```
 
 #### Entorno
@@ -222,7 +227,8 @@ Consulta [`../ENTORNO.md`](../ENTORNO.md).
 
 La semana está cerrada cuando el estudiante puede explicar y defender:
 
-$$z_t \longrightarrow p_t =
+$$
+z_t \longrightarrow p_t =
 \mathrm{softmax}(z_t)
 \longrightarrow
 \hat{x}_{t+1}
@@ -232,7 +238,8 @@ $$
 
 y además justificar:
 
-$$M_{\mathrm{KV}} =
+$$
+M_{\mathrm{KV}} =
 B L T \, 2 H_{\mathrm{KV}} d_h b,
 $$
 
@@ -241,5 +248,5 @@ indicando qué representa cada término y bajo qué supuestos la expresión es v
 La evidencia mínima de cierre es:
 
 ```text
-decoding implementado + Experimento A + estimación de KV cache + Experimento B + lectura crítica + microexposición + exposición técnica
+decoding implementado + Experimento A + estimación de KV cache + Experimento B + exposición de refuerzo
 ```
