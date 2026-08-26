@@ -1,197 +1,247 @@
-### Entorno de ejecución de CC-0F4
+### Entorno global de CC-0F4
 
-#### Objetivo
+#### Principio
 
-CC-0F4 debe poder ejecutarse en CPU y, cuando exista hardware NVIDIA compatible, en GPU. El material base de Semana 1 es **CPU-first**.
+CC-0F4 utiliza **un solo entorno de software para todo el semestre**.
 
-#### Versiones fijadas para 2026-2
+Las semanas contienen material académico:
 
 ```text
-Python 3.10+
-PyTorch 2.11.0
-CUDA de referencia: 12.8
-JupyterLab 4.x
+SemanaN/
+  ->
+README
+cuaderno
+laboratorio
+lecturas
+material de exposición
 ```
 
-`requirements.txt` contiene las dependencias de alto nivel. PyTorch se instala por separado porque CPU y CUDA usan índices distintos.
+La infraestructura vive únicamente en la raíz:
 
-#### Instalación local CPU
+```text
+requirements.txt
+Makefile
+Dockerfile
+ENTORNO.md
+```
 
-Linux o WSL:
+No se crean entornos, Dockerfiles, requirements ni Makefiles por semana.
+
+#### Entorno Python
+
+El entorno local recomendado es:
+
+```text
+.ccf04
+```
+
+Se crea una sola vez:
 
 ```bash
-python3 -m venv .ccf04
-source .ccf04/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m pip install torch==2.11.0 \
-  --index-url https://download.pytorch.org/whl/cpu
+make setup
+```
 
-make doctor
-make check
+Linux/WSL:
+
+```bash
+source .ccf04/bin/activate
 ```
 
 Windows PowerShell:
 
 ```powershell
-py -m venv .ccf04
 .ccf04\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m pip install torch==2.11.0 `
-  --index-url https://download.pytorch.org/whl/cpu
 ```
 
-#### Instalación local GPU NVIDIA
+#### Stack del semestre
+
+El archivo `requirements.txt` contiene las dependencias comunes para:
+
+- notebooks y experimentación,
+- Transformers y datasets,
+- retrieval denso y sparse,
+- structured generation y validación,
+- evaluación,
+- adaptación eficiente,
+- recuperación multimodal.
+
+PyTorch se mantiene fuera de `requirements.txt` porque la build depende del entorno de ejecución.
+
+#### Instalación CPU
 
 ```bash
-python -m pip install -r requirements.txt
-python -m pip install torch==2.11.0 \
-  --index-url https://download.pytorch.org/whl/cu128
+make install-cpu
 ```
 
-Comprueba:
-
-```bash
-python -c "import torch; print(torch.__version__); print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU')"
-```
-
-#### Docker
-
-Se usa una única imagen:
+El orden es intencional:
 
 ```text
-pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime
+PyTorch CPU -> requirements.txt
 ```
 
-Construye:
+Esto evita que una dependencia de alto nivel seleccione automáticamente otra build de PyTorch.
+
+#### Instalación NVIDIA GPU
 
 ```bash
-make docker-build
+make install-gpu
 ```
 
-o:
+El flujo es:
 
-```bash
-docker build --pull -t cc0f4:2026-2 .
+```text
+PyTorch CUDA 12.8 -> requirements.txt
 ```
 
-#### Docker CPU
-
-```bash
-make docker-run-cpu
-```
-
-La imagen incluye runtime CUDA, pero si no se expone una GPU, PyTorch ejecuta las operaciones compatibles en CPU.
-
-Comprueba:
-
-```bash
-make docker-check-cpu
-```
-
-#### Docker GPU NVIDIA en Linux
-
-Requiere Docker Engine, driver NVIDIA y NVIDIA Container Toolkit.
-
-Después de instalar el toolkit:
-
-```bash
-sudo nvidia-ctk runtime configure --runtime=docker
-sudo systemctl restart docker
-```
-
-Verifica:
-
-```bash
-docker run --rm --gpus all \
-  nvidia/cuda:12.8.0-base-ubuntu22.04 \
-  nvidia-smi
-```
-
-Luego:
-
-```bash
-make docker-check-gpu
-make docker-run-gpu
-```
-
-#### Docker GPU NVIDIA en Windows
-
-La imagen sigue siendo un **Linux container**. En Windows debe ejecutarse mediante Docker Desktop con backend WSL2.
-
-Se requiere:
-
-- Windows 10/11 compatible,
-- WSL2 actualizado,
-- GPU NVIDIA,
-- driver NVIDIA compatible con WSL2,
-- Docker Desktop con WSL2.
-
-PowerShell:
-
-```powershell
-docker build --pull -t cc0f4:2026-2 .
-
-docker run --rm -it `
-  --gpus all `
-  --shm-size=2g `
-  -p 8888:8888 `
-  -v "${PWD}:/workspace/CC-0F4" `
-  cc0f4:2026-2
-```
-
-Para CPU elimina `--gpus all`.
-
-#### Validación de Semana 1
-
-Desde la raíz:
+#### Validación global
 
 ```bash
 make check
 ```
 
-Esto verifica los archivos obligatorios y la estructura `nbformat` de los dos notebooks.
+`make check` descubre automáticamente las carpetas `SemanaN/` existentes y valida cada una.
 
-Para ejecutar el cuaderno canónico:
+No se modifica el Makefile cuando se agrega una semana nueva.
+
+#### Validación de una semana
+
+Ambas formas son equivalentes:
 
 ```bash
-make execute-cuaderno1
+make check-week WEEK=2
+make check-semana2
 ```
 
-Salida:
+La segunda funciona mediante una regla patrón y seguirá funcionando con semanas futuras:
+
+```bash
+make check-semana3
+make check-semana10
+make check-semana16
+```
+
+sin editar `Makefile`.
+
+#### Ejecución de un cuaderno canónico
+
+Forma explícita:
+
+```bash
+make execute-cuaderno WEEK=2
+```
+
+Forma abreviada:
+
+```bash
+make execute-cuaderno2
+```
+
+El mismo Makefile resuelve automáticamente:
 
 ```text
-.build/Cuaderno1-CC-0F4.executed.ipynb
+Semana2/Cuaderno2-CC-0F4.ipynb
 ```
 
-El laboratorio no se ejecuta automáticamente de inicio a fin porque contiene ejercicios y `TODO` intencionales.
+y para otra semana:
 
-También puedes comprobar el cuaderno dentro de Docker:
+```text
+SemanaN/CuadernoN-CC-0F4.ipynb
+```
+
+#### Docker
+
+Se utiliza una sola imagen para todo el curso.
+
+El `Dockerfile` de la raíz instala el `requirements.txt` global y no necesita cambiar cuando se añade una semana.
+
+Construcción:
 
 ```bash
-make docker-test-cuaderno1-cpu
+make docker-build
 ```
+
+CPU:
+
+```bash
+make docker-run-cpu
+```
+
+NVIDIA:
+
+```bash
+make docker-run-gpu
+```
+
+Prueba de un cuaderno:
+
+```bash
+make docker-test-cuaderno2
+```
+
+Las reglas patrón permiten usar el mismo comando con cualquier semana futura.
+
+#### Modelos y datasets externos
+
+`requirements.txt` instala librerías, no pesos de modelos ni datasets grandes.
+
+Los notebooks deben distinguir:
+
+```text
+dependencia de software != artefacto descargable
+```
+
+Un modelo de Hugging Face, un dataset o un checkpoint puede:
+
+- estar precargado,
+- descargarse explícitamente,
+- omitirse cuando una sección sea opcional.
+
+No debe ser razón para crear un entorno distinto por semana.
 
 #### Reproducibilidad
 
-Cuando reportes un experimento registra, cuando corresponda:
+Todo experimento debe registrar, cuando corresponda:
 
 ```text
 Python
 PyTorch
+librerías relevantes
 CPU/GPU
 modelo
 seed
-datos
+datos o prompt
 configuración
 métrica
 resultado
 ```
 
-#### Referencias oficiales
+Para inferencia:
 
-- PyTorch: https://pytorch.org/get-started/
-- PyTorch Docker: https://hub.docker.com/r/pytorch/pytorch
-- Docker Desktop GPU: https://docs.docker.com/desktop/features/gpu/
-- NVIDIA Container Toolkit: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+```text
+decoding
+context length
+batch
+precision
+KV heads
+unidad de memoria
+supuestos del estimador
+```
+
+#### Regla para el resto del semestre
+
+Al crear `Semana3/`, `Semana4/`, ..., `Semana16/`:
+
+```text
+se agregan materiales
+```
+
+pero no:
+
+```text
+nuevo entorno
+nuevo Makefile
+nuevo Dockerfile
+requirements de la semana
+```
+
+Si una dependencia realmente nueva fuera imprescindible y no pudo preverse en el stack global, se trata como una **modificación excepcional de infraestructura del curso**, no como parte rutinaria de una semana.
