@@ -62,7 +62,7 @@ No hay una lectura adicional obligatoria para toda la clase en esta semana. Cada
 
 Pregunta:
 
-> ¿Cómo cambia la distribución y la diversidad de generación cuando se modifica únicamente la política de decoding?
+> ¿Cómo cambia la distribución y la diversidad de generación cuando se modifica únicamente la política de decoding?.
 
 Configuración fija:
 
@@ -119,7 +119,7 @@ El experimento **no** pretende demostrar calidad general de un modelo.
 
 Pregunta:
 
-> Bajo una configuración fija, ¿cómo cambia la memoria lógica estimada del estado de inferencia al modificar la estrategia de atención/cache?
+> Bajo una configuración fija, ¿cómo cambia la memoria lógica estimada del estado de inferencia al modificar la estrategia de atención/cache?.
 
 Configuración de referencia:
 
