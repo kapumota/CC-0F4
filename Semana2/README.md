@@ -90,22 +90,27 @@ A1
 temperature = 0.7
 
 A2
-top_k = 40
+temperature = 1.3
 
 A3
-top_p = 0.9
+top_k = 3
+
+A4
+top_p = 0.85
 ```
 
 No se deben cambiar simultáneamente las tres variables si se desea atribuir un efecto a una de ellas.
 
 Métricas sugeridas:
 
-- entropía de la distribución del siguiente token,
+- entropía de la distribución inicial,
+- entropía media de la trayectoria,
 - número de candidatos después del filtrado,
 - `distinct-1`,
 - `distinct-2`,
 - repetición de bigramas,
 - proporción de generaciones distintas,
+- media y desviación estándar entre repeticiones,
 - observación cualitativa breve, separada de las métricas automáticas.
 
 El experimento **no** pretende demostrar calidad general de un modelo.
@@ -161,8 +166,8 @@ Los temas base son:
 
 Si existen más grupos se pueden utilizar:
 
-5. Speculative Decoding.
-6. PagedAttention.
+5. PagedAttention.
+6. Speculative Decoding.
 
 Cada exposición debe partir de una fuente primaria y usar **dos herramientas con funciones distintas**.
 
