@@ -18,8 +18,8 @@ La cadena conceptual es:
 
 ```text
 documentos
--> pasajes
--> fragmentos
+-> passages
+-> chunks
 -> embeddings
 -> similitud
 -> índice
