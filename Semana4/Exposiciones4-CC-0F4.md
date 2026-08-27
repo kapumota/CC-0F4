@@ -137,8 +137,7 @@ muchas citas = paper correcto
 Uso recomendado:
 
 ```text
-paper -> leer PDF ->
-preguntar por método -> identificar resultados -> localizar limitaciones
+paper -> leer PDF -> preguntar por método -> identificar resultados -> localizar limitaciones
 ```
 
 SciSpace permite buscar literatura, filtrar resultados y utilizar `Chat with PDF` para consultar aspectos como metodología, resultados o posibles limitaciones del documento.
@@ -259,11 +258,7 @@ No se calificará quién utilizó más herramientas.
 Se evaluará si el grupo puede explicar:
 
 ```text
-cómo encontró la literatura
-->
-por qué seleccionó el paper
-->
-qué verificó en la fuente primaria
+cómo encontró la literatura -> por qué seleccionó el paper -> qué verificó en la fuente primaria
 ```
 
 
