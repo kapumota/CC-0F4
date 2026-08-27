@@ -69,7 +69,7 @@ Aprendizaje contrastivo, dual encoders, CLIP, OpenCLIP, embeddings texto-imagen,
 | Semana | Tema central | Evaluación oral |
 |---|---|---|
 | 1 | Presentación del curso, sistemas de IA compuestos, transformer, atención, causalidad, tokens, prueba diagnóstica | - |
-| 2 | Embeddings, logits, softmax, decoding, ventana de contexto, KV cache | - |
+| 2 | Logits, softmax, decoding, generación autoregresiva, ventana de contexto y KV cache | - |
 | 3 | Prompting, generación estructurada, JSON Schema, validación, ingenieria de contexto | **E1** |
 | 4 | Embeddings para retrieval, chunking, similitud, vector stores, dense retrieval, FAISS | - |
 | 5 | BM25, recuperación híbrida, reranking, RAG | **E2** |
