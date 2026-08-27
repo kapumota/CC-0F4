@@ -4,12 +4,6 @@
 
 Las exposiciones complementan embeddings y retrieval sin convertir la sesión en un recorrido por librerías.
 
-Tiempo total máximo:
-
-```text
-90 minutos
-```
-
 Formato recomendado para cuatro grupos:
 
 ```text
