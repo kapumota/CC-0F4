@@ -28,6 +28,8 @@ Diseñar, implementar, evaluar y sustentar sistemas contemporáneos de inteligen
 
 Al finalizar el curso, el estudiante deberá ser capaz de explicar la mecánica de un modelo transformer causal, diseñar salidas estructuradas, implementar y comparar sistemas de retrieval y RAG, construir sistemas con herramientas y agentes, evaluar mediante métricas y ablaciones, trabajar con recuperación multimodal y sustentar oralmente sus decisiones técnicas.
 
+
+
 #### Prerrequisitos esperados
 
 Programación, estructuras de datos y algoritmos, álgebra lineal, probabilidad básica, aprendizaje automático, redes neuronales, fundamentos de inteligencia artificial, programación concurrente y distribuida, lectura técnica.
@@ -163,6 +165,61 @@ Se debe evitar modificar varias variables a la vez cuando se desea atribuir una 
 Python 3.x, PyTorch, Hugging Face Transformers, Hugging Face Datasets, sentence-transformers, FAISS, rank-bm25, Pydantic o JSON Schema, OpenCLIP, Jupyter Notebook o JupyterLab.
 
 LangChain, LangGraph, smolagents, MCP u otras herramientas pueden utilizarse como ejemplos o extensiones. No se evaluará la memorización de APIs.
+
+#### Convenciones de idioma y terminología
+
+El idioma principal de las explicaciones, instrucciones, actividades, comentarios docentes y análisis del curso es el **español**.
+
+Los cuadernos pueden utilizar ejemplos, corpus y datasets en **español o inglés** cuando ello resulte adecuado para el objetivo pedagógico o experimental. El uso de un idioma determinado en los datos no implica que todo el cuaderno deba utilizar ese mismo idioma.
+
+Se mantienen en inglés los elementos cuyo nombre forma parte de una interfaz de software, una convención de programación o una denominación técnica ampliamente utilizada, por ejemplo:
+
+```text
+embedding
+Transformer
+self-attention
+top-k
+Recall@k
+MRR
+nDCG
+FAISS
+IndexFlatIP
+BM25
+RAG
+LLM
+query:
+passage:
+```
+
+También se mantienen en inglés:
+
+```text
+nombres de variables
+nombres de funciones y clases
+nombres de modelos
+nombres de bibliotecas
+APIs
+parámetros de configuración
+identificadores de datasets
+```
+
+Cuando existe una traducción técnica clara y natural, la explicación utiliza español. Por ejemplo:
+
+```text
+dense retrieval -> recuperación densa
+sparse retrieval -> recuperación dispersa
+chunking -> segmentación
+chunk -> fragmento
+inner product -> producto interno
+vector store -> almacén vectorial
+error analysis -> análisis de errores
+```
+
+En los experimentos, el idioma de los datos debe mantenerse fijo cuando no constituye la variable estudiada. Si se compara español e inglés, esa diferencia deberá declararse explícitamente como parte del diseño experimental.
+
+La prioridad es mantener simultáneamente **claridad pedagógica, precisión técnica y reproducibilidad del código**, evitando traducciones artificiales de nombres que forman parte del ecosistema de software o de la literatura científica.
+
+
 
 #### Bibliografía principal
 
