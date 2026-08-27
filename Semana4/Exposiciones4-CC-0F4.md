@@ -238,19 +238,15 @@ Debe contener únicamente:
 
 ```text
 Pregunta utilizada:
-________________________________
 
 Paper semilla:
-________________________________
 
 Herramientas utilizadas:
-________________________________
 
 Un paper relacionado encontrado:
-________________________________
 
 ¿Por qué fue útil?
-________________________________
+
 ```
 
 No se calificará quién utilizó más herramientas.
