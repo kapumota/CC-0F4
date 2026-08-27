@@ -48,7 +48,7 @@ total: 10 min por grupo
 
 Si existen menos grupos, la sesión termina antes.
 
-La búsqueda bibliográfica y la preparación se realizan antes del jueves.
+La búsqueda bibliográfica y la preparación se podrían realizar antes del jueves.
 
 Durante el bloque final del laboratorio se presenta y defiende el trabajo ya preparado.
 
