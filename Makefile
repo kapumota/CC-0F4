@@ -8,11 +8,16 @@ TORCH_CUDA_INDEX ?= https://download.pytorch.org/whl/cu128
 IMAGE ?= cc0f4:2026-2
 WORKDIR ?= $(CURDIR)
 BUILD_DIR ?= .build
+NOTEBOOK_TIMEOUT ?= 600
 
 WEEK ?= 1
 WEEK_DIR := Semana$(WEEK)
 CUADERNO := $(WEEK_DIR)/Cuaderno$(WEEK)-CC-0F4.ipynb
 LABORATORIO := $(WEEK_DIR)/Laboratorio$(WEEK)-CC-0F4.ipynb
+
+# Semanas que deliberadamente no tienen laboratorio canónico.
+# Semana 3 usa el jueves completo para la evaluación oral E1.
+NO_LAB_WEEKS ?= 3
 
 .PHONY: help setup install-cpu install-gpu install-course doctor \
 	check check-root check-week validate-notebooks validate-week \
@@ -37,6 +42,8 @@ help:
 	@echo "Ejecucion:"
 	@echo "  make execute-cuaderno WEEK=2   Ejecuta el cuaderno canonico de una semana"
 	@echo "  make execute-cuaderno2         Alias generico por patron"
+	@echo "  CC0F4_RUN_REAL_LLM=0 make execute-cuaderno3"
+	@echo "                                 Ejecuta Semana 3 sin inferencia real"
 	@echo ""
 	@echo "Docker:"
 	@echo "  make docker-build              Construye la imagen global"
@@ -102,7 +109,10 @@ check-week:
 	@test -d "$(WEEK_DIR)"
 	@test -f "$(WEEK_DIR)/README.md"
 	@test -f "$(CUADERNO)"
-	@test -f "$(LABORATORIO)"
+	@case " $(NO_LAB_WEEKS) " in \
+		*" $(WEEK) "*) echo "$(WEEK_DIR): sin laboratorio canonico" ;; \
+		*) test -f "$(LABORATORIO)" ;; \
+	esac
 	@$(MAKE) --no-print-directory validate-week WEEK=$(WEEK)
 	@echo "$(WEEK_DIR): estructura y notebooks OK"
 
@@ -115,10 +125,10 @@ validate-week:
 execute-cuaderno:
 	@test -f "$(CUADERNO)"
 	@mkdir -p $(BUILD_DIR)
-	jupyter nbconvert \
+	$(PYTHON) -m jupyter nbconvert \
 		--to notebook \
 		--execute "$(CUADERNO)" \
-		--ExecutePreprocessor.timeout=180 \
+		--ExecutePreprocessor.timeout=$(NOTEBOOK_TIMEOUT) \
 		--output "$(CURDIR)/$(BUILD_DIR)/Cuaderno$(WEEK)-CC-0F4.executed.ipynb"
 	@echo "Cuaderno ejecutado: $(BUILD_DIR)/Cuaderno$(WEEK)-CC-0F4.executed.ipynb"
 
@@ -165,10 +175,10 @@ docker-test-cuaderno:
 		--shm-size=2g \
 		-v "$(WORKDIR):/workspace/CC-0F4" \
 		$(IMAGE) \
-		jupyter nbconvert \
+		python -m jupyter nbconvert \
 			--to notebook \
 			--execute "/workspace/CC-0F4/$(CUADERNO)" \
-			--ExecutePreprocessor.timeout=180 \
+			--ExecutePreprocessor.timeout=$(NOTEBOOK_TIMEOUT) \
 			--output "/workspace/CC-0F4/$(BUILD_DIR)/Cuaderno$(WEEK)-CC-0F4.docker.executed.ipynb"
 	@echo "Cuaderno ejecutado en Docker: $(BUILD_DIR)/Cuaderno$(WEEK)-CC-0F4.docker.executed.ipynb"
 
