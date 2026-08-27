@@ -1,34 +1,17 @@
-### Semana 3 - Prompting, structured generation, validación y context engineering
+### Semana 3 - Prompting, generación estructurada, validación y ingeniería de contexto
 
 #### Propósito
 
-Semana 2 estudió cómo un modelo produce el siguiente token. Semana 3
-estudia qué ocurre cuando esa generación debe convertirse en una
+Semana 2 estudió cómo un modelo produce el siguiente token. Semana 3 estudia qué ocurre cuando esa generación debe convertirse en una
 interfaz utilizable por software.
 
 La cadena conceptual es:
 
 ```text
-prompt
-    ->
-context
-    ->
-LLM
-    ->
-raw text
-    ->
-JSON parse
-    ->
-JSON Schema
-    ->
-semantic validation
-    ->
-paired evaluation
+prompt -> contexto -> LLM -> texto sin procesar -> JSON parse -> JSON Schema -> validación semántica -> evaluación emparejada
 ```
 
-El objetivo no es memorizar técnicas de prompting ni aprender una API de
-Transformers. El objetivo es convertir una generación probabilística en
-una interfaz verificable y evaluarla mediante evidencia.
+El objetivo no es memorizar técnicas de prompting ni aprender una API de Transformers. El objetivo es convertir una generación probabilística en una interfaz verificable y evaluarla mediante evidencia.
 
 #### Resultados de aprendizaje
 
@@ -99,11 +82,7 @@ con un caso `ambiguous` por categoría.
 Costo lógico:
 
 ```text
-12 casos
-x
-3 condiciones
-=
-36 generaciones
+12 casos x 3 condiciones = 36 generaciones
 ```
 
 #### Ejecución completa
@@ -125,17 +104,11 @@ No cambia el protocolo experimental.
 #### Condiciones
 
 ```text
-baseline
-=
-entrada + contexto relevante
+baseline = entrada + contexto relevante
 
-neutral
-=
-entrada + contexto relevante + contexto neutral
+neutral = entrada + contexto relevante + contexto neutral
 
-conflicting
-=
-entrada + contexto relevante + contexto conflictivo
+conflicting = entrada + contexto relevante + contexto conflictivo
 ```
 
 La comparación principal es:
@@ -144,27 +117,12 @@ La comparación principal es:
 baseline vs conflicting
 ```
 
-`neutral` funciona como control negativo para separar el efecto de
-"más texto" del efecto de "información conflictiva".
+`neutral` funciona como control negativo para separar el efecto de "más texto" del efecto de "información conflictiva".
 
 #### Estándar experimental
 
 ```text
-pregunta
-->
-hipótesis
-->
-baseline
-->
-una modificación
-->
-métrica
-->
-resultado
-->
-limitación
-->
-conclusión
+pregunta -> hipótesis -> baseline -> una modificación -> métrica -> resultado -> limitación -> conclusión
 ```
 
 No se reajustan después de observar los resultados:
@@ -264,8 +222,7 @@ N_REPEATS = 3
 
 estudia estabilidad.
 
-Cuando existen repeticiones, el bootstrap agrega primero por `id` y
-remuestrea casos, no repeticiones individuales.
+Cuando existen repeticiones, el bootstrap agrega primero por `id` y remuestrea casos, no repeticiones individuales.
 
 
 #### Entorno
@@ -288,11 +245,9 @@ CC0F4_RUN_REAL_LLM=0 make execute-cuaderno3
 
 #### Primera ejecución del modelo
 
-La primera ejecución requiere acceso a Internet para descargar el modelo
-si todavía no se encuentra en la caché local de Hugging Face.
+La primera ejecución requiere acceso a Internet para descargar el modelo si todavía no se encuentra en la caché local de Hugging Face.
 
-El cuaderno funciona en CPU, aunque la inferencia será más lenta. Una GPU
-compatible acelera el experimento, pero no cambia el protocolo.
+El cuaderno funciona en CPU, aunque la inferencia será más lenta. Una GPU compatible acelera el experimento, pero no cambia el protocolo.
 
 El `Makefile` incluido define:
 
@@ -306,8 +261,7 @@ y puede sobrescribirse, por ejemplo:
 make execute-cuaderno3 NOTEBOOK_TIMEOUT=900
 ```
 
-Para comprobar únicamente estructura, benchmark, parsing, schema y análisis
-sin descargar el modelo:
+Para comprobar únicamente estructura, benchmark, parsing, schema y análisis sin descargar el modelo:
 
 ```bash
 CC0F4_RUN_REAL_LLM=0 make execute-cuaderno3
@@ -333,21 +287,8 @@ diferencia observada != conclusión universal
 
 #### Puente a Semana 4
 
-Semana 3 selecciona manualmente el contexto.
-
-Semana 4 pregunta:
+Semana 3 selecciona manualmente el contexto. La semana 4 pregunta:
 
 ```text
-¿cómo recuperar automáticamente
-el contexto relevante?
-    ->
-embeddings
-    ->
-similitud
-    ->
-chunking
-    ->
-dense retrieval
-    ->
-FAISS
+¿cómo recuperar automáticamente el contexto relevante? -> embeddings -> similitud -> chunking -> dense retrieval -> FAISS
 ```
