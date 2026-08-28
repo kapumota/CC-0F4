@@ -131,9 +131,9 @@ La entrega se realiza mediante la plataforma de evaluación indicada por el doce
 
 La defensa oral puede ser solicitada durante la sesión.
 
-#### Prueba diagnóstica
+#### Prueba de entrada
 
-La prueba diagnóstica de entrada se distribuye y entrega mediante una **plataforma de evaluación externa al repositorio**.
+La prueba de entrada se distribuye y entrega mediante una **plataforma de evaluación externa al repositorio**.
 
 No se publica en `CC-0F4` y no forma parte de los archivos de `Semana1/`.
 
