@@ -58,3 +58,7 @@ Thumbs.db
 
 # Mantiene placeholders deliberados
 !**/.gitkeep
+
+# Entorno y artefactos locales de CC-0F4
+.ccf04/
+.build/

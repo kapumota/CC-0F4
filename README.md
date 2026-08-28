@@ -66,8 +66,6 @@ Aprendizaje contrastivo, dual encoders, CLIP, OpenCLIP, embeddings texto-imagen,
 
 #### Programación semanal
 
-#### Programación semanal
-
 | Semana | Tema central | Evaluación oral |
 |---|---|---|
 | 1 | Presentación del curso, sistemas de IA compuestos, transformer, atención, causalidad, tokens, prueba diagnóstica | - |
@@ -86,16 +84,6 @@ Aprendizaje contrastivo, dual encoders, CLIP, OpenCLIP, embeddings texto-imagen,
 | 14 | Aprendizaje contrastivo, CLIP, OpenCLIP, recuperación multimodal | **E5** |
 | 15 | Multimodal RAG, generación grounded, integración, demostraciones | - |
 | 16 | Proyecto final | - |
-
-#### Exposiciones de investigación
-
-Durante el semestre se realizarán **5 exposiciones evaluadas** sobre temas contemporáneos relacionados con el curso.
-
-Los temas podrán incluir atención eficiente, FlashAttention, GQA, ColBERT, GraphRAG, constrained decoding, MCP, memoria persistente, sistemas multiagente, automatic prompt optimization, test-time compute, LLM-as-Judge, VLM, Document AI y agentes multimodales.
-
-Cada exposición deberá presentar problema, fuente primaria, idea principal, método, limitaciones, pequeño experimento o demostración y conclusión.
-
-La exposición debe mostrar comprensión y análisis crítico, no solo resumir documentación.
 
 #### Exposiciones de investigación
 

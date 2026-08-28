@@ -72,7 +72,7 @@ Lectura1-CC-0F4.md
 Lectura2-CC-0F4.md
 ```
 
-Attention AI Lab se usa para observar full attention frente a causal attention y para mostrar la transición:
+Attention AI Lab (`apps/api/app/services/attention.py`) se usa para observar full attention frente a causal attention y para mostrar la transición:
 
 ```text
 matemática -> función -> API -> frontend -> sistema
@@ -96,7 +96,7 @@ En el laboratorio se exige:
 - comparar full attention y causal attention,
 - calcular invariantes,
 - introducir un fallo controlado,
-- leer `mha.py` y `models.py`,
+- leer `labml_nn/transformers/mha.py` y `labml_nn/transformers/models.py` del repositorio de implementaciones anotadas,
 - diseñar una comparación controlada,
 - identificar una limitación,
 - defender qué conclusión sí está respaldada por la evidencia y cuál no.

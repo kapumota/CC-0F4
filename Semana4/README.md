@@ -44,7 +44,7 @@ target_words = 180
 Variantes:
 
 ```text
-small = 80
+small = 100
 large = 320
 ```
 
