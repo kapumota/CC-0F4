@@ -1,4 +1,4 @@
-# CC-0F4 - entorno reproducible 2026-2
+# CC-0F4 - entorno reproducible CC-0F4
 
 FROM pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime
 
