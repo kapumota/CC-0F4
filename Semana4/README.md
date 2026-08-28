@@ -191,7 +191,7 @@ análisis de errores
 conclusión limitada
 ```
 
-#### Puente a Semana 5
+#### Puente a la Semana 5
 
 ```text
 Semana 4: recuperación densa -> evidencia top-k -> Semana 5: BM25 + recuperación densa -> fusión -> reranking -> contexto -> LLM
