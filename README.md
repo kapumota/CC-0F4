@@ -2,7 +2,9 @@
 
 **Tema del periodo 2026-2:** Sistemas de IA con Agentes y Recuperación Multimodal.
 
-Este curso estudia cómo diseñar, implementar y evaluar sistemas de inteligencia artificial que combinan modelos fundacionales, contexto, recuperación de información, herramientas, estado, memoria, agentes y multimodalidad. El énfasis está en comprender los componentes, experimentar, medir resultados, analizar errores y defender decisiones técnicas.
+Este curso estudia cómo diseñar, implementar y evaluar sistemas de inteligencia artificial que combinan modelos fundacionales, contexto, recuperación de información, herramientas, estado, memoria, agentes y multimodalidad. 
+
+El énfasis está en comprender los componentes, experimentar, medir resultados, analizar errores y defender decisiones técnicas.
 
 > **Lenguaje principal:** Python 3.x  
 > **Entorno:** Jupyter Notebook/JupyterLab  
@@ -27,8 +29,6 @@ Diseñar, implementar, evaluar y sustentar sistemas contemporáneos de inteligen
 #### Resultados de aprendizaje
 
 Al finalizar el curso, el estudiante deberá ser capaz de explicar la mecánica de un modelo transformer causal, diseñar salidas estructuradas, implementar y comparar sistemas de retrieval y RAG, construir sistemas con herramientas y agentes, evaluar mediante métricas y ablaciones, trabajar con recuperación multimodal y sustentar oralmente sus decisiones técnicas.
-
-
 
 #### Prerrequisitos esperados
 
@@ -152,7 +152,9 @@ Se debe evitar modificar varias variables a la vez cuando se desea atribuir una 
 
 Python 3.x, PyTorch, Hugging Face Transformers, Hugging Face Datasets, sentence-transformers, FAISS, rank-bm25, Pydantic o JSON Schema, OpenCLIP, Jupyter Notebook o JupyterLab.
 
-LangChain, LangGraph, smolagents, MCP u otras herramientas pueden utilizarse como ejemplos o extensiones. No se evaluará la memorización de APIs.
+LangChain, LangGraph, smolagents, MCP u otras herramientas pueden utilizarse como ejemplos o extensiones. 
+
+No se evaluará la memorización de APIs.
 
 #### Convenciones de idioma y terminología
 
