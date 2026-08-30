@@ -1,10 +1,8 @@
-### Semana 6 - Herramientas (tools), llamada de funciones (function calling), contratos, validación, errores, reintentos (retries) y límites de tiempo (timeouts)
+### Semana 6 - Herramientas, llamada de funciones, contratos, validación, errores, reintentos (retries) y límites de tiempo (timeouts)
 
 #### Propósito
 
-Semana 5 terminó en una arquitectura donde el LLM recibe evidencia recuperada.
-
-Semana 6 cambia la frontera del sistema:
+Semana 5 terminó en una arquitectura donde el LLM recibe evidencia recuperada. Semana 6 cambia la frontera del sistema: el modelo ya no solo produce texto o respuestas apoyadas en contexto, sino que puede proponer una acción sobre una herramienta externa.
 
 ```text
 Semana 5
@@ -31,7 +29,7 @@ ToolCall
 {name, arguments}
    |
    v
-análisis sintáctico (`parse`)
+análisis sintáctico (parsing)
    |
    v
 lista de herramientas permitidas (allowlist)
@@ -57,7 +55,7 @@ implementación de la herramienta (tool implementation)
 contrato de salida (output contract)
    |
    v
-ToolResult / ToolError
+ToolResult/ToolError
    |
    v
 observación (observation)
@@ -72,7 +70,13 @@ Semana 6 estudia la frontera de confianza
 entre un LLM probabilístico y una función determinista.
 ```
 
-Semana 6 contiene una exposición técnica de refuerzo, como ocurre en otras semanas no evaluadas.
+#### Organización excepcional de la semana
+
+La Semana 6 dispone únicamente de la sesión del **lunes 5 de octubre de 2026, de 6:00 p. m. a 8:00 p. m.**
+
+El **jueves 8 de octubre de 2026 es feriado nacional por el Combate de Angamos**, por lo que **no se programa laboratorio ni exposición** en esta semana.
+
+El cuaderno conserva material adicional y ejercicios de práctica autónoma para que el estudiante pueda profundizar fuera de las dos horas presenciales. El núcleo de la sesión del lunes se concentra en la frontera de confianza, contratos, validación, errores estructurados, reintentos selectivos y límites temporales.
 
 #### Resultados de aprendizaje
 
@@ -84,13 +88,13 @@ Al finalizar la semana el estudiante debe poder:
 - separar validación estructural de validación de dominio,
 - diseñar contratos de salida,
 - representar errores como datos estructurados,
-- clasificar errores usando los códigos `protocol`, `validation`, `domain`, `transient`, `timeout`, `execution` y `output_contract`, comprendiendo su significado en español,
+- clasificar errores usando `protocol`, `validation`, `domain`, `transient`, `timeout`, `execution` y `output_contract`,
 - decidir qué errores son reintentables (`retryable`),
 - distinguir reintento (`retry`) de reparación (`repair`),
-- distinguir tiempo de espera agotado por intento (`timeout`) de límite temporal total (`deadline`),
+- distinguir tiempo de espera por intento (`timeout`) de límite temporal total (`deadline`),
 - medir resultados correctos aunque el resultado esperado sea un error,
 - auditar llamadas a herramientas (`tool calls`) mediante trazas reproducibles,
-- evaluar por separado selección de herramienta, análisis sintáctico (`parsing`), validez del esquema (`schema`), semántica de argumentos y resultado de extremo a extremo (`end-to-end`).
+- evaluar por separado selección de herramienta, análisis sintáctico (`parsing`), validez del esquema, semántica de argumentos y resultado de extremo a extremo (`end-to-end`).
 
 #### La llamada de herramientas (tool calling) no es ejecución
 
@@ -98,7 +102,7 @@ Al finalizar la semana el estudiante debe poder:
 llamada de funciones (function calling) != ejecución de funciones (function execution)
 ```
 
-El modelo propone:
+El modelo puede proponer:
 
 ```json
 {
@@ -109,16 +113,7 @@ El modelo propone:
 }
 ```
 
-La aplicación conserva la autoridad para:
-
-```text
-aceptar/rechazar
-validar
-ejecutar
-reintentar
-cancelar
-registrar
-```
+pero la aplicación conserva la autoridad para aceptar o rechazar la solicitud, validar los argumentos, ejecutar la función, decidir si corresponde reintentar, cancelar cuando se supera un presupuesto temporal y registrar lo ocurrido.
 
 #### Herramientas canónicas
 
@@ -130,13 +125,13 @@ catalog.lookup_stock
 shipping.get_quote
 ```
 
-No se necesita una API externa para el Experimento A.
+El Experimento A no requiere una API externa. Esto permite estudiar la política de ejecución sin introducir variabilidad de red ni fallos externos no controlados.
 
 #### Niveles de contrato
 
 ##### Especificación de herramienta (tool specification)
 
-Es la descripción que ve el modelo.
+Es la descripción que observa el modelo y contiene, como mínimo:
 
 ```text
 name
@@ -146,28 +141,18 @@ parameters
 
 ##### Contrato de entrada (input contract)
 
-Valida forma y tipos.
-
-```text
-Pydantic/JSON Schema
-```
+Valida forma, tipos y restricciones estructurales. En el entorno Python se representa mediante Pydantic y puede relacionarse con JSON Schema.
 
 ##### Contrato de dominio (domain contract)
 
-Valida reglas que no pertenecen al tipo.
-
-Ejemplo:
+Valida reglas que no pertenecen únicamente al tipo. Por ejemplo, `"SKU999"` puede ser un `str` perfectamente válido y cumplir un esquema, pero no existir en el catálogo.
 
 ```text
-"SKU999"
-```
-
-puede ser un `str` válido y satisfacer el esquema (`schema`), pero no existir en el catálogo.
-
-Por ello:
-
-```text
-válido por tipo (`type-valid`) != válido por esquema (`schema-valid`) != válido para el dominio (`domain-valid`)
+válido por tipo (type-valid)
+!=
+válido por esquema (schema-valid)
+!=
+válido para el dominio (domain-valid)
 ```
 
 ##### Contrato de salida (output contract)
@@ -180,20 +165,13 @@ herramienta ejecutada != salida válida
 
 #### Errores estructurados
 
-La interfaz canónica utiliza:
+La interfaz canónica utiliza `ToolResult` y `ToolError`. Una excepción interna puede convertirse en un error estable que el resto del sistema pueda interpretar.
 
 ```text
-ToolResult
-ToolError
+excepción interna != contrato de error
 ```
 
-y no depende solamente de excepciones.
-
-```text
-excepción (`exception`) != contrato de error (`error contract`)
-```
-
-Taxonomía:
+La taxonomía utilizada es:
 
 ```text
 protocol        -> protocolo
@@ -205,7 +183,7 @@ execution       -> ejecución
 output_contract -> contrato de salida
 ```
 
-Política inicial:
+La política inicial es deliberadamente conservadora:
 
 ```text
 protocol        -> sin reintento automático
@@ -219,54 +197,40 @@ output_contract -> sin reintento automático
 
 #### Reintento (retry) no es reparación (repair)
 
-```text
-reintento (`retry`) != reparación (`repair`)
-```
-
-Reintento (`retry`):
+Un reintento repite una operación con los mismos argumentos ya validados porque el fallo puede ser temporal. Una reparación cambia la llamada porque los argumentos eran incorrectos.
 
 ```text
-mismos argumentos ya validados + fallo transitorio
-->
-nuevo intento
+reintento (retry) != reparación (repair)
 ```
 
-Reparación (`repair`):
-
-```text
-argumentos inválidos
-->
-cambiar la llamada
-```
-
-La reparación automática mediante un nuevo ciclo LLM no se implementa en Semana 6 porque introduce decisión iterativa y se acerca a flujos de trabajo (`workflows`) y agentes.
+La Semana 6 estudia reintentos controlados. No implementa un nuevo ciclo LLM para corregir llamadas defectuosas, porque eso introduce decisión iterativa y se acerca a flujos de trabajo (`workflows`) y agentes, reservados para semanas posteriores.
 
 #### Tiempo de espera (timeout) y límite temporal total (deadline)
 
-Se distinguen:
+Se distinguen tres mecanismos:
 
 ```text
 per_attempt_timeout
-`max_attempts` (máximo de intentos)
-`overall_deadline` (límite temporal total)
+max_attempts
+overall_deadline
 ```
 
-Un reintento (`retry`) puede mejorar la recuperación ante fallos transitorios, pero consume tiempo.
+El `timeout` limita un intento individual. El `overall_deadline` limita el tiempo total de la operación, incluidos intentos y esperas entre reintentos. Antes de continuar con un nuevo `backoff`, el entorno debe comprobar que todavía existe presupuesto suficiente.
 
 ```text
-más reintentos (`retries`) != mejor sistema en todos los casos
+más reintentos != mejor sistema en todos los casos
 ```
 
 #### Experimento A - Entorno de ejecución determinista (runtime)
 
-Pregunta:
+La pregunta experimental es:
 
-> ¿Qué efecto tiene agregar progresivamente validación, errores estructurados, retries y límites temporales cuando las entradas y los fallos permanecen fijos?.
+> ¿Qué efecto tiene agregar progresivamente validación, errores estructurados, reintentos y límites temporales cuando las entradas y los fallos permanecen fijos?
 
-Condiciones:
+Se comparan cinco condiciones acumulativas:
 
 ```text
-A = despacho directo ingenuo (`dispatch`)
+A = despacho directo ingenuo (dispatch)
 
 B = A
   + contrato tipado de entrada
@@ -276,28 +240,21 @@ C = B
   + contrato de salida
 
 D = C
-  + reintento selectivo (`retry`)
-  + espera progresiva (`backoff`)
+  + reintento selectivo (retry)
+  + espera progresiva (backoff)
 
 E = D
-  + tiempo de espera por intento (`timeout`)
-  + límite temporal total (`deadline`)
+  + tiempo de espera por intento (timeout)
+  + límite temporal total (deadline)
 ```
 
-Comparaciones:
+Las comparaciones permiten atribuir con mayor claridad el efecto de cada mecanismo:
 
 ```text
-A vs B
--> efecto de la validación de entrada (`input validation`)
-
-B vs C
--> efecto de los errores estructurados (`structured errors`) y del contrato de salida (`output contract`)
-
-C vs D
--> efecto de los reintentos (`retries`)
-
-D vs E
--> efecto de límites temporales
+A vs B -> validación de entrada
+B vs C -> errores estructurados + contrato de salida
+C vs D -> reintentos selectivos
+D vs E -> límites temporales
 ```
 
 Los fallos se inyectan de forma determinista:
@@ -313,7 +270,7 @@ internal_error
 malformed_output
 ```
 
-No se espera que Internet falle casualmente.
+La inyección de fallos permite que todas las condiciones reciban los mismos estímulos y evita depender de fallos casuales de Internet o de servicios externos.
 
 #### Métricas del Experimento A
 
@@ -329,56 +286,30 @@ latency_p95_ms
 deadline_overrun_rate
 ```
 
-`correct_outcome_rate` es la métrica principal.
-
-Ejemplo:
-
-```text
-SKU inexistente
-->
-resultado correcto = error domain
-```
-
-Por tanto:
-
-```text
-success_rate
-```
-
-por sí sola sería engañosa.
+`correct_outcome_rate` es la métrica principal porque un resultado correcto no siempre significa éxito de la herramienta. Si el SKU no existe, el comportamiento correcto puede ser producir un error `domain` y no ejecutar una acción inválida.
 
 #### Experimento B - Llamada de funciones (function calling) con un LLM
 
-El entorno de ejecución (`runtime`) se fija antes de medir al modelo.
+Una vez fijado el entorno de ejecución, se puede evaluar la interfaz probabilística que produce llamadas a herramientas.
 
 Cada solicitud permite:
 
 ```text
-0 o 1 llamada a herramienta (`tool call`)
+0 o 1 llamada a herramienta
 ```
 
-No se permite:
+No se incluyen llamadas paralelas, cadenas de múltiples herramientas, reparación automática, ReAct ni ciclos de agente.
+
+El benchmark contiene 24 casos:
 
 ```text
-llamadas paralelas a herramientas (`parallel tool calling`)
-cadenas de múltiples herramientas (`multi-tool chains`)
-reparación automática (`auto-repair`)
-ciclo de agente (`agent loop`)
-ReAct
-```
-
-Benchmark:
-
-```text
-24 casos
-
 6 calculator.calculate_total
 6 catalog.lookup_stock
 6 shipping.get_quote
-6 casos sin herramienta (`no_tool`)
+6 casos sin herramienta (no_tool)
 ```
 
-Métricas:
+Las métricas son:
 
 ```text
 tool_choice_accuracy
@@ -389,33 +320,27 @@ no_tool_accuracy
 end_to_end_task_accuracy
 ```
 
-Distinciones:
+La evaluación conserva dos distinciones esenciales:
 
 ```text
-llamada a herramienta válida (`tool call`) != llamada a herramienta correcta (`tool call`)
+llamada válida != llamada correcta
 
-éxito de la herramienta (`tool success`) != éxito de la tarea (`task success`)
+éxito de la herramienta != éxito de la tarea
 ```
 
 #### Análisis sintáctico (parsing) de la respuesta del modelo real
 
-El cuaderno usa dos niveles:
-
-```text
-1. tokenizer.parse_response(...)
-   cuando el tokenizer/modelo proporciona una plantilla de respuesta (`response template`) compatible
-
-2. parser explícito de <tool_call> ... </tool_call>
-   como mecanismo alternativo (`fallback`) transparente
-```
-
-Esto evita asumir que toda la generación es JSON puro.
+El cuaderno utiliza `tokenizer.parse_response(...)` cuando el tokenizer ofrece una plantilla compatible. Como mecanismo alternativo transparente mantiene un parser explícito de bloques `<tool_call> ... </tool_call>`.
 
 El parser exige como máximo una llamada porque esa es una restricción experimental de Semana 6.
 
+```text
+parsear != reparar
+```
+
 #### Modelo real opcional
 
-Modelo docente por defecto:
+El modelo docente por defecto para la extensión es:
 
 ```text
 Qwen/Qwen3-1.7B
@@ -427,175 +352,104 @@ Ejecución:
 CC0F4_RUN_REAL_TOOL_LLM=1 make execute-cuaderno6
 ```
 
-El experimento fija:
+Cuando la plantilla lo permite se utiliza:
 
 ```text
 do_sample=False
 enable_thinking=False
 ```
 
-cuando el chat template acepta `enable_thinking`.
+El modelo real es opcional. El Experimento A y la validación estructural del cuaderno no dependen de él.
 
-El modelo real es opcional. El Experimento A no depende de él.
+#### Ejecución sin modelo real
 
-#### Ejecución offline
+Para validar el software sin cargar un LLM:
 
 ```bash
 CC0F4_RUN_REAL_TOOL_LLM=0 make execute-cuaderno6
 ```
 
-En modo sin conexión (`offline`):
+En este modo:
 
 ```text
 Experimento A
--> ejecución real del entorno local (`runtime`)
+-> ejecución real del entorno local
 
 Experimento B
--> casos prefijados (`fixtures`) de `ToolCall` deterministas
+-> fixtures deterministas de ToolCall
 ```
 
-Por ello:
+Por tanto:
 
 ```text
-offline
-= valida software, contratos, análisis sintáctico (`parsing`) y métricas
+modo offline
+= valida software, contratos, parsing y métricas
 
-modo sin conexión (`offline`)
+modo offline
 !=
 evidencia del comportamiento de un LLM real
 ```
 
-#### Laboratorio
+#### Práctica autónoma
 
-El laboratorio profundiza tres puntos:
+Debido al feriado del jueves, los ejercicios adicionales del cuaderno se consideran material de práctica autónoma. Pueden utilizarse para reforzar:
 
 ```text
-JSON Schema como segunda representación del contrato
-reintento manual (`retry`) vs Tenacity
-tiempo de espera (`timeout`), límite temporal (`deadline`) y observabilidad
+allowlist
+validación estructural vs validación de dominio
+clasificación de excepciones
+política de retry
+presupuesto temporal
+contrato de salida
+evaluación de ToolCall
 ```
 
-La clase teórica implementa el mecanismo a mano para hacerlo visible.
-
-En el laboratorio se muestra Tenacity como abstracción equivalente para retries selectivos.
+No se asume que los siete ejercicios deban resolverse durante la sesión presencial de dos horas.
 
 #### Dependencias
 
-Semana 6 utiliza el entorno global del curso.
-
-Dependencias del entorno relacionadas:
+Semana 6 utiliza el entorno global del curso. El camino canónico usa directamente:
 
 ```text
 pydantic
+transformers
+pandas
+```
+
+El entorno global también mantiene disponibles:
+
+```text
 jsonschema
 tenacity
 httpx
 pytest
-transformers
-pandas
 ```
 
-Uso directo en la semana:
+Estas bibliotecas pueden emplearse en extensiones, verificaciones o ejercicios posteriores, pero la ausencia de laboratorio en Semana 6 significa que no se exige una actividad canónica separada basada en ellas.
+
+La implementación explícita de reintento, espera progresiva y límites temporales con `asyncio` es deliberada:
 
 ```text
-pydantic
--> contratos tipados
-
-jsonschema
--> verificación cruzada en el laboratorio
-
-tenacity
--> comparación en el laboratorio
-
-transformers
--> llamada de funciones (`function calling`) real opcional
-
-pandas
--> métricas y análisis
-```
-
-`httpx` y `pytest` permanecen disponibles en el entorno global para extensiones y pruebas del curso, pero no son necesarios para ejecutar el camino canónico de Semana 6.
-
-La decisión de implementar primero reintento (`retry`), espera progresiva (`backoff`) y tiempo de espera (`timeout`) manualmente con `asyncio` es deliberada:
-
-```text
-comprender el mecanismo -> medirlo -> recién después delegarlo a una librería
-```
-
-#### Exposición de refuerzo
-
-Archivo:
-
-```text
-Exposiciones6-CC-0F4.md
-```
-
-Formato de cuatro grupos:
-
-```text
-15 min exposición
-5 min preguntas x 4 grupos = 80 min
-```
-
-Temas:
-
-```text
-1. Toolformer y aprendizaje de uso de herramientas
-2. Gorilla y conexión de LLM con APIs
-3. Esquemas de herramientas (`tool schemas`), interfaces restringidas (`constrained interfaces`) y análisis de respuestas (`response parsing`)
-4. MCP como protocolo actual de interoperabilidad
-```
-
-MCP se estudia como tecnología y arquitectura.
-
-```text
-MCP como exposición != MCP como dependencia estructural de Semana 6
+comprender el mecanismo -> medirlo -> después delegarlo a una librería
 ```
 
 #### Material de referencia
 
-Se aprovechan patrones de:
+Se aprovechan patrones de distintos repositorios y fuentes para conectar mecanismos pequeños con prácticas de ingeniería reproducible. Entre ellos se encuentran implementaciones de atención y sistemas de IA, ejemplos de contratos Pydantic, trazas, coordinación con `asyncio` y validación en la fuente.
+
+No se reutilizan en esta semana:
 
 ```text
-kapumota/CC-0F4
--> metodología experimental
-
-kapumota/MCC225
--> estilo cuaderno + evidencia
-
-kapumota/CC-0C2
--> evaluación y defensa técnica
-
-kapumota/CMCC-1
--> contexto conceptual de herramientas (`tools`)
-
-kapumota/attentionlab-ai
--> contratos Pydantic + trazas de herramientas (`tool traces`) + fallos reproducibles
-
-kapumota/CC-0F5
--> asyncio + coordinación + timeout
-
-juleswhite/python-agents-mcp-course
--> recuperación guiada ante fallos (`failing forward`) + errores accionables + validación en la fuente (`validate at source`)
-
-labmlai/annotated_deep_learning_paper_implementations
--> implementaciones pequeñas y explícitas
-
-kapumota/sentinelOps
--> disciplina de validación reproducible
-```
-
-No se reutilizan:
-
-```text
-ciclos de agentes (`agent loops`)
-planificación (`planning`)
-memoria (`memory`)
-transporte de MCP (`MCP transport`)
-microservicios (`microservices`)
+ciclos de agentes
+planificación
+memoria
+transporte MCP
+microservicios
 Kubernetes
-orquestación distribuida (`distributed orchestration`)
+orquestación distribuida
 ```
+
+MCP puede mencionarse como contexto tecnológico de interoperabilidad, pero no forma parte del entorno de ejecución canónico de Semana 6.
 
 #### Reproducibilidad
 
@@ -605,7 +459,7 @@ El cuaderno genera:
 Semana6/resultados/latest_run.json
 ```
 
-Registra:
+El manifiesto registra, entre otros:
 
 ```text
 hashes SHA-256
@@ -613,17 +467,17 @@ seed
 versiones
 modo offline/real
 modelo
-programación de fallos (`fault schedule`)
+programación de fallos (fault schedule)
 políticas A/B/C/D/E
-`max_attempts` (máximo de intentos)
-`backoff` (espera progresiva)
-`timeouts` (límites de espera)
-`deadline` (límite temporal total)
+max_attempts
+backoff
+timeouts
+deadline
 métricas
 limitaciones
 ```
 
-El programación de fallos (`fault schedule`) es parte del experimento y queda incluido en el hash del benchmark.
+La programación de fallos es parte del experimento y queda incluida en el hash del benchmark.
 
 #### Validación
 
@@ -633,61 +487,57 @@ Desde la raíz del repositorio:
 make check-semana6
 ```
 
-Cuaderno:
+Como Semana 6 no tiene laboratorio por el feriado del jueves 8 de octubre, debe estar incluida en:
+
+```make
+NO_LAB_WEEKS ?= 3 5 6
+```
+
+El `Makefile` valida entonces:
+
+```text
+Semana6/README.md
+Semana6/Cuaderno6-CC-0F4.ipynb
+notebooks mediante nbformat
+```
+
+sin exigir un notebook de laboratorio.
+
+Para ejecutar el cuaderno sin modelo real:
 
 ```bash
 CC0F4_RUN_REAL_TOOL_LLM=0 make execute-cuaderno6
 ```
 
-Laboratorio:
+Para comprobar conjuntamente las semanas cerradas:
 
 ```bash
-CC0F4_RUN_REAL_TOOL_LLM=0 \
-jupyter nbconvert \
-  --to notebook \
-  --execute Semana6/Laboratorio6-CC-0F4.ipynb \
-  --ExecutePreprocessor.timeout=600 \
-  --output /tmp/Laboratorio6-validado.ipynb
+make CHECK_WEEKS="1 2 3 4 5 6" check
 ```
-
-No se modifica el `Makefile`.
-
-La razón es que Semana 6 ahora **sí tiene laboratorio canónico** y el `Makefile` actual ya valida automáticamente:
-
-```text
-SemanaN/README.md
-CuadernoN-CC-0F4.ipynb
-LaboratorioN-CC-0F4.ipynb
-```
-
-para toda semana no incluida en `NO_LAB_WEEKS`.
 
 #### Alcance deliberado
 
 Semana 6 incluye:
 
 ```text
-especificación de herramienta (`tool specification`)
-llamada de funciones (`function calling`)
-ejecución de funciones (`function execution`)
-lista permitida (`allowlist`)
+especificación de herramienta (tool specification)
+llamada de funciones (function calling)
+ejecución de funciones (function execution)
+lista permitida (allowlist)
 Pydantic
-JSON Schema
-contrato de entrada (input contract)
-validación de dominio (domain validation)
-contrato de salida (output contract)
-errores estructurados (`structured errors`)
-inyección de fallos (`fault injection`)
-reintento (`retry`)
-`backoff` (espera progresiva)
-Tenacity como comparación
-tiempo de espera (`timeout`) con `asyncio`
-límite temporal total (`overall deadline`)
-trazas (`traces`)
+contrato de entrada
+validación de dominio
+contrato de salida
+errores estructurados
+inyección de fallos
+reintento (retry)
+backoff
+timeout
+overall deadline
+trazas
 latencia
-análisis de errores (`error analysis`)
-banco de pruebas (`benchmark`) de llamada de funciones (`function calling`)
-MCP como exposición
+análisis de errores
+benchmark de function calling
 ```
 
 Semana 6 no incluye:
@@ -695,14 +545,14 @@ Semana 6 no incluye:
 ```text
 agentes
 ReAct
-planificación (`planning`)
-memoria (`memory`)
+planificación
+memoria
 LangGraph
 LangChain
-MCP como entorno de ejecución (`runtime`) del curso
-ciclos de múltiples herramientas (`multi-tool loops`)
-llamadas paralelas a herramientas (`parallel tool calling`)
-ciclos automáticos de reparación con LLM (`automatic LLM repair loops`)
+MCP como runtime del curso
+ciclos de múltiples herramientas
+llamadas paralelas a herramientas
+ciclos automáticos de reparación con LLM
 ```
 
 #### Criterio de cierre
@@ -710,38 +560,40 @@ ciclos automáticos de reparación con LLM (`automatic LLM repair loops`)
 El estudiante debe poder defender:
 
 ```text
-salida estructurada (`structured output`) != llamada de herramientas (`tool calling`)
+salida estructurada != llamada de herramientas
 
-llamada de herramientas (`tool calling`) != ejecución de herramientas (`tool execution`)
+llamada de herramientas != ejecución de herramientas
 
-especificación de herramienta (`tool specification`) != implementación
+especificación de herramienta != implementación
 
-válido por tipo (`type-valid`) != válido por esquema (`schema-valid`) != válido para el dominio (`domain-valid`)
+válido por tipo != válido por esquema != válido para el dominio
 
-contrato de entrada (input contract) != contrato de salida (output contract)
+contrato de entrada != contrato de salida
 
-salida del LLM (`LLM output`) != entrada confiable (`trusted input`)
+salida del LLM != entrada confiable
 
-excepción (`exception`) != error estructurado de herramienta
+excepción != error estructurado de herramienta
 
-reintento (`retry`) != reparación (`repair`)
+retry != repair
 
-reintentable (`retryable`) != fallido (`failed`)
+retryable != failed
 
-tiempo de espera agotado (`timeout`) != reintento (`retry`)
+timeout != retry
 
-tiempo de espera por intento (`per-attempt timeout`) != límite temporal total (`overall deadline`)
+per-attempt timeout != overall deadline
 
-llamada a herramienta válida (`tool call`) != llamada a herramienta correcta (`tool call`)
+llamada válida != llamada correcta
 
-éxito de la herramienta (`tool success`) != éxito de la tarea (`task success`)
+éxito de la herramienta != éxito de la tarea
 
-llamada de funciones (`function calling`) != agente
+function calling != agente
 
-MCP != llamada de funciones (`function calling`)
+MCP != function calling
 ```
 
 #### Puente a la Semana 7
+
+Semana 6 estudia cómo ejecutar una acción individual bajo contratos y políticas explícitas. Semana 7 cambia el foco hacia la evaluación sistemática de los sistemas de recuperación y RAG construidos en las semanas anteriores.
 
 ```text
 Semana 6
@@ -751,4 +603,4 @@ Semana 7
 evaluación sistemática de retrieval/RAG
 ```
 
-Los flujos de trabajo (`workflows`), la planificación, ReAct y los agentes permanecen reservados para la Semana 9.
+Los flujos de trabajo (`workflows`), planificación, ReAct y agentes permanecen reservados para la Semana 9.
