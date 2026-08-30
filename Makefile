@@ -41,7 +41,8 @@ LABORATORIO := $(WEEK_DIR)/Laboratorio$(WEEK)-CC-0F4.ipynb
 # Semanas que deliberadamente no tienen laboratorio canonico.
 # Semana 3 usa el jueves completo para la evaluacion oral E1.
 # Semana 5 usa el jueves completo para la evaluacion oral E2.
-NO_LAB_WEEKS ?= 3 5
+# Semana 6 no tiene laboratorio por el feriado del jueves 8 de octubre.
+NO_LAB_WEEKS ?= 3 5 6
 
 .PHONY: help setup require-python \
 	install-cpu install-gpu install-course verify-torch-stack doctor \
