@@ -1,5 +1,19 @@
-# Makefile 
-PYTHON ?= python
+# Makefile
+
+VENV_DIR ?= .ccf04
+SYSTEM_PYTHON ?= python
+
+ifeq ($(OS),Windows_NT)
+VENV_PYTHON := $(VENV_DIR)/Scripts/python.exe
+else
+VENV_PYTHON := $(VENV_DIR)/bin/python
+endif
+
+# Por defecto, todas las tareas Python usan el entorno local del repositorio.
+# Puede sobrescribirse explicitamente desde la linea de comandos:
+#
+# make PYTHON=/ruta/a/python doctor
+PYTHON := $(VENV_PYTHON)
 PIP := $(PYTHON) -m pip
 
 TORCH_VERSION ?= 2.11.0
@@ -16,7 +30,7 @@ NOTEBOOK_TIMEOUT ?= 600
 
 # Si se define, check valida solo estas semanas.
 # Ejemplo:
-# make CHECK_WEEKS="1 2 3 4" check
+# make CHECK_WEEKS="1 2 3 4 5" check
 CHECK_WEEKS ?=
 
 WEEK ?= 1
@@ -24,11 +38,12 @@ WEEK_DIR := Semana$(WEEK)
 CUADERNO := $(WEEK_DIR)/Cuaderno$(WEEK)-CC-0F4.ipynb
 LABORATORIO := $(WEEK_DIR)/Laboratorio$(WEEK)-CC-0F4.ipynb
 
-# Semanas que deliberadamente no tienen laboratorio canónico.
-# Semana 3 usa el jueves completo para la evaluación oral E1.
-NO_LAB_WEEKS ?= 3
+# Semanas que deliberadamente no tienen laboratorio canonico.
+# Semana 3 usa el jueves completo para la evaluacion oral E1.
+# Semana 5 usa el jueves completo para la evaluacion oral E2.
+NO_LAB_WEEKS ?= 3 5
 
-.PHONY: help setup \
+.PHONY: help setup require-python \
 	install-cpu install-gpu install-course verify-torch-stack doctor \
 	check check-root check-week validate-notebooks validate-week \
 	execute-cuaderno \
@@ -40,10 +55,16 @@ NO_LAB_WEEKS ?= 3
 help:
 	@echo "CC-0F4 - entorno global del curso"
 	@echo ""
-	@echo "Instalacion:"
+	@echo "Entorno:"
 	@echo "  make setup"
-	@echo "      Crea el unico entorno .ccf04"
+	@echo "      Crea el unico entorno local $(VENV_DIR)"
 	@echo ""
+	@echo "  El resto de targets usa automaticamente:"
+	@echo "      $(VENV_PYTHON)"
+	@echo ""
+	@echo "  No es necesario activar $(VENV_DIR) antes de usar make."
+	@echo ""
+	@echo "Instalacion:"
 	@echo "  make install-cpu"
 	@echo "      Instala PyTorch CPU + stack completo"
 	@echo ""
@@ -54,13 +75,13 @@ help:
 	@echo "      Verifica versiones del stack PyTorch"
 	@echo ""
 	@echo "  make doctor"
-	@echo "      Muestra versiones principales"
+	@echo "      Muestra interprete, entorno, GPU y versiones principales"
 	@echo ""
 	@echo "Validacion:"
 	@echo "  make check"
 	@echo "      Verifica todas las semanas existentes"
 	@echo ""
-	@echo "  make CHECK_WEEKS=\"1 2 3 4\" check"
+	@echo "  make CHECK_WEEKS=\"1 2 3 4 5\" check"
 	@echo "      Verifica solo las semanas indicadas"
 	@echo ""
 	@echo "  make check-week WEEK=2"
@@ -73,6 +94,11 @@ help:
 	@echo ""
 	@echo "  CC0F4_RUN_REAL_LLM=0 make execute-cuaderno3"
 	@echo "  CC0F4_RUN_REAL_RETRIEVAL=0 make execute-cuaderno4"
+	@echo ""
+	@echo "  CC0F4_RUN_REAL_RETRIEVAL=0 \\"
+	@echo "  CC0F4_RUN_REAL_RERANKER=0 \\"
+	@echo "  CC0F4_RUN_REAL_LLM=0 \\"
+	@echo "    make execute-cuaderno5"
 	@echo ""
 	@echo "Docker:"
 	@echo "  make docker-build"
@@ -87,28 +113,53 @@ help:
 
 
 setup:
-	@test ! -d .ccf04 || { \
-		echo "ERROR: .ccf04 ya existe"; \
-		echo "Activa el entorno existente en lugar de recrearlo."; \
+	@test ! -d "$(VENV_DIR)" || { \
+		echo "ERROR: $(VENV_DIR) ya existe."; \
+		echo "No es necesario recrearlo."; \
+		echo "Verifica el entorno con: make doctor"; \
 		exit 1; \
 	}
-	$(PYTHON) -m venv .ccf04
+	@command -v "$(SYSTEM_PYTHON)" >/dev/null 2>&1 || { \
+		echo "ERROR: no se encontro $(SYSTEM_PYTHON)."; \
+		exit 1; \
+	}
+	$(SYSTEM_PYTHON) -m venv "$(VENV_DIR)"
+	@"$(VENV_PYTHON)" -m pip --version
 	@echo ""
-	@echo "Activa el entorno:"
+	@echo "Entorno creado: $(VENV_DIR)"
+	@echo ""
+	@echo "Los comandos make usaran automaticamente:"
+	@echo "  $(VENV_PYTHON)"
+	@echo ""
+	@echo "No necesitas activar el entorno para usar make."
+	@echo ""
+	@echo "Para trabajo interactivo puedes activarlo:"
+	@echo ""
 	@echo "  Linux/WSL:"
-	@echo "    source .ccf04/bin/activate"
+	@echo "    source $(VENV_DIR)/bin/activate"
 	@echo ""
 	@echo "  Windows Git Bash:"
-	@echo "    source .ccf04/Scripts/activate"
+	@echo "    source $(VENV_DIR)/Scripts/activate"
 	@echo ""
 	@echo "  Windows PowerShell:"
-	@echo "    .ccf04\\Scripts\\Activate.ps1"
+	@echo "    .\\$(VENV_DIR)\\Scripts\\Activate.ps1"
+
+
+require-python:
+	@command -v "$(PYTHON)" >/dev/null 2>&1 || { \
+		echo "ERROR: no se encontro el interprete del entorno:"; \
+		echo "  $(PYTHON)"; \
+		echo ""; \
+		echo "Crea primero el entorno con:"; \
+		echo "  make setup"; \
+		exit 1; \
+	}
 
 
 # PyTorch, torchvision y torchaudio se fijan conjuntamente.
 # Esto evita que una dependencia como open-clip-torch instale una
-# torchvision más reciente que termine actualizando torch.
-install-cpu:
+# torchvision mas reciente que termine actualizando torch.
+install-cpu: require-python
 	$(PIP) install --upgrade pip
 	$(PIP) install \
 		torch==$(TORCH_VERSION) \
@@ -120,7 +171,7 @@ install-cpu:
 	$(PIP) check
 
 
-install-gpu:
+install-gpu: require-python
 	$(PIP) install --upgrade pip
 	$(PIP) install \
 		torch==$(TORCH_VERSION) \
@@ -132,15 +183,15 @@ install-gpu:
 	$(PIP) check
 
 
-# only-if-needed es también la estrategia normal de pip, pero se declara
-# explícitamente porque el stack PyTorch ya fue seleccionado arriba.
-install-course:
+# only-if-needed es tambien la estrategia normal de pip, pero se declara
+# explicitamente porque el stack PyTorch ya fue seleccionado arriba.
+install-course: require-python
 	$(PIP) install \
 		--upgrade-strategy only-if-needed \
 		-r requirements.txt
 
 
-verify-torch-stack:
+verify-torch-stack: require-python
 	$(PYTHON) -c "import torch, torchvision, torchaudio; \
 	actual=(torch.__version__.split('+')[0], torchvision.__version__.split('+')[0], torchaudio.__version__.split('+')[0]); \
 	expected=('$(TORCH_VERSION)', '$(TORCHVISION_VERSION)', '$(TORCHAUDIO_VERSION)'); \
@@ -148,7 +199,8 @@ verify-torch-stack:
 	print('Stack PyTorch: OK', actual)"
 
 
-doctor:
+doctor: require-python
+	@echo "python_cmd=$(PYTHON)"
 	$(PYTHON) -c "import sys; print('python=', sys.version.split()[0]); print('executable=', sys.executable); print('prefix=', sys.prefix)"
 	$(PYTHON) -c "import torch; print('torch=', torch.__version__); print('cuda_available=', torch.cuda.is_available()); print('device_count=', torch.cuda.device_count()); print('device=', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU')"
 	$(PYTHON) -c "import torchvision, torchaudio; print('torchvision=', torchvision.__version__); print('torchaudio=', torchaudio.__version__)"
@@ -211,15 +263,15 @@ check-week:
 	@echo "$(WEEK_DIR): estructura y notebooks OK"
 
 
-validate-notebooks:
+validate-notebooks: require-python
 	$(PYTHON) -c "from pathlib import Path; import nbformat; ps=sorted(Path('.').glob('Semana[0-9]*/*.ipynb')); assert ps, 'No hay notebooks'; [nbformat.validate(nbformat.read(str(p), as_version=4)) for p in ps]; print(f'nbformat: {len(ps)} notebooks OK')"
 
 
-validate-week:
+validate-week: require-python
 	$(PYTHON) -c "from pathlib import Path; import nbformat; ps=sorted(Path('$(WEEK_DIR)').glob('*.ipynb')); assert ps, 'No hay notebooks en $(WEEK_DIR)'; [nbformat.validate(nbformat.read(str(p), as_version=4)) for p in ps]; print(f'$(WEEK_DIR): {len(ps)} notebooks nbformat OK')"
 
 
-execute-cuaderno:
+execute-cuaderno: require-python
 	@test -f "$(CUADERNO)"
 	@mkdir -p $(BUILD_DIR)
 	$(PYTHON) -m nbconvert \
@@ -273,6 +325,7 @@ docker-run-gpu:
 		-v "$(WORKDIR):/workspace/CC-0F4" \
 		$(IMAGE)
 
+
 docker-test-cuaderno:
 	@test -f "$(CUADERNO)"
 	@mkdir -p $(BUILD_DIR)
@@ -286,6 +339,7 @@ docker-test-cuaderno:
 			--ExecutePreprocessor.timeout=$(NOTEBOOK_TIMEOUT) \
 			--output "/workspace/CC-0F4/$(BUILD_DIR)/Cuaderno$(WEEK)-CC-0F4.docker.executed.ipynb"
 	@echo "Cuaderno ejecutado en Docker: $(BUILD_DIR)/Cuaderno$(WEEK)-CC-0F4.docker.executed.ipynb"
+
 
 clean:
 	@find . -type d -name '__pycache__' -prune -exec rm -rf {} + 2>/dev/null || true
