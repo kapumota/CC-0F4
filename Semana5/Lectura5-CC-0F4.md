@@ -151,11 +151,11 @@ frecuencia del término + rareza del término + saturación de frecuencia + norm
 Una forma habitual de escribir el score es:
 
 $$
-\operatorname{BM25}(q,d)=
+\mathrm{BM25}(q,d)=
 \sum_{t\in q}
-\operatorname{IDF}(t)
+\mathrm{IDF}(t)
 \frac{f(t,d)(k_1+1)}
-{f(t,d)+k_1(1-b+b|d|/\operatorname{avgdl})}.
+{f(t,d)+k_1(1-b+b|d|/\mathrm{avgdl})}.
 $$
 
 Los parámetros `k1` y `b` controlan, respectivamente, saturación de frecuencia y normalización por longitud. En Semana 5 no se optimizan estos parámetros después de observar los resultados.
@@ -169,7 +169,7 @@ Lectura principal:
 La intuición de "rareza informativa" necesita una precisión. La forma Robertson del IDF es:
 
 $$
-\operatorname{IDF}_{raw}(t)=\log\frac{N-\operatorname{df}(t)+0.5}{\operatorname{df}(t)+0.5}.
+\mathrm{IDF}_{raw}(t)=\log\frac{N-\mathrm{df}(t)+0.5}{\mathrm{df}(t)+0.5}.
 $$
 
 Si:
@@ -262,7 +262,7 @@ No existe una razón automática para promediarlos directamente.
 Semana 5 utiliza Reciprocal Rank Fusion (RRF), que opera sobre posiciones de ranking:
 
 $$
-\operatorname{RRF}(d)=
+\mathrm{RRF}(d)=
 \sum_{r\in R}
 \frac{1}{k+r(d)}.
 $$
