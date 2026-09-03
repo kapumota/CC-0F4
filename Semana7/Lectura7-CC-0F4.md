@@ -2,23 +2,23 @@
 
 #### **1. Evaluar no es mirar una respuesta y decidir que parece correcta**
 
-Un sistema RAG puede producir una respuesta convincente y, aun así, haber fallado en casi todos los puntos que importan. El retriever puede haber recuperado evidencia irrelevante, el generador puede haber ignorado el contexto correcto, una cita puede apuntar a un fragmento que no respalda el claim y una respuesta aparentemente precisa puede proceder del conocimiento paramétrico del modelo en vez de la evidencia recuperada.
+Un sistema RAG puede producir una respuesta convincente y, aun así, haber fallado en casi todos los puntos que importan. El retriever puede haber recuperado evidencia irrelevante, el generador puede haber ignorado el contexto correcto, una cita puede apuntar a un fragmento que no respalda la afirmación y una respuesta aparentemente precisa puede provenir del conocimiento paramétrico del modelo en vez de la evidencia recuperada.
 
 Por eso la Semana 7 introduce una separación que debe mantenerse durante el resto del curso:
 
 ```text
-retrieval != generation != system
+retrieval != generación != sistema
 ```
 
 Evaluar RAG como si fuese una función monolítica que recibe una pregunta y devuelve una respuesta destruye información diagnóstica. Si solo se observa la respuesta final, resulta difícil saber dónde actuar cuando el sistema falla.
 
 La pregunta correcta ya no es únicamente:
 
-> ¿La respuesta parece buena?
+> ¿La respuesta parece buena?,
 
 Ahora debemos preguntar:
 
-> ¿El sistema recuperó la evidencia que necesitaba, la colocó suficientemente arriba, la generación utilizó esa evidencia, las afirmaciones están respaldadas y el costo adicional de cada componente está justificado?
+> ¿El sistema recuperó la evidencia que necesitaba, la colocó suficientemente arriba, la generación utilizó esa evidencia, las afirmaciones están respaldadas y el costo adicional de cada componente está justificado?.
 
 Esta forma de pensar conecta con la tradición experimental de Information Retrieval. El capítulo 8 de *Introduction to Information Retrieval* parte de una pregunta similar: si existen muchas alternativas para construir un sistema de recuperación, necesitamos una colección de prueba y métricas que permitan comparar esas decisiones empíricamente.
 
@@ -27,11 +27,7 @@ Esta forma de pensar conecta con la tradición experimental de Information Retri
 La evaluación de retrieval necesita una colección de prueba estable. En esta semana no se construye otra colección después de observar los resultados del sistema. Se reutiliza la creada en Semana 4:
 
 ```text
-corpus
-+
-queries
-+
-qrels
+corpus + queries + qrels
 ```
 
 El corpus contiene la evidencia que el sistema puede recuperar. Las consultas representan las necesidades de información. Los `qrels` indican qué elementos del corpus se consideran relevantes para cada consulta.
@@ -73,9 +69,7 @@ Por esa razón el cuaderno transforma el ranking de chunks en un ranking de pass
 Esta operación parece pequeña, pero tiene una consecuencia metodológica importante:
 
 ```text
-unidad recuperada
-!=
-unidad evaluada
+unidad recuperada != unidad evaluada
 ```
 
 Siempre que estas unidades sean distintas, el mapeo debe declararse. Ocultarlo puede inflar métricas o hacer incomparables dos configuraciones.
@@ -97,13 +91,13 @@ Si una consulta tiene un único passage relevante, Recall@k toma los valores 0 o
 Esto permite distinguir dos preguntas que a veces se confunden:
 
 ```text
-¿apareció al menos una evidencia correcta?
+¿apareció al menos una evidencia correcta?,
 ```
 
 y:
 
 ```text
-¿qué fracción de toda la evidencia marcada como relevante recuperé?
+¿qué fracción de toda la evidencia marcada como relevante recuperé?.
 ```
 
 Cuando existe un único relevante ambas ideas coinciden. Cuando existen varios, no.
@@ -141,8 +135,7 @@ donde $r_q$ es la posición de la primera evidencia relevante.
 Mean Reciprocal Rank agrega esta cantidad:
 
 $$
-MRR
-=
+MRR =
 \frac{1}{|Q|}
 \sum_{q\in Q}
 \frac{1}{r_q}.
@@ -155,7 +148,7 @@ MRR es especialmente sensible a la primera evidencia relevante. Esa propiedad es
 Discounted Cumulative Gain reduce la contribución de resultados que aparecen más abajo:
 
 $$
-DCG@k=
+DCG@k =
 \sum_{i=1}^{k}
 \frac{2^{rel_i}-1}
 {\log_2(i+1)}.
@@ -198,18 +191,16 @@ Un sistema puede mejorar MRR porque mueve la primera evidencia relevante hacia a
 Por eso una evaluación fuerte contiene dos niveles:
 
 ```text
-agregado
-+
-por consulta
+agregado + por consulta
 ```
 
 La tabla agregada responde:
 
-> ¿qué patrón general observamos?
+> ¿qué patrón general observamos?,
 
 El análisis por consulta responde:
 
-> ¿en qué casos concretos cambia el ranking y por qué?
+> ¿en qué casos concretos cambia el ranking y por qué?.
 
 #### **8. La ablación de Semana 7 debe mantener fijo el benchmark**
 
@@ -265,21 +256,13 @@ Supongamos que una configuración mejora Recall@3. Eso demuestra una propiedad d
 Podemos observar:
 
 ```text
-retrieval correcto
-+
-generation incorrecta
-=
-RAG incorrecto
+retrieval correcto + generación incorrecta = RAG incorrecto
 ```
 
 También:
 
 ```text
-retrieval incorrecto
-+
-LLM conoce la respuesta
-=
-respuesta correcta no atribuible al RAG
+retrieval incorrecto + LLM conoce la respuesta = respuesta correcta no atribuible al RAG
 ```
 
 Por eso una respuesta correcta no basta para demostrar que el sistema RAG funciona como mecanismo de grounding.
@@ -295,11 +278,7 @@ Estas propiedades pueden separarse.
 Caso 1:
 
 ```text
-respuesta correcta
-+
-evidencia correcta
-+
-claims respaldados
+respuesta correcta + evidencia correcta + afirmaciones respaldadas
 ```
 
 Es el comportamiento deseado.
@@ -307,9 +286,7 @@ Es el comportamiento deseado.
 Caso 2:
 
 ```text
-respuesta correcta
-+
-contexto no contiene la evidencia
+respuesta correcta + contexto no contiene la evidencia
 ```
 
 La respuesta puede proceder del conocimiento paramétrico del LLM. Para una tarea que exige grounding, no deberíamos atribuir ese éxito al retrieval.
@@ -317,9 +294,7 @@ La respuesta puede proceder del conocimiento paramétrico del LLM. Para una tare
 Caso 3:
 
 ```text
-evidencia correcta
-+
-respuesta incorrecta
+evidencia correcta + respuesta incorrecta
 ```
 
 El problema ya no está necesariamente en retrieval. Puede encontrarse en prompting, compresión del contexto, generación o seguimiento de instrucciones.
@@ -339,7 +314,7 @@ citation parseable
 citation in context
 -> el identificador pertenece al contexto entregado
 
-citation supports claim
+citation supports afirmación
 -> la evidencia citada respalda la afirmación
 ```
 
@@ -347,26 +322,26 @@ Solo el tercer nivel se acerca realmente a grounding.
 
 En Semana 7 se aprovecha que cada chunk conserva `passage_ids`. Una cita puede verificarse contra los qrels para preguntar si el chunk citado contiene la evidencia relevante conocida para esa consulta.
 
-Esto sigue sin demostrar automáticamente que cada frase de la respuesta esté respaldada. Para eso necesitamos analizar claims.
+Esto sigue sin demostrar automáticamente que cada frase de la respuesta esté respaldada. Para eso necesitamos analizar afirmaciones.
 
-#### **12. Faithfulness requiere observar claims y evidencia**
+#### **12. Faithfulness requiere observar afirmaciones y evidencia**
 
 Una respuesta puede contener varias afirmaciones independientes. Juzgar toda la respuesta con un solo valor oculta qué parte está o no respaldada.
 
-Una auditoría de claims sigue una lógica como:
+Una auditoría de afirmaciones sigue una lógica como:
 
 ```text
 respuesta
--> separar claims
--> para cada claim:
+-> separar afirmaciones
+-> para cada afirmación:
       ¿qué evidencia lo respalda?
       ¿está en el contexto recuperado?
-      ¿la evidencia realmente implica el claim?
+      ¿la evidencia realmente implica la afirmación?
 ```
 
 El cuaderno genera una plantilla de auditoría manual. La intención no es mantener permanentemente una evaluación manual, sino que el estudiante entienda qué trabajo debe aproximar cualquier métrica automática de faithfulness.
 
-RAGChecker es relevante precisamente porque propone un diagnóstico más fino a nivel de claims y separa métricas del retriever y del generator.
+RAGChecker es relevante precisamente porque propone un diagnóstico más fino a nivel de afirmaciones y separa métricas del retriever y del generator.
 
 RAGAS también es útil como referencia porque propone métricas para evaluar varias dimensiones del pipeline RAG sin requerir siempre una respuesta de referencia humana.
 
@@ -391,16 +366,12 @@ pueden ayudar a detectar errores y validar un pipeline de evaluación.
 Pero:
 
 ```text
-proxy operativo
-!=
-métrica semántica validada
-!=
-ground truth
+proxy operativo != métrica semántica validada != ground truth
 ```
 
-El proyecto `Patrimonio_Andino_Grounded` de MCC225 contiene métricas operativas que son útiles para comparar condiciones dentro de su propio pipeline. Semana 7 puede utilizarlas como ejemplo crítico: una métrica útil para depuración no necesariamente generaliza como medida universal de hallucination o faithfulness.
+El proyecto [Patrimonio_Andino_Grounded](https://github.com/kapumota/MCC225/tree/main/Semana4/Proyecto) de MCC225 contiene métricas operativas que son útiles para comparar condiciones dentro de su propio pipeline. Semana 7 puede utilizarlas como ejemplo crítico: una métrica útil para depuración no necesariamente generaliza como medida universal de hallucination o faithfulness.
 
-La misma cautela aparece en `ai-code-triage`: el sistema produce señales para priorizar revisión, pero su documentación evita convertirlas en prueba de autoría. La lección transferible es metodológica:
+La misma cautela aparece en [ai-code-triage](https://github.com/kapumota/ai-code-triage): el sistema produce señales para priorizar revisión, pero su documentación evita convertirlas en prueba de autoría. La lección transferible es metodológica:
 
 > una métrica debe interpretarse según aquello que realmente observa.
 
@@ -509,13 +480,13 @@ Aun así, estas medidas no son un benchmark de rendimiento de producción. Para 
 
 Una auditoría manual también necesita reglas.
 
-Para cada claim atómico se utiliza:
+Para cada afirmación atómica se utiliza:
 
 ```text
 supported_by_context = 1
 ```
 
-solo si al menos un chunk del contexto entregado contiene evidencia explícita suficiente para respaldar el claim sin recurrir a conocimiento externo ni a una inferencia no justificada.
+solo si al menos un chunk del contexto entregado contiene evidencia explícita suficiente para respaldar la afirmación sin recurrir a conocimiento externo ni a una inferencia no justificada.
 
 Se utiliza:
 
@@ -523,9 +494,9 @@ Se utiliza:
 supported_by_context = 0
 ```
 
-si la evidencia está ausente, contradice el claim o solo respalda una parte material.
+si la evidencia está ausente, contradice la afirmación o solo respalda una parte material.
 
-Una oración compuesta no recibe `0.5`. Se divide en claims atómicos y se evalúa cada uno por separado. Además, el evaluador registra el `supporting_chunk_id`.
+Una oración compuesta no recibe `0.5`. Se divide en afirmaciones atómicas y se evalúa cada uno por separado. Además, el evaluador registra el `supporting_chunk_id`.
 
 Esta regla no elimina todos los desacuerdos humanos, pero vuelve auditable el criterio y hace posible comparar evaluadores.
 
@@ -554,13 +525,13 @@ y volver a observar generación, citas, faithfulness y latencia.
 Separar ambas preguntas evita confundir:
 
 ```text
-¿mejoró el retriever?
+¿mejoró el retriever?,
 ```
 
 con:
 
 ```text
-¿cambió el comportamiento porque entregué más contexto al LLM?
+¿cambió el comportamiento porque entregué más contexto al LLM?.
 ```
 
 #### **19. El análisis de errores convierte una métrica en diagnóstico**
@@ -624,7 +595,7 @@ pero no deben presentarse como evidencia del comportamiento de E5 o del Cross-En
 La distinción debe ser explícita:
 
 ```text
-validación de software != evidencia experimental
+validación software != evidencia experimental
 ```
 
 #### **21. Qué debe contener una conclusión científica proporcional**
@@ -644,24 +615,6 @@ Ejemplo:
 > Sobre las 24 consultas del benchmark docente, la condición C obtuvo un MRR mayor que la condición B, mientras que Recall@5 permaneció similar. La inspección por consulta muestra que el reranker movió evidencia ya recuperada hacia posiciones superiores, por lo que la mejora observada corresponde principalmente a ranking y no a mayor cobertura. La latencia p95 aumentó. El benchmark es pequeño y no permite generalizar el resultado a colecciones de producción.
 
 Aquí cada afirmación tiene un alcance identificable.
-
-#### **22. Preguntas de defensa**
-
-1. ¿Puede Recall@5 permanecer igual mientras MRR mejora?
-2. ¿Qué información añade nDCG que Recall@k no contiene?
-3. ¿Por qué se evalúa contra `passage_id` si el sistema recupera chunks?
-4. ¿Qué problema produciría contar dos veces un passage repetido por overlap?
-5. ¿Puede mejorar retrieval y empeorar la respuesta final?
-6. ¿Una respuesta correcta demuestra que utilizó el contexto?
-7. ¿Qué diferencia existe entre `citation in context` y `citation supports claim`?
-8. ¿Por qué un LLM-as-Judge no debe considerarse automáticamente ground truth?
-9. ¿Qué métrica usarías para detectar que la evidencia correcta aparece demasiado abajo?
-10. ¿Qué diferencia existe entre `RETRIEVAL_MISS` y `RANKING_ERROR`?
-11. ¿Por qué p95 puede ser más informativo que la latencia media?
-12. ¿Qué afirmación no puedes defender con un benchmark de 24 consultas?
-13. ¿Qué cambia al utilizar qrels binarios frente a relevancia graduada?
-14. ¿Qué parte de la evaluación puede automatizarse con exactitud y qué parte necesita todavía juicio semántico?
-15. ¿Qué condición adicional necesitarías para afirmar que una respuesta está grounded?.
 
 #### **23. Cierre**
 
