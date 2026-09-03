@@ -67,11 +67,7 @@ Los `qrels` permanecen definidos sobre `passage_id`. Esta decisión es important
 Por tanto:
 
 ```text
-benchmark fijo
-+
-sistema variable
-=
-comparación interpretable
+benchmark fijo + sistema variable = comparación interpretable
 ```
 
 La Semana 7 no crea 20 o 40 consultas nuevas después de haber observado los resultados de Semana 5. Utiliza las 24 consultas existentes y añade únicamente las anotaciones necesarias para evaluar la generación.
