@@ -30,7 +30,7 @@ Cada estudiante parte de un tema asignado o propuesto.
 
 Puede mantenerlo, simplificarlo o cambiarlo.
 
-Si lo cambia, debe indicar:
+Si lo cambia, debes indicarlo:
 
 ```text
 Tema inicial:
@@ -43,7 +43,7 @@ Cambiar de tema no afecta la nota.
 ### 3. Parte 1 - Pregunta inicial
 #### 2 puntos
 
-Escriba:
+Escribe:
 
 ```text
 Tema:
@@ -56,7 +56,7 @@ Pregunta:
 
 #### Elicit
 
-Registre:
+Registra:
 
 ```text
 Consulta:
@@ -68,7 +68,7 @@ Enlace o DOI:
 
 #### Consensus
 
-Registre:
+Registra:
 
 ```text
 Pregunta:
@@ -77,38 +77,38 @@ Enlace o DOI:
 ¿Qué encontró?:
 ```
 
-Finalmente responda en máximo 3 oraciones:
+Finalmente responde en máximo 3 oraciones:
 
 ```text
-¿Qué diferencia notó entre Elicit y Consensus?
+¿Qué diferencia notastes entre Elicit y Consensus?
 ```
 
 ### 5. Parte 3 - ResearchRabbit y Connected Papers
 #### 4 puntos
 
-Utilice uno de los papers encontrados como paper inicial.
+Utiliza uno de los papers encontrados como paper inicial.
 
 #### ResearchRabbit
 
-Registre:
+Registra:
 
 ```text
 Paper inicial:
 Un paper relacionado:
-¿Por qué le llamó la atención?:
+¿Por qué te llamó la atención?:
 ```
 
 #### Connected Papers
 
-Registre:
+Registra:
 
 ```text
 Paper inicial:
 Un paper relacionado:
-¿Por qué le llamó la atención?:
+¿Por qué te llamó la atención?:
 ```
 
-Finalmente responda en máximo 3 oraciones:
+Finalmente responde en máximo 3 oraciones:
 
 ```text
 ¿Qué utilidad tienen estas herramientas frente a una búsqueda normal por palabras clave?
@@ -119,16 +119,16 @@ Finalmente responda en máximo 3 oraciones:
 
 #### Scite
 
-Registre:
+Registra:
 
 ```text
 Paper:
-¿Qué observó sobre sus citas?:
+¿Qué observastes sobre tus citas?:
 ```
 
 #### SciSpace
 
-Registre:
+Registra:
 
 ```text
 Paper:
@@ -136,16 +136,16 @@ Objetivo del paper:
 Una idea que SciSpace le ayudó a comprender:
 ```
 
-Finalmente responda en máximo 3 oraciones:
+Finalmente responde en máximo 3 oraciones:
 
 ```text
-¿Qué diferencia notó entre Scite y SciSpace?
+¿Qué diferencia se notó entre Scite y SciSpace?
 ```
 
 ### 7. Parte 5 - Resumen
 #### 6 puntos
 
-Complete:
+Completa:
 
 | Herramienta | ¿Para qué la usaría? |
 |---|---|
@@ -156,26 +156,26 @@ Complete:
 | Scite |  |
 | SciSpace |  |
 
-Luego responda brevemente:
+Luego responde brevemente:
 
 #### Herramienta más útil
 
-¿Cuál le resultó más útil y por qué?
+¿Cuál te resultó más útil y por qué?
 
 #### Herramienta menos clara
 
-¿Cuál le resultó menos clara o menos útil?
+¿Cuál te resultó menos clara o menos útil?
 
 #### Tema
 
 ```text
-¿Mantendría su tema o lo cambiaría?:
+¿Mantendrías tu tema o lo cambiarias?:
 Razón:
 ```
 
 ### 8. Evidencia mínima
 
-Incluya **dos capturas de pantalla**, cada una correspondiente a una herramienta diferente.
+Incluye **dos capturas de pantalla**, cada una correspondiente a una herramienta diferente.
 
 No se requieren capturas de las seis herramientas.
 
@@ -185,7 +185,6 @@ No se requieren capturas de las seis herramientas.
 - No es necesario programar.
 - No hay exposición.
 - No es necesario realizar experimentos.
-- No se evalúa cuántos papers encuentre.
 - No se penaliza cambiar de tema.
 - No se deben inventar referencias, DOI ni resultados.
 
