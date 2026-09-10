@@ -7,7 +7,7 @@
 **Tiempo esperado:** 60 a 90 minutos  
 **Carácter:** diagnóstico  
 **Nota máxima:** 20 puntos  
-**Entrega:** un archivo Markdown  
+**Entrega:** un archivo Markdown y agrégalo a tu repositorio del curso como Prueba de Entrada.
 
 ### 1. Objetivo
 
