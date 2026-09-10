@@ -497,7 +497,7 @@ Los siguientes temas corresponden a los temas registrados para la práctica. La 
 | Frank Oliver Hinojosa Zamora | Auditor de respuestas de LLM con verificación de fuentes, grounding y análisis automático de errores |
 | Jesus Diego Osorio Tello | Asistente de respuesta a incidentes DevSecOps con RAG sobre runbooks, logs y evidencia técnica |
 | Cesar Augusto Sanchez Malaspina | Agente de revisión científica que identifica desacuerdos entre artículos mediante citation context y RAG |
-| Carlos Sinai Unda Miguel | Sistema multimodal de inspección de documentos técnicos con recuperación de texto, tablas y figuras |
+| Carlos Sinai Unda Miguel | Detección Automática de Contradicciones Normativas en Textos Jurídicos Peruanos Mediante Retrieval-Augmented Generation e Inferencia de Lenguaje Natural |
 
 Si cambiaste tu tema después de la prueba de entrada, utiliza el **tema final declarado**. Recuerda que en esta práctica no necesitas implementar todos los componentes que aparecen en el título general de tu proyecto, debes reducirlo a una tarea mínima compatible con los contenidos de las Semanas 1, 2 y 3.
 
