@@ -53,7 +53,6 @@ Al finalizar la semana debes poder:
 | [`Cuaderno2-CC-0F4.ipynb`](Cuaderno2-CC-0F4.ipynb) | Material canónico del lunes: logits, softmax, decoding, autoregresión, contexto y KV cache |
 | [`Laboratorio2-CC-0F4.ipynb`](Laboratorio2-CC-0F4.ipynb) | Laboratorio experimental del jueves |
 
-No hay una lectura adicional obligatoria para toda la clase en esta semana. Cada grupo consulta la fuente primaria correspondiente a su tema de exposición.
 
 #### Experimento A - Decoding
 
@@ -215,5 +214,5 @@ indicando qué representa cada término y bajo qué supuestos la expresión es v
 La evidencia mínima de cierre es:
 
 ```text
-decoding implementado + Experimento A + estimación de KV cache + Experimento B + exposición de refuerzo
+decoding implementado + Experimento A + estimación de KV cache + Experimento B
 ```
