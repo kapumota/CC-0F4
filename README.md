@@ -40,7 +40,7 @@ Durante la primera semana se realizará una **prueba diagnóstica de entrada** s
 
 El curso combina teoría, implementación, experimentación, exposiciones técnicas y defensa oral.
 
-Los lunes se desarrollan los fundamentos. Los jueves se realizan laboratorios, experimentos, exposiciones y discusión de resultados.
+Los miércoles se desarrollan los fundamentos. Los jueves se realizan laboratorios, experimentos, exposiciones y discusión de resultados.
 
 Toda actividad experimental deberá identificar, cuando corresponda, baseline, modificación, métrica, resultado, errores y conclusión.
 
