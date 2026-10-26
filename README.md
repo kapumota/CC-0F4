@@ -66,7 +66,7 @@ Aprendizaje contrastivo, dual encoders, CLIP, OpenCLIP, embeddings texto-imagen,
 
 #### Programación semanal
 
-| Semana | Tema central | Evaluación oral |
+| Semana | Tema central | Evaluaciones |
 |---|---|---|
 | 1 | Presentación del curso, sistemas de IA compuestos, transformer, atención, causalidad, tokens, prueba diagnóstica | - |
 | 2 | Logits, softmax, decoding, generación autoregresiva, ventana de contexto y KV cache | - |
@@ -74,9 +74,9 @@ Aprendizaje contrastivo, dual encoders, CLIP, OpenCLIP, embeddings texto-imagen,
 | 4 | Embeddings para retrieval, chunking, similitud, vector stores, dense retrieval, FAISS | - |
 | 5 | BM25, recuperación híbrida, reranking, RAG | **E2** |
 | 6 | Tools, function calling, contratos, validación, errores, retries, timeouts | - |
-| 7 | Evaluación de retrieval y RAG, Recall@k, MRR, nDCG, grounding, error analysis | **E3** |
+| 7 | Evaluación de retrieval y RAG, Recall@k, MRR, nDCG, grounding, error analysis | -  |
 | 8 | Proyecto parcial | - |
-| 9 | Workflows, agentes, planificación, ReAct, verificación, criterios de parada | - |
+| 9 | Workflows, agentes, planificación, ReAct, verificación, criterios de parada |**E3**|
 | 10 | Estado y memoria, working memory, episodic memory, semantic memory | - |
 | 11 | Sistemas multiagente, supervisor-worker, handoffs, blackboard, trazas | **E4** |
 | 12 | Optimización, prompt, contexto, retrieval, tools, test-time compute, SFT, LoRA, QLoRA | - |
