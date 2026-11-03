@@ -186,7 +186,7 @@ Una acción puede repetirse legítimamente si cambian sus argumentos o si la fue
 
 ##### Análisis de complejidad
 
-Si el controlador permite a lo sumo `S` decisiones y `T` llamadas, su número de iteraciones es `O(S)` y el número de herramientas invocadas está acotado por `T`. Si una llamada al LLM cuesta `C_m` y una herramienta `C_h`, un presupuesto simple es `O(S*C_m + T*C_h)`. No representa una igualdad monetaria: los costos reales dependen de tokens de entrada, salida, cachés, latencia de red y el tipo de herramienta. La latencia extremo a extremo no es necesariamente la suma simple cuando hay paralelismo, y una herramienta bloqueada puede romper un deadline cooperativo.
+Si el controlador permite a lo sumo $S$ decisiones y $T$ llamadas, su número de iteraciones es $O(S)$ y el número de herramientas invocadas está acotado por $T$. Si una llamada al LLM cuesta $C_m$ y una herramienta $C_h$, un presupuesto simple es $O(S \cdot C_m + T \cdot C_h)$. No representa una igualdad monetaria: los costos reales dependen de tokens de entrada, salida, cachés, latencia de red y el tipo de herramienta. La latencia extremo a extremo no es necesariamente la suma simple cuando hay paralelismo, y una herramienta bloqueada puede romper un deadline cooperativo.
 
 #### 9. Instrumentación: qué debe mostrar una traza
 
