@@ -1,7 +1,6 @@
 """Control de un agente de Semana 9: acciones, observaciones, presupuestos y parada.
 
-Un controlador no es un LLM. Solo se considera agente dirigido por LLM cuando
-la politica conectada usa realmente un modelo para elegir las acciones.
+Un controlador no es un LLM. Solo se considera agente dirigido por LLM cuando la politica conectada usa realmente un modelo para elegir las acciones.
 Este modulo no persiste memoria ni ejecuta herramientas fuera de su allowlist.
 """
 from __future__ import annotations
