@@ -1,7 +1,6 @@
 """Benchmark docente A0/A1/B sobre BM25 fijo, sin LLM ni coste de API.
 
-B es una politica heuristica, no un agente LLM. Usa una muestra real y
-reproducible de SQuAD 1.1, no los datos ilustrativos de Semana 4.
+B es una politica heuristica, no un agente LLM. Usa una muestra real y reproducible de SQuAD 1.1, no los datos ilustrativos de Semana 4.
 """
 
 from __future__ import annotations
