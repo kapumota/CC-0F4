@@ -100,9 +100,9 @@ Se presenta código ejecutable y explicable, tres baselines correctamente etique
 La muestra deriva **sin inventar documentos, consultas ni respuestas** de
 [SQuAD 1.1](https://rajpurkar.github.io/SQuAD-explorer/),
 [archivo de validacion](https://github.com/rajpurkar/SQuAD-explorer/blob/master/dataset/dev-v1.1.json).
+
 Licencia: CC BY-SA 4.0 (incluir atribucion a Wikipedia y SQuAD al redistribuir).
-Se fija el Git blob SHA-1 de la version leida, se almacenan SHA-256 y se separan
-respuestas humanas del corpus suministrado al recuperador.
+Se fija el Git blob SHA-1 de la version leida, se almacenan SHA-256 y se separan respuestas humanas del corpus suministrado al recuperador.
 
 La muestra educativa se selecciona por orden del archivo antes de medir modelos, **no** es una muestra aleatoria representativa ni evaluacion del benchmark SQuAD completo. Los qrels vinculan cada pregunta a su pasaje de origen, no anotan exhaustivamente todos los pasajes potencialmente relevantes. Una puntuacion `evidence_hit` no prueba que una respuesta generada sea verdadera.
 La preparacion requiere red una vez, los experimentos posteriores no. En esta entrega no se afirma haber ejecutado el corpus real desde este entorno.
