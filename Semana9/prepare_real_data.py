@@ -1,7 +1,6 @@
 """Prepara una coleccion docente REAL desde SQuAD 1.1, validacion.
 
-No genera preguntas, textos ni etiquetas sinteticas. Conserva los contextos,
-preguntas y respuestas humanos publicados. Solo selecciona una muestra fija
+No genera preguntas, textos ni etiquetas sinteticas. Conserva los contextos, preguntas y respuestas humanos publicados. Solo selecciona una muestra fija
 por orden de aparicion, sin ajustar por el rendimiento de los recuperadores.
 """
 from __future__ import annotations
