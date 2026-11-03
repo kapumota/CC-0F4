@@ -1,4 +1,4 @@
-"""Pruebas sin LLM ni acceso a red para las políticas de Semana9."""
+"""Pruebas sin LLM ni acceso a red para las políticas de Semana 9."""
 
 import unittest
 from .agent_benchmark import BM25Tool, lexical_coverage, run_adaptive, run_workflow
