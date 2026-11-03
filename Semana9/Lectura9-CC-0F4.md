@@ -107,19 +107,19 @@ No confundamos las **observaciones** con instrucciones. Un documento recuperado 
 
 #### 5. Perceive, Decide, Act, Observe: un ciclo ejecutable
 
-Podemos describir la operación mediante el estado transitorio `s_t`, una observación `o_t`, una acción `a_t` y una política `pi`. Conceptualmente:
+Podemos describir la operación mediante el estado transitorio $s_t$, una observación $o_t$, una acción $a_t$ y una política $\pi$. Conceptualmente:
 
 $$
  a_t = \pi(task, s_t, o_{\le t})
 $$
 
-La acción no se ejecuta inmediatamente. Primero pasa por una función de validación `V(a_t, s_t, B)` con un presupuesto restante `B`. Si `V` rechaza la acción, se registra el rechazo y se aplica la política de recuperación o parada. Si la acepta, una herramienta genera una nueva observación. El estado evoluciona para reflejar contadores, identificadores recuperados y el resultado de la última acción:
+La acción no se ejecuta inmediatamente. Primero pasa por una función de validación $V(a_t, s_t, B)$ con un presupuesto restante $B$. Si $V$ rechaza la acción, se registra el rechazo y se aplica la política de recuperación o parada. Si la acepta, una herramienta genera una nueva observación. El estado evoluciona para reflejar contadores, identificadores recuperados y el resultado de la última acción:
 
 $$
  s_{t+1} = update(s_t, a_t, observation_t)
 $$
 
-En esta semana `s_t` es únicamente un registro operativo de **la ejecución actual**. No constituye memoria semántica, episódica ni una memoria de trabajo general reutilizable entre sesiones.
+En esta semana $s_t$ es únicamente un registro operativo de **la ejecución actual**. No constituye memoria semántica, episódica ni una memoria de trabajo general reutilizable entre sesiones.
 
 ##### Invariantes del controlador
 
