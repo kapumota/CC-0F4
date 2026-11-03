@@ -1,7 +1,7 @@
 """Politica opcional para un LLM local: no se ejecuta durante tests offline.
 
-El modulo importa transformers y torch solo si el docente solicita modo LLM.
-La salida se limita a JSON de acciones. No se solicitan razonamientos internos.
+El modulo importa transformers y torch solo si el docente solicita modo LLM. La salida se limita a JSON de acciones. 
+No se solicitan razonamientos internos.
 """
 from __future__ import annotations
 
