@@ -91,7 +91,7 @@ La política devuelve un JSON de acción. Respuestas mal formadas, selección de
 
 #### Criterios de cierre
 
-El estudiante presenta código ejecutable y explicable, tres baselines correctamente etiquetados, al menos cuatro trazas, un fallo de control reproducido, criterios de parada implementados y una conclusión ajustada a las métricas realmente medidas. Si ejecuta un LLM, debe registrar procedencia de la inferencia y distinguirla de los replays; si no, debe declararlo sin ambigüedad.
+Se presenta código ejecutable y explicable, tres baselines correctamente etiquetados, al menos cuatro trazas, un fallo de control reproducido, criterios de parada implementados y una conclusión ajustada a las métricas realmente medidas. Si ejecuta un LLM, debe registrar procedencia de la inferencia y distinguirla de los replays; si no, debe declararlo sin ambigüedad.
 
 **Fuentes fundamentales:** Anthropic, *Building Effective Agents*; Yao et al., *ReAct*; Kapoor et al., *AI Agents That Matter*. Las direcciones y el contexto se encuentran en `Lectura9-CC-0F4.md`. No se han copiado fuentes externas completas dentro de este paquete.
 
