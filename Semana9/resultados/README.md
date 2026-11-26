@@ -1,15 +1,7 @@
-### Resultados de la Semana 9
+### Resultados de Semana 9: sin cifras precargadas
 
-Este directorio recibe archivos generados localmente. El repositorio no debe contener métricas inventadas ni ejecuciones LLM presentadas como realizadas cuando no lo fueron.
+Antes de usar cualquier gráfico o métrica, ejecutar la preparación del SQuAD 1.1 dev completo y el benchmark offline. El programa produce `runs.csv`, `traces.jsonl` y `summary.json` con tamaños de partición, SHA256 de datos, umbral elegido **solo en calibración** y métricas de **evaluación**.
 
-Al ejecutar `python -m Semana9.agent_benchmark` se producen:
+`python -m Semana9.agent_llm_eval --n 100` genera, cuando Qwen realmente se carga y ejecuta, `resultados/llm_real/comparacion_llm.csv`, `trazas_llm.jsonl` y `resumen_llm.json`. Si no se ejecutó, no debe informarse EM/F1 ni comparar agentes.
 
-- `runs.csv`: 48 filas, 16 preguntas humanas x 3 baselines A0/A1/B. Incluye `evidence_hit`, llamadas, pasos, latencia local, razón de parada y `context_token_proxy`.
-- `traces.jsonl`: decisiones y observaciones de los tres baselines offline.
-- `summary.json`: métricas agregadas, hashes SHA-256 y limitaciones explícitas.
-
-Al ejecutar `python -m Semana9.agent_demo --policy scripted --output Semana9/resultados/demo_scripted.json` se obtiene una **simulación guionizada**, no una inferencia LLM.
-
-Solo una ejecución explícita con `--policy llm` permite generar `demo_llm.json`; su contenido puede mostrar errores de modelo o parada sin éxito. El campo `completed_with_citations` acredita únicamente la validación operativa de citas observadas, no la corrección semántica de la respuesta.
-
-Los datos reales se preparan en `Semana9/datos_reales/` desde SQuAD 1.1 dev; no se generan datos sintéticos. La carpeta contiene `manifest.json` y hashes de procedencia.
+Ninguna salida de `ScriptedPolicy` demuestra autonomía del modelo. Un `completed_with_citations` significa que la cita pasó el contrato estructural; **no** que el texto esté respaldado o sea correcto.

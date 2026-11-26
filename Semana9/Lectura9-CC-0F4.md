@@ -196,7 +196,7 @@ En este paquete, `agent_benchmark.py` produce tablas reproducibles del controlad
 
 #### 10. Diseño experimental: comparar sin favorecer inadvertidamente a una política
 
-Usamos un subconjunto fijo de SQuAD 1.1 dev: ocho articulos reales de Wikipedia, 32 pasajes originales, 16 preguntas humanas y sus pasajes de origen anotados. Los qrels de esta muestra no son juicios exhaustivos de relevancia. Para aislar la política de control utilizamos la **misma implementación de BM25** en las condiciones offline. No estamos reemplazando el baseline de recuperación densa o híbrida de la Semana 7; la herramienta BM25 local es un instrumento para estudiar decisiones y pasos.
+Usamos SQuAD 1.1 dev completo: 48 artículos de Wikipedia, 2.067 pasajes y 10.570 preguntas y respuestas anotadas por personas. Doce artículos se destinan exclusivamente a calibración y otros 36 a evaluación. Los qrels identifican el pasaje de origen; no son juicios exhaustivos de relevancia. Para aislar la política de control utilizamos la **misma implementación de BM25** en las condiciones offline. No estamos reemplazando el baseline de recuperación densa o híbrida de la Semana 7; la herramienta BM25 local es un instrumento para estudiar decisiones y pasos.
 
 Se proponen tres condiciones offline:
 
@@ -204,7 +204,7 @@ Se proponen tres condiciones offline:
 A0 workflow_fixed_top1:       una búsqueda top-1
 A1 workflow_fixed_top3:       una búsqueda top-3
 B  adaptive_rule_based:       primera búsqueda top-1;
-                             si cobertura léxica < 0.45, ampliar a top-3
+                             si cobertura léxica < τ, ampliar a top-3 (τ se calibra únicamente con los 12 artículos de desarrollo)
 ```
 
 A0 proporciona el extremo de contexto mínimo y A1 el extremo de mayor contexto entre estos dos valores. B intenta ahorrar contexto cuando la primera observación parece suficiente. **Con un ranking BM25 inmutable, los pasajes top-1 son un subconjunto de top-3**. Por ello, para cualquier consulta y el mismo conjunto de relevantes:
@@ -213,7 +213,7 @@ $$
  Hit_{A0}(q) \le Hit_B(q) \le Hit_{A1}(q)
 $$
 
-Esta desigualdad no mide la utilidad total: B puede gastar dos llamadas, consumir menos pasajes o terminar prematuramente. La mejora de B no puede declararse como una mayor cobertura que A1 bajo este diseño. Su posible valor es un compromiso entre cobertura y presupuesto de contexto. Además, el indicador `context_token_proxy` solo cuenta palabras obtenidas por el tokenizador léxico del benchmark; **no es el número de tokens reales del modelo ni un costo API**.
+Esta desigualdad no mide la utilidad total: B puede gastar dos llamadas, consumir menos pasajes o terminar prematuramente. La mejora de B no puede declararse como una mayor cobertura que A1 bajo este diseño. Su posible valor es un compromiso entre cobertura y presupuesto de contexto. Además, el indicador `context_word_proxy` cuenta palabras del texto recuperado: **no mide tokens de modelo, precio de API ni corrección de la respuesta**.
 
 Un verdadero agente LLM constituye una **cuarta condición exploratoria**, C. Si puede reformular búsquedas o abrir pasajes selectivamente, tiene capacidades diferentes de A0/A1/B; el experimento debe declararlo y no atribuir causalmente sus diferencias únicamente a la autonomía. Para comparar respuestas semánticas, hacen falta anotaciones y evaluación aparte, que se profundizarán en otras semanas.
 
@@ -221,16 +221,17 @@ Un verdadero agente LLM constituye una **cuarta condición exploratoria**, C. Si
 
 - `evidence_hit`: al menos un pasaje citado pertenece al conjunto relevante de la consulta.
 - `mean_tool_calls`: promedio de invocaciones de herramientas.
-- `mean_steps`: promedio de acciones registradas.
-- `mean_context_token_proxy`: longitud léxica del contexto citado, no tokens del LLM.
-- `mean_latency_ms`: tiempo local observado de la ejecución del script, dependiente de la máquina y sin inferencia LLM.
+- `context_word_proxy`: suma de palabras del contexto recuperado.
+- `mean_context_words`: media por política de ese proxy, distinta de tokens de modelo.
+- `Recall@1/3/5` y `MRR@10`: posición del pasaje original con respuesta, evaluado por artículo.
+- `seconds_local_bm25_and_processing`: tiempo total de cálculo local sin inferencia LLM.
 - `stop_reason`: cómo terminó, separado del éxito de la tarea.
 
 La tasa de acierto de evidencia no equivale a `answer correctness`, `faithfulness` ni éxito funcional. Conviene inspeccionar consulta por consulta y registrar paradas equivocadas, ampliaciones inútiles y citas no pertinentes. El artículo *AI Agents That Matter* advierte sobre interpretaciones de desempeño que ignoran costos y debilidades de evaluación; el benchmark docente sirve para formular hipótesis, no para generalizarlas a toda tarea agéntica.
 
 #### 11. Caso de estudio completo y preguntas de análisis
 
-Tome las consultas Q01 (resolución de DNS), Q07 (token publicado en Git) y Q15 (solicitud MFA inesperada). Primero ejecute A0/A1/B sin LLM y observe qué identificadores aparecen como relevantes. Después, mediante `ScriptedPolicy`, recorra una secuencia de búsqueda, lectura y finalización con citas permitidas. Por último, si dispone del modelo local, conecte `LocalTransformersPolicy` y compruebe si puede producir decisiones JSON válidas. El último paso **no está garantizado**: modelos compactos pueden devolver JSON incorrecto, elegir una herramienta innecesaria o terminar antes de tiempo. Esos fallos son parte del experimento, no resultados que deban ocultarse.
+Ejecute A0/A1/B sobre las 10.570 preguntas humanas. Inspeccione **dos casos de error reales**, seleccionados de `resultados/runs.csv` por su ID original de SQuAD, y compruebe los pasajes recuperados. Después ejecute los tests de contratos del controlador. Si dispone del modelo local, compare mediante `agent_llm_eval.py` un workflow Qwen top-3 y un agente Qwen, usando las mismas preguntas de evaluación. El último paso **no está garantizado**: modelos compactos pueden devolver JSON incorrecto, elegir una herramienta innecesaria o terminar antes de tiempo. Esos fallos son parte del experimento, no resultados que deban ocultarse.
 
 Preguntas para responder con evidencia:
 
@@ -239,7 +240,7 @@ Preguntas para responder con evidencia:
 3. ¿Por qué cualquier parrafo recuperado de Wikipedia debe tratarse como dato, y no como instruccion ejecutable del controlador?
 4. ¿Qué distingue un error de esquema, un error de dominio, una falla de herramienta y una parada prematura?
 5. ¿Cuándo debería detenerse el agente en vez de intentar una tercera reformulación de la consulta?
-6. ¿Cómo demostraría que una nueva política mejora respecto de A1 sin ajustar reglas sobre las mismas 16 preguntas humanas?
+6. ¿Cómo demostraría que una nueva política mejora respecto de A1 sin ajustar reglas sobre los 36 artículos reservados a evaluación?
 7. ¿Por qué `completed_with_citations` no es una prueba de veracidad de la respuesta?
 8. ¿Qué información falta para comparar costo monetario de dos modelos distintos?.
 
@@ -262,6 +263,6 @@ La Semana 9 finaliza con un bucle observable, un estado transitorio mínimo y te
 
 #### Anexo: procedencia de los datos reales
 
-La muestra del laboratorio proviene de SQuAD 1.1, un conjunto de preguntas realizadas por personas sobre parrafos de Wikipedia con respuestas anotadas (Rajpurkar et al., 2016). Se seleccionan 8 articulos, cuatro parrafos por articulo y una pregunta del primer y tercer parrafo. La seleccion se fija antes de ejecutar los baselines. No se fabrican preguntas ni resultados.
+El laboratorio utiliza todos los 48 artículos y 2.067 pasajes de SQuAD 1.1 dev, que incluyen 10.570 preguntas de personas y respuestas anotadas (Rajpurkar et al., 2016). La división por hash de título, fijada antes de medir, reserva 12 artículos para calibración y 36 para evaluación. No se generan documentos, preguntas, respuestas ni resultados artificiales.
 Las etiquetas indican el pasaje original que contiene la respuesta humana, no todos los pasajes que podrian responder la pregunta. El ingles de las fuentes se conserva para evitar introducir alteraciones mediante traduccion.
 La pregunta cientifica de Semana 9 no es superar el benchmark SQuAD, sino comparar politicas de ejecucion bajo el mismo retriever y presupuesto.

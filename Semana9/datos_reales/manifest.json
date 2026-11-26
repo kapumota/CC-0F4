@@ -1,0 +1,32 @@
+{
+  "dataset": "SQuAD 1.1 dev, conjunto COMPLETO, no test oculto oficial",
+  "dataset_source": "https://raw.githubusercontent.com/rajpurkar/SQuAD-explorer/master/dataset/dev-v1.1.json",
+  "source_bytes": 4854279,
+  "source_sha256": "95aa6a52d5d6a735563366753ca50492a658031da74f301ac5238b03966972c9",
+  "source_git_blob_sha1": "e9a3f913ad1468ebe105b891334ca7b0bc0e2510",
+  "license": "CC BY-SA 4.0",
+  "split_rule": "12 artículos de calibración por hash de título; otros 36 para evaluación",
+  "split_seed": "CC0F4-Semana9-2026-v2",
+  "articles": 48,
+  "passages": 2067,
+  "queries": 10570,
+  "split_queries": {
+    "calibration": 2440,
+    "evaluation": 8130
+  },
+  "calibration_articles": 12,
+  "evaluation_articles": 36,
+  "annotations_with_offset_mismatch": 0,
+  "annotation_issue_ids_sample": [],
+  "sha256_files": {
+    "corpus": "790cb18ce71196816180bcca2c95fcb39bfde9c7e788af7d3a45574b1a31fd1f",
+    "queries": "f056e38b29b0e05bdb78c657addc101b535e3bcc27138b44a88d8c8bb9486e45",
+    "qrels": "398fe99fa5ae2d0af9064fd8b406462c47237e3a9737e6639709ae1b9e40c5b7",
+    "answers": "6e59dbce8f3c1ecae71f9672317ea6664e07717714bf17477212790cdf08b4ac"
+  },
+  "limits": [
+    "SQuAD dev público no es el test oculto del benchmark",
+    "Qrels indican el pasaje original con respuesta; no son juicios exhaustivos de relevancia",
+    "Las respuestas humanas se almacenan aparte y nunca se incorporan al recuperador"
+  ]
+}

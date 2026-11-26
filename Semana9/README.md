@@ -1,108 +1,72 @@
-### Semana 9 - Workflows, agentes, ReAct, planificación y criterios de parada
+### Semana 9: workflows, agentes, ReAct, planificación y parada
 
-#### Propósito
+#### Objetivo
 
-Las Semanas 4, 5 y 7 estudiaron recuperación y RAG, la Semana 6 construyó la frontera de confianza de una llamada a herramientas. La Semana 9 incorpora un **controlador de ejecución** que observa, decide la siguiente acción, valida, invoca herramientas y termina por una razón auditable. El eje experimental es comparar cuándo un workflow basta y cuándo la decisión de un agente justifica mayor complejidad.
+Aprender a distinguir un workflow fijo, un controlador adaptativo y un agente que toma decisiones con un LLM **sin confundir pruebas del controlador con resultados de un agente**. La teoría incluye ReAct, planificación, recuperación ante errores, validación de herramientas y trazas.
 
-```text
-Semana 4/5: datos -> índices -> evidencia
-Semana 6: tool call -> contrato -> ejecución -> observación
-Semana 7: métricas, qrels y errores de RAG
-Semana 9: múltiples decisiones, presupuesto, trazas y parada
-Semana 10: memoria, persistencia y recuperación (NO implementadas aquí)
-```
+#### Datos reales y condiciones
 
-**Pregunta de la semana:** ¿qué ventajas y riesgos introduce permitir que un LLM seleccione acciones respecto de ejecutar una secuencia fija o una política de reglas? ¿Cómo demostrarlo con evidencia?
+- **Fuente:** SQuAD 1.1 dev, Wikipedia y preguntas/respuestas humanas originales.
+- **Alcance obligatorio:** 48 artículos, 2.067 pasajes y 10.570 preguntas. No se permite sustituir por 16 preguntas.
+- **Calibración:** 12 artículos seleccionados mediante hash de título antes de observar resultados. **Evaluación:** otros 36 artículos. No comparten artículos.
+- **Recuperador:** BM25 idéntico en las tres políticas, indexa los 2.067 pasajes.
+- **Políticas A0 / A1 / B:** top-1; top-3; top-1 y expansión a top-3 si la cobertura léxica es insuficiente. El umbral se selecciona solo en calibración.
+- **Evaluación de recuperación:** Recall@1/3/5, MRR@10, acierto por política, contexto transportado, llamadas, errores por consulta. Los qrels identifican el **pasaje original** de cada respuesta, no son relevancia exhaustiva.
+- **Evaluación LLM separada:** `agent_llm_eval.py` utiliza Qwen local, igual para el workflow fijo con LLM y el agente que decide herramientas. Calcula exact match (EM), F1 contra respuestas humanas, pasaje original citado, llamadas y paradas. Es un piloto, no un resultado general de toda SQuAD.
 
-#### Resultados de aprendizaje comprobables
+**Advertencia:** el ranking de B siempre está contenido en top-3; no puede tener mayor `evidence_hit` que A1. La comparación investiga compromisos de contexto y llamadas. Además, una cita observada no demuestra por sí sola fidelidad semántica.
 
-Al terminar la semana, el estudiante debe poder:
+#### Preparación antes de clase (una vez, con Internet)
 
-1. Diferenciar pipeline, workflow fijo, workflow con ramas, controlador heurístico y agente LLM.
-2. Analizar cinco patrones de workflow y justificar cuándo utilizarlos.
-3. Implementar un bucle de decisión-acción-observación que **valida** cada propuesta del modelo.
-4. Explicar ReAct, planificación breve, cambios de plan y recuperación de errores.
-5. Aplicar una allowlist, contratos de herramientas, `max_steps`, `max_tool_calls`, límites de tokens y deadline cooperativo.
-6. Detectar repetición de acciones y distinguir éxito operativo de finalizaciones no exitosas.
-7. Registrar trazas estructuradas, contrastar baselines y explicar amenazas a la validez de una comparación.
-
-
-#### Delimitación frente a la Semana 10
-
-El objeto `RunState` contiene **estado transitorio de una sola ejecución**, como contadores, observaciones y citas observadas. No crea una base de memoria, no persiste episodios y no permite recuperar hechos entre ejecuciones. `working memory`, `episodic memory` y `semantic memory` se estudiarán formalmente en la Semana 10. El patrón orchestrator-workers se presenta, pero la coordinación multiagente y los handoffs se reservarán para la Semana 11.
-
-#### Baselines: la corrección de diseño fundamental
-
-La edicion **usa una muestra autentica y pequena de SQuAD 1.1 dev**: 8 articulos de Wikipedia, 32 pasajes y 16 preguntas redactadas y respondidas por personas. Los qrels originales se derivan del pasaje con respuesta anotada. No se ejecuta el dataset docente creado para Semana 4. Los tres sistemas offline utilizan el **mismo BM25 local** con tokenización y ranking fijos:
-
-- **A0** `workflow_fixed_top1`: una llamada `top_k=1`.
-- **A1** `workflow_fixed_top3`: una llamada `top_k=3`.
-- **B** `adaptive_rule_based`: primero `top_k=1`, amplia a `top_k=3` si la cobertura léxica es menor que el umbral 0.45, como máximo dos llamadas.
-
-**Limitación:** al operar sobre un ranking fijo, B jamás puede superar a A1 en `evidence_hit`. Su eventual ventaja es utilizar menos contexto, no recuperar más pasajes relevantes que A1. Esta distinción impide conclusiones incorrectas sobre autonomía.
-
-Se mide `evidence_hit`, llamadas, pasos, latencia BM25 local y `context_token_proxy` (conteo léxico de palabras). No se mide la exactitud semántica de las respuestas, costo de API, tokens del LLM ni calidad agéntica en el benchmark offline. El retriever BM25 empleado para aislar el control no sustituye el experimento con E5/FAISS o híbrido de Semana 7.
-
-#### Instalación y ejecución desde CC-0F4
-
-Copiar **solamente** `Semana9/` dentro de la raíz del repositorio del curso. **Paso obligatorio**: preparar una sola vez la muestra desde la fuente real, aproximadamente 4.9 MB de descarga. Luego, trabajar offline con los archivos generados en `Semana9/datos_reales/`. No se requieren APIs ni modelos grandes para A0/A1/B.
+Desde la raíz del repositorio `CC-0F4`:
 
 ```bash
-# Desde la raiz del repositorio CC-0F4:
 python -m Semana9.prepare_real_data
-python -m unittest Semana9.test_agent_benchmark Semana9.test_agent_loop Semana9.test_prepare_real_data -v
+python -m Semana9.prepare_real_data --check
+```
+
+Se descarga únicamente el archivo oficial público `dev-v1.1.json`, verificado con SHA256 y Git blob SHA1, sin claves, tokens de API ni datos prefabricados. Si ya se dispone de ese archivo, puede evitarse la descarga:
+
+```bash
+python -m Semana9.prepare_real_data --source-json /ruta/dev-v1.1.json
+```
+
+Los resultados de las semanas 9 y 12 se deben mantener separados. Ambos pueden leer la **misma fuente original**, pero no comparten calibración ni afirman resultados idénticos.
+
+#### Laboratorio: políticas reales, sin LLM (obligatorio)
+
+```bash
+python -m unittest Semana9.test_prepare_real_data Semana9.test_agent_benchmark Semana9.test_agent_loop -v
 python -m Semana9.agent_benchmark
-python -m Semana9.agent_demo --policy scripted --query-id Q01 \
-  --output Semana9/resultados/demo_scripted.json
-make check-week WEEK=9
-make execute-cuaderno WEEK=9
 ```
 
-El laboratorio se ejecuta, si se desea, mediante:
+El segundo comando calcula todas las preguntas: escribe `Semana9/resultados/runs.csv`, `traces.jsonl`, `summary.json`. Nunca crea filas de resultados sin procesar el corpus. Las métricas principales se reportan **solo en evaluación**. La calibración se publica por separado para auditar la elección de umbral.
+
+Abre en JupyterLab:
+
+1. `Semana9/Cuaderno9-CC-0F4.ipynb`, cuaderno explicativo.
+2. `Semana9/Laboratorio9-CC-0F4.ipynb`, actividad integrada.
+
+#### Agentes con LLM real (piloto docente, requiere pesos Qwen locales)
 
 ```bash
-python -m jupyter nbconvert --to notebook --execute \
-  Semana9/Laboratorio9-CC-0F4.ipynb \
-  --ExecutePreprocessor.timeout=600 \
-  --output Laboratorio9-ejecutado.ipynb
+python -m Semana9.agent_llm_eval --n 100 --model-id Qwen/Qwen2.5-0.5B-Instruct
 ```
 
-El modo guionizado **no es un LLM**. Se usa solo para probar la infraestructura, no para acreditar ReAct real.
+El piloto compara dos condiciones en las **mismas** 100 preguntas reales de la partición de evaluación: un workflow top-3 con Qwen y un agente que usa Qwen para decidir acciones. El código no simula el modelo si faltan los pesos. Para ampliar el piloto, cambie `--n` y registre el tamaño antes de inspeccionar resultados. La inferencia no forma parte de los tests offline obligatorios.
 
-#### Experimento voluntario con un LLM local
+**La ausencia de una GPU o del modelo no se reemplaza por respuestas guionizadas.** En tal caso, la comparación LLM queda `NO EJECUTADA` y se puede completar la práctica de recuperación y control, sin concluir nada sobre capacidades de Qwen.
 
-La política `LocalTransformersPolicy` utiliza el stack `torch`/`transformers` de la raíz del curso y carga un modelo instruct local o accesible en caché. El modelo canónico de referencia de las semanas anteriores es `Qwen/Qwen2.5-0.5B-Instruct`. El primer uso puede requerir descarga de pesos y suficiente RAM o GPU. No se ejecuta por defecto, no necesita claves de API y **no se ha afirmado calidad ni éxito del modelo sin una ejecución real**.
+#### Qué debe entregar el estudiante
 
-```bash
-python -m Semana9.agent_demo --policy llm --query-id Q01 \
-  --model-id Qwen/Qwen2.5-0.5B-Instruct \
-  --output Semana9/resultados/demo_llm.json
-```
+- Resultados de recuperación del conjunto completo, con tamaño de datos y hashes.
+- Un ejemplo real donde B amplía y otro donde no; si alguno no existe, indicarlo.
+- Dos casos de error real obtenidos del CSV, con IDs y pasajes relevantes.
+- Traza de una acción rechazada, explicando el contrato aplicado. Los errores de seguridad inducidos en pruebas son **pruebas unitarias del controlador**, no datos de benchmark.
+- Si se ejecutó Qwen, tabla EM/F1 pareada; si no, declaración explícita de no ejecución.
 
-Para habilitar las celdas opcionales en Jupyter:
+#### Alcance y procedencia
 
-```bash
-export CC0F4_RUN_REAL_LLM=1
-make execute-cuaderno WEEK=9
-```
+[Proyecto oficial de SQuAD](https://rajpurkar.github.io/SQuAD-explorer/) · [Fuente original SQuAD 1.1 dev](https://github.com/rajpurkar/SQuAD-explorer/blob/master/dataset/dev-v1.1.json). Licencia del conjunto SQuAD 1.1: CC BY-SA 4.0, con atribución al proyecto SQuAD y Wikipedia.
 
-La política devuelve un JSON de acción. Respuestas mal formadas, selección de herramientas no autorizadas o terminaciones con citas inventadas son rechazadas por el controlador. Se contabilizan tokens cuando el modelo los reporta. El presupuesto global de tokens es **comprobado después de cada generación**, por lo que no es una restricción previa estricta; el deadline es cooperativo y no interrumpe forzosamente llamadas bloqueadas. Si se necesita un timeout duro de herramientas o consumo máximo estricto, se requieren mecanismos adicionales de ejecución aislada.
-
-
-#### Criterios de cierre
-
-Se presenta código ejecutable y explicable, tres baselines correctamente etiquetados, al menos cuatro trazas, un fallo de control reproducido, criterios de parada implementados y una conclusión ajustada a las métricas realmente medidas. Si ejecuta un LLM, debe registrar procedencia de la inferencia y distinguirla de los replays; si no, debe declararlo sin ambigüedad.
-
-**Fuentes fundamentales:** Anthropic, *Building Effective Agents*; Yao et al., *ReAct*; Kapoor et al., *AI Agents That Matter*. Las direcciones y el contexto se encuentran en `Lectura9-CC-0F4.md`. No se han copiado fuentes externas completas dentro de este paquete.
-
-#### Datos reales, reproducibilidad y honestidad experimental
-
-La muestra deriva **sin inventar documentos, consultas ni respuestas** de
-[SQuAD 1.1](https://rajpurkar.github.io/SQuAD-explorer/),
-[archivo de validacion](https://github.com/rajpurkar/SQuAD-explorer/blob/master/dataset/dev-v1.1.json).
-
-Licencia: CC BY-SA 4.0 (incluir atribucion a Wikipedia y SQuAD al redistribuir).
-Se fija el Git blob SHA-1 de la version leida, se almacenan SHA-256 y se separan respuestas humanas del corpus suministrado al recuperador.
-
-La muestra educativa se selecciona por orden del archivo antes de medir modelos, **no** es una muestra aleatoria representativa ni evaluacion del benchmark SQuAD completo. Los qrels vinculan cada pregunta a su pasaje de origen, no anotan exhaustivamente todos los pasajes potencialmente relevantes. Una puntuacion `evidence_hit` no prueba que una respuesta generada sea verdadera.
-La preparacion requiere red una vez, los experimentos posteriores no. En esta entrega no se afirma haber ejecutado el corpus real desde este entorno.
+No se reclama puntuación oficial en el test oculto de SQuAD. La partición interna de `dev` evita fuga por artículo al calibrar B, pero no equivale a un benchmark independiente de una competición.

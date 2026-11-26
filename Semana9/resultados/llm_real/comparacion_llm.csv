@@ -1,0 +1,243 @@
+query_id,source_question_id,condition,exact_match,f1,gold_passage_cited,citations_count,elapsed_s,tool_calls,stop_reason,answer,citations
+Q4834,57263677ec44d21400f3dc49,fixed_qwen_top3,0.0,0.526316,1,3,7.954,1,completed,The concept developed by Baran while researching at RAND was distributed adaptive message block switching.,SQ020-P0004|SQ020-P0001|SQ020-P0005
+Q4834,57263677ec44d21400f3dc49,agent_qwen,0.0,0.0,0,0,8.428,1,repeated_action,,
+Q3113,571090abb654c5140001f997,fixed_qwen_top3,0.0,0.0,0,3,11.106,1,completed,"The social construct that Huguenot refugees in Canterbury practiced was the belief in the superiority of the French language and culture over English. This belief led to significant changes in local customs and practices, including the adoption of French dress codes, the establishment of French-language schools, and the promotion of French cuisine.",SQ011-P0024|SQ011-P0042|SQ011-P0041
+Q3113,571090abb654c5140001f997,agent_qwen,0.0,0.0,0,0,8.904,1,repeated_action,,
+Q7838,57282036ff5b5019007d9da0,fixed_qwen_top3,0.0,0.046512,0,3,14.28,1,completed,"Doctor Who shows are shown repeatedly across various channels, including:
+
+- BBC television
+- Channel 4
+- Channel 5
+- Channel 6
+- Channel 7
+- Channel 8
+- Channel 9
+- Channel 10
+- Channel 11
+- Channel 12
+- Channel 13
+- Channel 14
+- Channel 15
+- Channel 16
+- Channel 17
+- Channel",SQ035-P0061|SQ035-P0054|SQ040-P0022
+Q7838,57282036ff5b5019007d9da0,agent_qwen,0.0,0.0,0,0,9.683,0,invalid_action_limit,,
+Q3346,571153422419e3140095557e,fixed_qwen_top3,0.0,0.0,1,3,7.99,1,completed,George Stephenson designed Salamanca.,SQ012-P0021|SQ024-P0012|SQ004-P0017
+Q3346,571153422419e3140095557e,agent_qwen,0.0,0.0,0,0,9.479,0,invalid_action_limit,,
+Q154,56d98f0ddc89441400fdb55b,fixed_qwen_top3,0.0,0.117647,1,3,7.938,1,completed,"The last time San Francisco hosted a Super Bowl was in 1985, when they played at Levi's Stadium.",SQ001-P0007|SQ001-P0027|SQ001-P0008
+Q154,56d98f0ddc89441400fdb55b,agent_qwen,0.0,0.0,0,0,10.281,0,invalid_action_limit,,
+Q9975,5730b6592461fd1900a9cfcf,fixed_qwen_top3,0.0,0.142857,1,3,9.604,1,completed,The country with the largest empire in the world by the late 19th century was Britain.,SQ045-P0034|SQ024-P0033|SQ045-P0016
+Q9975,5730b6592461fd1900a9cfcf,agent_qwen,0.0,0.0,0,0,16.438,0,invalid_action_limit,,
+Q2648,5705e63175f01819005e7724,fixed_qwen_top3,0.0,0.0,0,3,8.39,1,completed,"San Diego is located in the western part of Southern California, specifically in the San Diego metropolitan area.",SQ008-P0036|SQ008-P0003|SQ008-P0023
+Q2648,5705e63175f01819005e7724,agent_qwen,0.0,0.0,0,0,9.013,0,invalid_action_limit,,
+Q8014,5728510f4b864d1900164937,fixed_qwen_top3,0.0,0.0,1,3,8.875,1,completed,"The academic body of the University of Chicago consists of three main divisions:
+
+1. Graduate Research Divisions (Biological Sciences, Physical Sciences, Social Sciences)
+2. Professional Schools
+3. Library System
+
+Each division has its own set of graduate programs and resources.",SQ036-P0025|SQ036-P0014|SQ036-P0015
+Q8014,5728510f4b864d1900164937,agent_qwen,0.0,0.0,0,0,10.091,1,repeated_action,,
+Q7132,5727aeac3acd2414000de98a,fixed_qwen_top3,0.0,0.307692,1,3,7.552,1,completed,There are 8 US presidents who graduated from Harvard University.,SQ006-P0039|SQ032-P0002|SQ036-P0034
+Q7132,5727aeac3acd2414000de98a,agent_qwen,0.0,0.0,0,0,10.014,1,repeated_action,,
+Q226,56bf6b303aeaaa14008c960f,fixed_qwen_top3,0.0,0.0,0,3,11.829,1,completed,The Panthers RB who scored 6 TDs in the 13 games leading up to Super Bowl 50 was DeAngelo Williams.,SQ001-P0009|SQ001-P0001|SQ001-P0054
+Q226,56bf6b303aeaaa14008c960f,agent_qwen,0.0,0.0,0,0,13.721,0,invalid_action_limit,,
+Q4023,5725e6f6ec44d21400f3d72b,fixed_qwen_top3,0.0,0.098361,1,3,13.368,1,completed,"In the rest of 1970, the Apollo program faced significant setbacks following the Apollo 13 accident. After the initial mission, the program continued with limited flights due to budget constraints. However, the Apollo 13 mission was prevented by an oxygen tank explosion, which disabled the Command Module (CM) and necessitated the use of the Lunar Module (LM) as a ""lifeboat,"" ultimately leading to the crew's safe return to Earth.",SQ015-P0003|SQ015-P0047|SQ015-P0019
+Q4023,5725e6f6ec44d21400f3d72b,agent_qwen,0.0,0.0,0,0,10.717,0,invalid_action_limit,,
+Q5017,57265700dd62a815002e8212,fixed_qwen_top3,0.0,0.5,1,3,10.732,1,completed,The European last major epidemic occurred in 1720 in Marseille.,SQ021-P0022|SQ042-P0030|SQ021-P0019
+Q5017,57265700dd62a815002e8212,agent_qwen,0.0,0.0,0,0,9.468,0,invalid_action_limit,,
+Q7725,572805363acd2414000df26e,fixed_qwen_top3,0.0,0.266667,1,3,10.7,1,completed,The BBC worked with animation studio Cosgrove Hall to reconstruct some of The Invasion episodes.,SQ035-P0020|SQ035-P0042|SQ035-P0019
+Q7725,572805363acd2414000df26e,agent_qwen,0.0,0.0,0,0,10.73,0,invalid_action_limit,,
+Q4917,57264684708984140094c126,fixed_qwen_top3,0.0,0.0,1,3,11.459,1,completed,The world's population recovered from the Black Death around the year 1350.,SQ021-P0001|SQ021-P0016|SQ021-P0018
+Q4917,57264684708984140094c126,agent_qwen,0.0,0.0,0,0,11.218,0,invalid_action_limit,,
+Q4087,57268bf9dd62a815002e890b,fixed_qwen_top3,0.0,0.133333,1,3,13.52,1,completed,"The European Union can enforce its own laws through the courts of member states and the Court of Justice of the European Union. If there are discrepancies between EU laws and national laws, the Court of Justice can review them. Additionally, supplementary sources of EU law include case law by the Court of Justice, international law, and general principles of EU law.",SQ016-P0002|SQ016-P0003|SQ016-P0022
+Q4087,57268bf9dd62a815002e890b,agent_qwen,0.0,0.0,0,0,14.542,0,invalid_action_limit,,
+Q2459,56f88025aef2371900626121,fixed_qwen_top3,0.0,0.0,1,3,9.622,1,completed,Luther wrote 4 hymns for the first choral hymnal.,SQ007-P0064|SQ007-P0061|SQ007-P0058
+Q2459,56f88025aef2371900626121,agent_qwen,0.0,0.0,0,0,10.689,0,invalid_action_limit,,
+Q3848,5725ba5038643c19005acbea,fixed_qwen_top3,0.0,0.5,1,3,9.874,1,completed,"Hugh L. Dryden, Deputy Administrator of NASA in 1960.",SQ015-P0006|SQ015-P0013|SQ015-P0015
+Q3848,5725ba5038643c19005acbea,agent_qwen,0.0,0.0,0,0,12.088,0,invalid_action_limit,,
+Q6487,5728eff82ca10214002daade,fixed_qwen_top3,0.0,0.166667,1,3,8.792,1,completed,The part of the immune system that protects the brain is the blood-brain barrier.,SQ028-P0001|SQ028-P0005|SQ028-P0030
+Q6487,5728eff82ca10214002daade,agent_qwen,0.0,0.0,0,0,10.244,1,repeated_action,,
+Q9528,572fc8a904bcaa1900d76d1f,fixed_qwen_top3,0.0,0.066667,1,3,7.627,1,completed,Private bills submitted by party outsiders are scrutinized by committees like the Scottish Parliament's Private Bill Committee. These committees assess legislation related to large-scale development projects requiring land or property.,SQ043-P0022|SQ043-P0026|SQ004-P0042
+Q9528,572fc8a904bcaa1900d76d1f,agent_qwen,0.0,0.0,0,0,23.434,2,invalid_action_limit,,
+Q2644,5705e63175f01819005e7720,fixed_qwen_top3,0.0,0.153846,1,3,5.211,1,completed,The cities of Los Angeles and San Diego are both part of California.,SQ008-P0005|SQ008-P0036|SQ008-P0006
+Q2644,5705e63175f01819005e7720,agent_qwen,0.0,0.0,0,0,10.034,1,repeated_action,,
+Q10502,57378e311c456719005744b3,fixed_qwen_top3,0.0,0.3,1,3,8.504,1,completed,James Clerk Maxwell discovered that magnetic and electric could self-generate through a wave traveling at the speed of light.,SQ048-P0030|SQ048-P0029|SQ015-P0056
+Q10502,57378e311c456719005744b3,agent_qwen,0.0,0.0,0,0,14.344,0,invalid_action_limit,,
+Q4534,5725c69738643c19005accbb,fixed_qwen_top3,0.0,0.5,1,3,10.773,1,completed,Mnemiopsis eats both fish larvae and small crustaceans.,SQ018-P0027|SQ018-P0004|SQ004-P0072
+Q4534,5725c69738643c19005accbb,agent_qwen,0.0,0.0,0,0,11.25,1,repeated_action,,
+Q774,56d726b60d65d214001983ec,fixed_qwen_top3,0.0,0.153846,1,3,10.099,1,completed,The player criticized for not jumping into the pile to recover the ball was Newton.,SQ001-P0052|SQ044-P0027|SQ001-P0049
+Q774,56d726b60d65d214001983ec,agent_qwen,0.0,0.0,0,0,11.998,0,invalid_action_limit,,
+Q8805,57296ab93f37b3190047836c,fixed_qwen_top3,0.0,0.0,1,3,9.886,1,completed,Most plants' cpDNA replicates through homologous recombination.,SQ040-P0025|SQ040-P0021|SQ040-P0024
+Q8805,57296ab93f37b3190047836c,agent_qwen,0.0,0.0,0,0,11.199,1,repeated_action,,
+Q9471,572fbb04a23a5019007fc8f8,fixed_qwen_top3,0.0,0.333333,1,3,9.191,1,completed,The Presiding Officer sets the work agenda and allocates time in the chamber.,SQ043-P0010|SQ010-P0023|SQ043-P0015
+Q9471,572fbb04a23a5019007fc8f8,agent_qwen,0.0,0.0,0,0,10.609,1,repeated_action,,
+Q748,56d7282f0d65d21400198409,fixed_qwen_top3,0.0,0.0,1,3,11.47,1,completed,Gano hit the 44-yard field goal attempt on his 44-yard field goal attempt.,SQ001-P0050|SQ001-P0051|SQ001-P0048
+Q748,56d7282f0d65d21400198409,agent_qwen,0.0,0.0,0,0,9.844,1,repeated_action,,
+Q4920,572647935951b619008f6eca,fixed_qwen_top3,0.0,0.166667,0,3,11.641,1,completed,The gravestones referencing the plague date back to around 1300 AD.,SQ048-P0008|SQ021-P0016|SQ021-P0010
+Q4920,572647935951b619008f6eca,agent_qwen,0.0,0.0,0,0,11.593,0,invalid_action_limit,,
+Q10419,57376828c3c5551400e51ebd,fixed_qwen_top3,0.0,0.081081,1,3,15.998,1,completed,"To determine the acceleration of a rope when two people are pulling it, you need to consider the forces acting on the rope and their directions. Since forces are vector quantities, they must follow specific rules based on their magnitudes and directions. When two forces act on the same object, knowing both their magnitudes and directions is crucial to calculate the resulting acceleration. Without knowing the exact directions of the forces, it's impossible to accurately determine the acceleration of the rope.",SQ048-P0012|SQ048-P0008|SQ014-P0005
+Q10419,57376828c3c5551400e51ebd,agent_qwen,0.0,0.0,0,0,11.201,1,repeated_action,,
+Q7296,57281edd3acd2414000df4eb,fixed_qwen_top3,0.0,0.25641,1,3,11.258,1,completed,"The 1967 referendum resulted in the creation of the Consolidated City of Jacksonville, which merged fire, police, health & welfare, recreation, public works, and housing & urban development under a new government led by Mayor Hans Tanzler.",SQ016-P0006|SQ033-P0014|SQ043-P0004
+Q7296,57281edd3acd2414000df4eb,agent_qwen,0.0,0.0,0,0,10.614,1,repeated_action,,
+Q4677,5725cfd0271a42140099d225,fixed_qwen_top3,0.0,0.166667,1,3,8.449,1,completed,The Central Pacific Railroad established a station for its new line in 1872.,SQ019-P0002|SQ019-P0028|SQ025-P0037
+Q4677,5725cfd0271a42140099d225,agent_qwen,0.0,0.0,0,0,12.879,0,invalid_action_limit,,
+Q8762,572965e73f37b3190047832c,fixed_qwen_top3,0.0,0.0,1,3,10.17,1,completed,"Karenia is part of the chloroplastidan lineage, which includes the land plants.",SQ040-P0006|SQ040-P0016|SQ018-P0030
+Q8762,572965e73f37b3190047832c,agent_qwen,0.0,0.0,0,0,18.625,0,invalid_action_limit,,
+Q3335,57114e8d50c2381900b54a5b,fixed_qwen_top3,0.0,0.028571,1,3,14.449,1,completed,"The Rankine cycle's efficiency is typically limited by the working fluid's pressure. Without reaching supercritical conditions, the cycle operates within a smaller temperature range, resulting in a theoretical Carnot efficiency of approximately 63%, while a modern coal-fired power plant has an actual efficiency of 42%. This low turbine entry temperature makes the Rankine cycle suitable for combined-cycle gas turbine power stations. However, it loses efficiency due to lower heat addition temperatures compared to other cycle types.",SQ012-P0019|SQ012-P0042|SQ012-P0024
+Q3335,57114e8d50c2381900b54a5b,agent_qwen,0.0,0.0,0,0,12.644,0,invalid_action_limit,,
+Q446,56d70daa0d65d21400198336,fixed_qwen_top3,0.0,0.333333,1,3,9.112,1,completed,Roman numerals will be used again to denote the Super Bowl number in Super Bowl LI.,SQ001-P0025|SQ001-P0001|SQ001-P0032
+Q446,56d70daa0d65d21400198336,agent_qwen,0.0,0.0,0,0,17.557,0,invalid_action_limit,,
+Q4160,57269424dd62a815002e8a20,fixed_qwen_top3,0.0,0.0,1,3,10.771,1,completed,The Council has 29 members.,SQ016-P0010|SQ043-P0035|SQ038-P0017
+Q4160,57269424dd62a815002e8a20,agent_qwen,0.0,0.0,0,0,14.199,1,repeated_action,,
+Q7684,5727fdb94b864d190016417c,fixed_qwen_top3,0.0,0.636364,1,3,13.723,1,completed,"The popular phrase associated with the Doctor Who series is ""Hiding behind (or 'watching from behind') the sofa.""",SQ035-P0012|SQ035-P0054|SQ035-P0062
+Q7684,5727fdb94b864d190016417c,agent_qwen,0.0,0.0,0,0,10.643,0,invalid_action_limit,,
+Q2972,570d3468b3d812140066d547,fixed_qwen_top3,0.0,0.222222,1,3,13.488,1,completed,The brand of car manufactured in Broadmeadows is Ford.,SQ010-P0012|SQ002-P0043|SQ002-P0048
+Q2972,570d3468b3d812140066d547,agent_qwen,0.0,0.0,0,0,12.324,0,invalid_action_limit,,
+Q205,56bf2afe3aeaaa14008c9543,fixed_qwen_top3,0.0,0.2,1,3,11.369,1,completed,The league began having schedules with 16 games in 1978.,SQ010-P0001|SQ007-P0071|SQ001-P0010
+Q205,56bf2afe3aeaaa14008c9543,agent_qwen,0.0,0.0,0,0,13.387,0,invalid_action_limit,,
+Q4071,5725c28a271a42140099d14f,fixed_qwen_top3,0.0,0.388889,1,3,11.589,1,completed,"The three sources of European Union law are:
+
+1. Primary law - established by the Treaties.
+2. Secondary law - derived from regulations and directives.
+3. Supplementary law - encompassing cases and international law.",SQ016-P0001|SQ016-P0020|SQ016-P0002
+Q4071,5725c28a271a42140099d14f,agent_qwen,0.0,0.0,0,0,12.48,1,repeated_action,,
+Q2541,56f8ae099e9bad19000a02ee,fixed_qwen_top3,0.0,0.027027,1,3,20.306,1,completed,"Jews refused to accept that Luther called them blasphemers and liars due to the theological and cultural tradition that saw them as rejected people guilty of the murder of Christ, and they believed that all humans who reject God are equally guilty. This belief influenced Luther's views on the Jews, advocating harsher measures such as setting synagogues on fire, destroying Jewish prayerbooks, forbidding rabbis from preaching, seizing their property, and smashing up their homes.",SQ007-P0081|SQ007-P0082|SQ007-P0083
+Q2541,56f8ae099e9bad19000a02ee,agent_qwen,0.0,0.0,0,0,22.134,0,invalid_action_limit,,
+Q2994,570d4329fed7b91900d45dd8,fixed_qwen_top3,0.0,0.444444,1,3,9.475,1,completed,Gold was discovered near Ballarat in 1851.,SQ010-P0017|SQ010-P0002|SQ001-P0026
+Q2994,570d4329fed7b91900d45dd8,agent_qwen,0.0,0.0,0,0,18.646,0,invalid_action_limit,,
+Q3450,5711651050c2381900b54acc,fixed_qwen_top3,0.0,0.093023,1,3,13.292,1,completed,"Condensers cool down steam by circulating it through ocean, river, lake, or other bodies of water, using evaporation to remove heat before returning it to the boiler. They also help maintain a constant temperature inside the boiler by recirculating the heated water.",SQ012-P0030|SQ012-P0043|SQ013-P0009
+Q3450,5711651050c2381900b54acc,agent_qwen,0.0,0.0,0,0,11.189,1,repeated_action,,
+Q3539,571ce7f25efbb31900334e3e,fixed_qwen_top3,0.0,0.0,1,3,10.414,1,completed,Oxygen is found in small amounts in the atmosphere due to the oxygen cycle driven by photosynthesis.,SQ013-P0030|SQ013-P0008|SQ013-P0019
+Q3539,571ce7f25efbb31900334e3e,agent_qwen,0.0,0.0,0,0,12.361,0,invalid_action_limit,,
+Q6973,572750e8dd62a815002e9af3,fixed_qwen_top3,0.0,0.119048,1,3,13.301,1,completed,"Malum prohibitum considerations refer to legal requirements related to matters of custom or expectation rather than inherent properties like bridges collapsing or explosions. These considerations arise when laws are made based on personal beliefs or traditions, rather than scientific evidence or empirical data. Examples include:
+
+- Isolating businesses within specific districts.
+- Designing residential areas away from commercial zones.
+- Permitting certain types of structures (like high-rise buildings) under different regulations.
+
+Attorneys might argue for changes or exemptions in",SQ030-P0014|SQ048-P0042|SQ030-P0006
+Q6973,572750e8dd62a815002e9af3,agent_qwen,0.0,0.0,0,0,10.705,1,repeated_action,,
+Q4570,57264a0ef1498d1400e8db43,fixed_qwen_top3,0.0,0.083333,0,3,12.346,1,completed,The ctenophora have been studied the most due to their significant role in understanding the early evolution of animals and the origin of multicellularity.,SQ018-P0030|SQ034-P0025|SQ018-P0008
+Q4570,57264a0ef1498d1400e8db43,agent_qwen,0.0,0.0,0,0,14.74,1,invalid_action_limit,,
+Q520,56d71d150d65d2140019836e,fixed_qwen_top3,0.0,0.266667,1,3,8.59,1,completed,"The Super Bowl 50 Host Committee said it would be the most generous Super Bowl ever, dedicating 25% of its funds to philanthropic causes in the Bay Area.",SQ001-P0031|SQ001-P0030|SQ001-P0004
+Q520,56d71d150d65d2140019836e,agent_qwen,0.0,0.0,0,0,14.644,0,invalid_action_limit,,
+Q6504,5726eb8bf1498d1400e8efe5,fixed_qwen_top3,0.0,0.0,1,3,10.315,1,completed,"One of the causes of immunodeficiency is malnutrition, which affects the body's ability to fight off infections effectively.",SQ028-P0031|SQ028-P0003|SQ030-P0022
+Q6504,5726eb8bf1498d1400e8efe5,agent_qwen,0.0,0.0,0,0,13.312,1,repeated_action,,
+Q3410,57115f652419e314009555bc,fixed_qwen_top3,0.0,0.222222,1,3,11.333,1,completed,Thomas Savery patented his steam pump in 1698.,SQ012-P0034|SQ012-P0027|SQ012-P0002
+Q3410,57115f652419e314009555bc,agent_qwen,0.0,0.0,0,0,13.741,0,invalid_action_limit,,
+Q6618,5729fb003f37b31900478629,fixed_qwen_top3,0.0,0.0,1,3,7.745,1,completed,The production of signaling molecules is regulated by the immune system.,SQ028-P0006|SQ028-P0027|SQ028-P0042
+Q6618,5729fb003f37b31900478629,agent_qwen,0.0,0.0,0,0,10.509,1,repeated_action,,
+Q2208,56f80143aef2371900625d6a,fixed_qwen_top3,0.0,0.034483,1,3,11.26,1,completed,"Johann Tetzel's collection of money to free souls from purgatory was objected to by Luther, who believed that a Christian's soul slept after separation from the body in death. Luther also disagreed with traditional interpretations of Bible passages like the parable of the rich man and Lazarus, rejecting the idea of torments for the saints and affirming the continuity of personal identity beyond death.",SQ007-P0013|SQ007-P0066|SQ007-P0011
+Q2208,56f80143aef2371900625d6a,agent_qwen,0.0,0.0,0,0,11.895,0,invalid_action_limit,,
+Q5711,57267f1cdd62a815002e8744,fixed_qwen_top3,0.0,0.307692,1,3,9.219,1,completed,ABC News provides content for radio stations owned by Citadel Broadcasting.,SQ025-P0003|SQ025-P0042|SQ025-P0063
+Q5711,57267f1cdd62a815002e8744,agent_qwen,0.0,0.0,0,0,11.519,1,repeated_action,,
+Q2391,56f86680a6d7ea1400e175cd,fixed_qwen_top3,0.0,0.0,0,3,10.091,1,completed,Luther devised the doctrine of justification - God's act of declaring a sinner righteous - by faith alone through God's grace.,SQ007-P0019|SQ007-P0081|SQ004-P0087
+Q2391,56f86680a6d7ea1400e175cd,agent_qwen,0.0,0.0,0,0,11.055,1,repeated_action,,
+Q5131,572686ac5951b619008f75ad,fixed_qwen_top3,0.0,0.6,1,3,9.933,1,completed,"The memoir entitled ""Observations on the Geology of the United States"" was submitted to the American Philosophical Society.",SQ022-P0024|SQ045-P0036|SQ023-P0028
+Q5131,572686ac5951b619008f75ad,agent_qwen,0.0,0.0,0,0,10.568,0,invalid_action_limit,,
+Q6091,57277bfc708984140094ded9,fixed_qwen_top3,0.0,0.4,1,3,10.59,1,completed,The Sinclair Broadcast Group is the largest operator of ABC stations by numerical total.,SQ025-P0096|SQ025-P0060|SQ025-P0054
+Q6091,57277bfc708984140094ded9,agent_qwen,0.0,0.0,0,0,9.862,0,invalid_action_limit,,
+Q3579,571c91c8dd7acb1400e4c10a,fixed_qwen_top3,0.0,0.0,0,3,10.72,1,completed,"The most common form of oxygen on the planet is diatomic oxygen, also known as oxygen gas or oxygen dioxide.",SQ013-P0001|SQ013-P0019|SQ013-P0002
+Q3579,571c91c8dd7acb1400e4c10a,agent_qwen,0.0,0.0,0,0,9.744,0,invalid_action_limit,,
+Q7063,57274d9bf1498d1400e8f5f9,fixed_qwen_top3,0.0,0.307692,1,3,6.425,1,completed,The post-independence government school system in Malaysia is called the National Type school.,SQ031-P0013|SQ006-P0041|SQ031-P0018
+Q7063,57274d9bf1498d1400e8f5f9,agent_qwen,0.0,0.0,0,0,9.238,0,invalid_action_limit,,
+Q6039,57276d7f708984140094dd41,fixed_qwen_top3,0.0,0.0,1,3,9.461,1,completed,"Wheeling, West Virginia's affiliate began airing ABC programs digitally in 1998.",SQ025-P0084|SQ019-P0025|SQ025-P0063
+Q6039,57276d7f708984140094dd41,agent_qwen,0.0,0.0,0,0,15.495,0,invalid_action_limit,,
+Q3269,571135b8a58dae1900cd6d0e,fixed_qwen_top3,0.0,0.117647,1,3,7.737,1,completed,The Rankine cycle is used to recycle or top up the boiler water in most steam engines.,SQ012-P0004|SQ012-P0001|SQ012-P0027
+Q3269,571135b8a58dae1900cd6d0e,agent_qwen,0.0,0.0,0,0,9.707,1,repeated_action,,
+Q4932,572648ed5951b619008f6f06,fixed_qwen_top3,0.0,0.26087,1,3,13.675,1,completed,"The disease was most likely spreading between 1348 and 1350 in Europe, particularly in northern regions like Scandinavia, Germany, and Scandinavia.",SQ021-P0004|SQ021-P0021|SQ021-P0018
+Q4932,572648ed5951b619008f6f06,agent_qwen,0.0,0.0,0,0,9.464,0,invalid_action_limit,,
+Q3557,571c83f3dd7acb1400e4c0db,fixed_qwen_top3,0.0,0.333333,1,3,10.268,1,completed,"In dioxygen, the two oxygen atoms are chemically bonded to each other through a covalent double bond.",SQ013-P0011|SQ013-P0001|SQ013-P0013
+Q3557,571c83f3dd7acb1400e4c0db,agent_qwen,0.0,0.0,0,0,10.038,1,repeated_action,,
+Q8166,572869b84b864d19001649b1,fixed_qwen_top3,0.0,0.085106,1,3,16.154,1,completed,"There were several societal class divisions in Kublai's government after 1262, including:
+
+- Three or four social classes based on Han Chinese occupation.
+- A division into three or four classes with the Han Chinese occupying the lowest rank.
+- A preference for Buddhism among the ruling elite, while other religions declined.",SQ037-P0009|SQ037-P0033|SQ046-P0008
+Q8166,572869b84b864d19001649b1,agent_qwen,0.0,0.0,0,0,10.785,0,invalid_action_limit,,
+Q661,56d9c3a6dc89441400fdb7b6,fixed_qwen_top3,0.0,0.210526,1,3,7.656,1,completed,Bart Starr was the MVP of Super Bowl I and Chuck Howley was the MVP of Super Bowl V.,SQ001-P0043|SQ001-P0003|SQ001-P0002
+Q661,56d9c3a6dc89441400fdb7b6,agent_qwen,0.0,0.0,0,0,9.479,0,invalid_action_limit,,
+Q6100,57277de9dd62a815002e9ea4,fixed_qwen_top3,0.0,0.461538,1,3,11.157,1,completed,"The two ABC affiliates for Tampa, Florida are WFTS-TV and WWSB.",SQ025-P0098|SQ025-P0096|SQ025-P0031
+Q6100,57277de9dd62a815002e9ea4,agent_qwen,0.0,0.0,0,0,10.427,1,repeated_action,,
+Q6975,572751b4708984140094dc1b,fixed_qwen_top3,0.0,0.024096,1,3,15.088,1,completed,"A complex net of contracts and other legal obligations forms a contractual framework essential for ensuring fair and orderly project execution. Each party must meticulously evaluate their obligations under various contracts, considering factors such as scope, deadlines, quality standards, and cost constraints. Effective contracts require clear expectations and paths to achieve them, fostering smooth project progress. Poorly drafted contracts often lead to delays and costly mistakes, while well-designed ones prevent potential issues like misalignment or lack of coordination. Legal certainty is crucial in",SQ030-P0015|SQ016-P0022|SQ048-P0012
+Q6975,572751b4708984140094dc1b,agent_qwen,0.0,0.0,0,0,10.147,1,repeated_action,,
+Q7049,57274beff1498d1400e8f5e7,fixed_qwen_top3,0.0,0.083333,1,3,10.063,1,completed,"In India, private schools are provided policy directions through the receipt of financial aid from the government, rather than land purchased at a subsidized rate.",SQ031-P0010|SQ031-P0011|SQ031-P0021
+Q7049,57274beff1498d1400e8f5e7,agent_qwen,0.0,0.0,0,0,10.911,0,invalid_action_limit,,
+Q3431,5711623e50c2381900b54aba,fixed_qwen_top3,0.0,0.307692,1,3,7.72,1,completed,A lever is used to restrain a plug valve in the top of a boiler.,SQ012-P0039|SQ012-P0004|SQ012-P0001
+Q3431,5711623e50c2381900b54aba,agent_qwen,0.0,0.0,0,0,10.799,1,repeated_action,,
+Q1503,56e10296cd28a01900c67425,fixed_qwen_top3,0.0,0.0,0,3,9.503,1,completed,"In 1901, a power station generator malfunctioned, resulting in a power outage.",SQ004-P0042|SQ039-P0013|SQ010-P0007
+Q1503,56e10296cd28a01900c67425,agent_qwen,0.0,0.0,0,0,9.643,1,repeated_action,,
+Q1617,56e11cedcd28a01900c675ea,fixed_qwen_top3,0.0,0.086957,1,3,11.939,1,completed,"Tesla's visions were accompanied by various visual phenomena, including detailed moments of inspiration, vivid imagery, and precise visualization techniques.",SQ004-P0075|SQ025-P0097|SQ004-P0030
+Q1617,56e11cedcd28a01900c675ea,agent_qwen,0.0,0.0,0,0,10.318,1,repeated_action,,
+Q1478,56e0ff5dcd28a01900c673fb,fixed_qwen_top3,0.0,0.0,0,3,6.254,1,completed,Tesla accidentally caused a fatal accident when he was driving his car while drunk.,SQ004-P0072|SQ004-P0056|SQ004-P0065
+Q1478,56e0ff5dcd28a01900c673fb,agent_qwen,0.0,0.0,0,0,9.877,0,invalid_action_limit,,
+Q1257,56e0cbf3231d4119001ac3ae,fixed_qwen_top3,0.0,0.0,1,3,13.496,1,completed,"Tesla lost his tuition money due to several factors:
+
+1. **Military Frontier Scholarship**: Tesla enrolled at the Austrian Polytechnic in Graz, Austria, during his first year.
+2. **High Grades and Exams**: He excelled academically, earning top scores in multiple subjects including physics, engineering, and mathematics.
+3. **Serbian Culture Club**: Tesla joined a Serbian cultural organization, demonstrating his interest in international affairs.
+4. **Letter of Commendation**:",SQ004-P0010|SQ004-P0013|SQ004-P0044
+Q1257,56e0cbf3231d4119001ac3ae,agent_qwen,0.0,0.0,0,0,10.018,0,invalid_action_limit,,
+Q1250,56dfa3c338dc421700152155,fixed_qwen_top3,0.0,0.25,1,3,11.082,1,completed,"In 1875, Tesla enrolled at the Austrian Polytechnic in Graz, Austria, on a Military Frontier scholarship.",SQ004-P0013|SQ004-P0010|SQ007-P0007
+Q1250,56dfa3c338dc421700152155,agent_qwen,0.0,0.0,0,0,9.998,0,invalid_action_limit,,
+Q3561,571c8539dd7acb1400e4c0e4,fixed_qwen_top3,0.0,0.363636,1,3,11.365,1,completed,Joseph Priestley was the first to discover oxygen.,SQ013-P0012|SQ004-P0038|SQ013-P0004
+Q3561,571c8539dd7acb1400e4c0e4,agent_qwen,0.0,0.0,0,0,10.858,0,invalid_action_limit,,
+Q1197,56dfa0d84a1a83140091ebba,fixed_qwen_top3,0.0,0.0,1,3,15.298,1,completed,"Tesla's reputation in popular culture included being known for his achievements and showmanship, earning him a significant reputation in the late 19th century. His patents and inventions, particularly those related to electricity and magnetism, became iconic figures in science fiction literature and movies. His legacy continued to inspire artists and writers throughout the 20th century, influencing various forms of media and art. Despite his fame, Tesla's work remained relatively obscure until the 1960s",SQ004-P0004|SQ045-P0014|SQ004-P0030
+Q1197,56dfa0d84a1a83140091ebba,agent_qwen,0.0,0.0,0,0,10.158,1,repeated_action,,
+Q223,56bf6b303aeaaa14008c960c,fixed_qwen_top3,0.0,0.0,1,3,11.597,1,completed,"The best QB ranking that Cam Newton holds is 3,837 yards passing and 636 rushing yards per season.",SQ001-P0011|SQ001-P0047|SQ001-P0002
+Q223,56bf6b303aeaaa14008c960c,agent_qwen,0.0,0.0,0,0,9.829,0,invalid_action_limit,,
+Q8301,572881704b864d1900164a52,fixed_qwen_top3,0.0,0.206897,1,3,12.924,1,completed,"Chinese medicine spread through the Yuan Dynasty due to the influence of the Four Great Schools established by the Yuan dynasty. It was later adopted by the Mongols and then further disseminated to other regions. Medical advancements like acupuncture, moxibustion, pulse diagnosis, and herbal treatments were brought westward by Chinese physicians during the Yuan period.",SQ037-P0037|SQ037-P0038|SQ037-P0029
+Q8301,572881704b864d1900164a52,agent_qwen,0.0,0.0,0,0,10.23,1,repeated_action,,
+Q3442,571163172419e314009555e9,fixed_qwen_top3,0.0,0.0,1,3,8.658,1,completed,The steam engine was developed from Watt's measurements on a model steam engine.,SQ012-P0041|SQ012-P0038|SQ012-P0040
+Q3442,571163172419e314009555e9,agent_qwen,0.0,0.0,0,0,12.856,0,invalid_action_limit,,
+Q8173,57286bb84b864d19001649c8,fixed_qwen_top3,0.0,0.054054,1,3,15.81,1,completed,"Kublai encouraged various forms of economic growth through his policies, including promoting commerce, science, and culture. He supported the merchants of the Silk Road trade network, which facilitated the exchange of goods and ideas between China and the West. His efforts also included supporting the Mongol postal system, constructing infrastructure, providing loans for trade caravans, and encouraging the circulation of paper banknotes. These measures helped to foster technological advancements, commodity exchanges, and cultural developments across the vast",SQ034-P0033|SQ037-P0004|SQ037-P0011
+Q8173,57286bb84b864d19001649c8,agent_qwen,0.0,0.0,0,0,10.402,1,repeated_action,,
+Q9574,572fd6aa04bcaa1900d76da3,fixed_qwen_top3,0.0,0.086957,1,3,11.915,1,completed,"If an extraordinary election is held within less than six months before an ordinary election, it replaces the ordinary election rather than continuing it.",SQ043-P0031|SQ043-P0029|SQ029-P0007
+Q9574,572fd6aa04bcaa1900d76da3,agent_qwen,0.0,0.0,0,0,12.744,0,invalid_action_limit,,
+Q2355,56f852fba6d7ea1400e17571,fixed_qwen_top3,0.0,0.166667,1,3,10.343,1,completed,Luther saved the group of nuns from the convent in April 1523 when he arranged for them to be smuggled out in herring barrels.,SQ007-P0043|SQ007-P0033|SQ007-P0083
+Q2355,56f852fba6d7ea1400e17571,agent_qwen,0.0,0.0,0,0,10.862,0,invalid_action_limit,,
+Q3017,570d4c3bfed7b91900d45e31,fixed_qwen_top3,0.0,0.181818,1,3,8.119,1,completed,The armed protest at Ballarat about mining taxes occurred in 1854.,SQ010-P0022|SQ029-P0020|SQ038-P0022
+Q3017,570d4c3bfed7b91900d45e31,agent_qwen,0.0,0.0,0,0,13.149,0,invalid_action_limit,,
+Q4095,5725ca4389a1e219009abeb4,fixed_qwen_top3,0.0,0.333333,1,3,10.468,1,completed,The Treaty on the Functioning of the European Union (TFEU) provides that European Union law applies to metropolitan territories of member states.,SQ016-P0004|SQ016-P0002|SQ016-P0025
+Q4095,5725ca4389a1e219009abeb4,agent_qwen,0.0,0.0,0,0,11.098,0,invalid_action_limit,,
+Q307,56beb6f23aeaaa14008c92a4,fixed_qwen_top3,0.0,0.0,1,3,6.696,1,completed,Arizona turned the ball over 7 times in the NFC Championship game.,SQ001-P0016|SQ001-P0002|SQ001-P0018
+Q307,56beb6f23aeaaa14008c92a4,agent_qwen,0.0,0.0,0,0,9.957,0,invalid_action_limit,,
+Q2634,5705e33f52bb891400689650,fixed_qwen_top3,0.0,0.0,1,3,7.968,1,completed,The Rhine-Meuse Delta.,SQ008-P0002|SQ042-P0020|SQ040-P0033
+Q2634,5705e33f52bb891400689650,agent_qwen,0.0,0.0,0,0,12.615,0,invalid_action_limit,,
+Q4488,572a0bebaf94a219006aa772,fixed_qwen_top3,0.0,0.0,1,3,10.503,1,completed,The southern part of the Amazon forest was mainly impacted by drought in 2010.,SQ017-P0021|SQ017-P0020|SQ002-P0040
+Q4488,572a0bebaf94a219006aa772,agent_qwen,0.0,0.0,0,0,9.333,0,invalid_action_limit,,
+Q59,56beab833aeaaa14008c91d2,fixed_qwen_top3,0.0,0.444444,1,3,6.774,1,completed,Von Miller was named Super Bowl MVP.,SQ001-P0003|SQ001-P0043|SQ001-P0002
+Q59,56beab833aeaaa14008c91d2,agent_qwen,0.0,0.0,0,0,12.717,0,invalid_action_limit,,
+Q5057,572669a9dd62a815002e8418,fixed_qwen_top3,0.0,0.1,1,3,10.3,1,completed,"The principle of faunal succession becomes complex due to factors such as fossil localization, facies changes, and the uncertainty of fossilization.",SQ022-P0008|SQ040-P0059|SQ005-P0003
+Q5057,572669a9dd62a815002e8418,agent_qwen,0.0,0.0,0,0,10.245,0,invalid_action_limit,,
+Q7277,5728170d3acd2414000df445,fixed_qwen_top3,0.0,0.62069,1,3,15.844,1,completed,"In the wake of the Jacksonville fire, Governor John E. Jennings declared martial law and sent the state militia to maintain order.",SQ033-P0009|SQ033-P0002|SQ033-P0014
+Q7277,5728170d3acd2414000df445,agent_qwen,0.0,0.0,0,0,12.461,1,repeated_action,,
+Q5762,5726e671dd62a815002e9465,fixed_qwen_top3,0.0,0.2,0,3,11.057,1,completed,Good Morning America began airing in the spring of 1975.,SQ025-P0049|SQ025-P0076|SQ025-P0079
+Q5762,5726e671dd62a815002e9465,agent_qwen,0.0,0.0,0,0,11.144,0,invalid_action_limit,,
+Q10530,57379ed81c456719005744d5,fixed_qwen_top3,0.0,0.45,1,3,10.789,1,completed,"Tension forces can be modeled using ideal strings that are massless, frictionless, unbreakable, and unstretchable. They can also be combined with ideal pulleys to transmit tension forces instantly in action-reaction pairs.",SQ048-P0042|SQ048-P0036|SQ048-P0002
+Q10530,57379ed81c456719005744d5,agent_qwen,0.0,0.0,0,0,12.699,0,invalid_action_limit,,
+Q10542,5737a25ac3c5551400e51f53,fixed_qwen_top3,0.0,0.333333,1,3,7.818,1,completed,Associated with normal forces are pressure terms and shear terms.,SQ048-P0038|SQ048-P0043|SQ048-P0012
+Q10542,5737a25ac3c5551400e51f53,agent_qwen,0.0,0.0,0,0,9.452,1,repeated_action,,
+Q1681,56e16182e3433e1400422e28,fixed_qwen_top3,0.0,0.3,1,3,9.077,1,completed,Computational complexity theory focuses on classifying computational problems based on their inherent difficulty and relationships among them.,SQ005-P0001|SQ005-P0003|SQ005-P0018
+Q1681,56e16182e3433e1400422e28,agent_qwen,0.0,0.0,0,0,11.647,0,invalid_action_limit,,
+Q1746,56e1b169cd28a01900c67a75,fixed_qwen_top3,0.0,0.096774,1,3,12.714,1,completed,"Random Access Machines (RAMs) and Turing Machines (TM) both operate deterministically, meaning they follow a specific sequence of steps until a certain condition is met. Both types of machines can be converted between them without adding additional computational power. They differ primarily in their execution speed and memory usage; while TM's are faster and consume less memory, RAMs require more space.",SQ005-P0016|SQ005-P0013|SQ005-P0014
+Q1746,56e1b169cd28a01900c67a75,agent_qwen,0.0,0.0,0,0,13.043,0,invalid_action_limit,,
+Q2241,56f80ccfaef2371900625d85,fixed_qwen_top3,0.0,0.101695,1,3,14.16,1,completed,"Luther considered faith to be a matter of belief and understanding, while reason was seen as a means to gain knowledge about God's will and actions. He believed that faith alone could make someone just and fulfill the law, whereas reason was necessary for gaining access to divine grace and understanding.",SQ007-P0072|SQ007-P0020|SQ007-P0048
+Q2241,56f80ccfaef2371900625d85,agent_qwen,0.0,0.0,0,0,11.588,1,repeated_action,,
+Q10270,5733ef47d058e614000b662d,fixed_qwen_top3,0.0,0.125,1,3,11.104,1,completed,Washington was added to the party as Governor of Virginia when he arrived in Williamsburg.,SQ047-P0021|SQ047-P0024|SQ043-P0017
+Q10270,5733ef47d058e614000b662d,agent_qwen,0.0,0.0,0,0,11.247,1,repeated_action,,
+Q3386,57115bf350c2381900b54a96,fixed_qwen_top3,0.0,0.0,1,3,9.184,1,completed,The Energiprojekt AB engine uses approximately 4 kilograms of steam per kilowatt hour.,SQ012-P0029|SQ012-P0025|SQ012-P0037
+Q3386,57115bf350c2381900b54a96,agent_qwen,0.0,0.0,0,0,10.552,0,invalid_action_limit,,
+Q9493,572fc043a23a5019007fc961,fixed_qwen_top3,0.0,0.093023,1,3,13.301,1,completed,"Faith groups can request the Presiding Officer to facilitate their speeches during chamber debates, allowing them to present perspectives on various religious beliefs. They also have the option to nominate speakers through an invitation process, ensuring representation from diverse religious backgrounds within the Scottish Parliament.",SQ043-P0014|SQ043-P0015|SQ043-P0009
+Q9493,572fc043a23a5019007fc961,agent_qwen,0.0,0.0,0,0,10.61,1,repeated_action,,
+Q7047,57274beff1498d1400e8f5e5,fixed_qwen_top3,0.0,0.166667,1,3,10.515,1,completed,The prominent Examination Boards in multiple Indian states include CBSE and NENBSE.,SQ031-P0010|SQ027-P0013|SQ047-P0006
+Q7047,57274beff1498d1400e8f5e5,agent_qwen,0.0,0.0,0,0,12.852,0,invalid_action_limit,,
+Q9487,572fbfa504bcaa1900d76c76,fixed_qwen_top3,0.0,0.0,0,3,12.926,1,completed,"The cost to gain entry to a parliament meeting depends on several factors including the size of the instance, which refers to the number of participants or voters in the election. Larger instances typically require longer processing times due to increased complexity. Therefore, the time required to solve a problem (or the space required, or any measure of complexity) scales with the size of the instance.",SQ005-P0011|SQ043-P0001|SQ043-P0012
+Q9487,572fbfa504bcaa1900d76c76,agent_qwen,0.0,0.0,0,0,10.239,1,repeated_action,,
+Q1198,56e0bb9f7aa994140058e6cb,fixed_qwen_top3,0.0,0.285714,1,3,8.272,1,completed,"Tesla financed his work primarily through his patents, which generated significant revenue.",SQ004-P0004|SQ004-P0078|SQ004-P0077
+Q1198,56e0bb9f7aa994140058e6cb,agent_qwen,0.0,0.0,0,0,9.916,1,repeated_action,,
+Q589,56bf717d3aeaaa14008c9637,fixed_qwen_top3,0.0,0.0,1,3,10.153,1,completed,The company that was given permission to air TV commercials during Super Bowl 50 at a discounted price was CBS.,SQ001-P0037|SQ001-P0004|SQ001-P0001
+Q589,56bf717d3aeaaa14008c9637,agent_qwen,0.0,0.0,0,0,14.588,0,invalid_action_limit,,
+Q10372,57373a9fc3c5551400e51e7d,fixed_qwen_top3,0.0,0.095238,1,3,8.811,1,completed,"The strongest main interaction among the given political parties is the electromagnetic force, which is predicted by the Standard Model of particle physics.",SQ010-P0004|SQ048-P0002|SQ036-P0010
+Q10372,57373a9fc3c5551400e51e7d,agent_qwen,0.0,0.0,0,0,11.781,0,invalid_action_limit,,

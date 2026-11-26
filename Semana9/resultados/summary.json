@@ -1,0 +1,157 @@
+{
+  "experiment": "Semana9 SQuAD 1.1 dev COMPLETO, BM25 y controlador sin LLM",
+  "source": "SQuAD 1.1 dev, párrafos de Wikipedia y preguntas originales",
+  "sample_size": 10570,
+  "passages": 2067,
+  "calibration_queries": 2440,
+  "evaluation_queries": 8130,
+  "evaluation_articles": 36,
+  "selected_threshold": 0.85,
+  "threshold_origin": "calibration",
+  "calibration_trials": [
+    {
+      "threshold": 0.0,
+      "absolute_hit_loss": 0.09918033,
+      "mean_words_saved": 266.7041,
+      "mean_extra_calls": 0,
+      "selection_utility": 266.7041,
+      "meets_loss_limit": false
+    },
+    {
+      "threshold": 0.15,
+      "absolute_hit_loss": 0.09918033,
+      "mean_words_saved": 266.7041,
+      "mean_extra_calls": 0,
+      "selection_utility": 266.7041,
+      "meets_loss_limit": false
+    },
+    {
+      "threshold": 0.25,
+      "absolute_hit_loss": 0.09918033,
+      "mean_words_saved": 266.61025,
+      "mean_extra_calls": 0.00041,
+      "selection_utility": 266.59385,
+      "meets_loss_limit": false
+    },
+    {
+      "threshold": 0.35,
+      "absolute_hit_loss": 0.09672131,
+      "mean_words_saved": 264.24959,
+      "mean_extra_calls": 0.00943,
+      "selection_utility": 263.87254,
+      "meets_loss_limit": false
+    },
+    {
+      "threshold": 0.45,
+      "absolute_hit_loss": 0.08770492,
+      "mean_words_saved": 251.42992,
+      "mean_extra_calls": 0.0582,
+      "selection_utility": 249.10205,
+      "meets_loss_limit": false
+    },
+    {
+      "threshold": 0.55,
+      "absolute_hit_loss": 0.07008197,
+      "mean_words_saved": 221.06107,
+      "mean_extra_calls": 0.17131,
+      "selection_utility": 214.20861,
+      "meets_loss_limit": false
+    },
+    {
+      "threshold": 0.65,
+      "absolute_hit_loss": 0.04180328,
+      "mean_words_saved": 161.95041,
+      "mean_extra_calls": 0.39508,
+      "selection_utility": 146.14713,
+      "meets_loss_limit": false
+    },
+    {
+      "threshold": 0.75,
+      "absolute_hit_loss": 0.02213115,
+      "mean_words_saved": 105.74098,
+      "mean_extra_calls": 0.60492,
+      "selection_utility": 81.54426,
+      "meets_loss_limit": false
+    },
+    {
+      "threshold": 0.85,
+      "absolute_hit_loss": 0.00614754,
+      "mean_words_saved": 46.74057,
+      "mean_extra_calls": 0.82664,
+      "selection_utility": 13.675,
+      "meets_loss_limit": true
+    },
+    {
+      "threshold": 1.01,
+      "absolute_hit_loss": 0,
+      "mean_words_saved": 0,
+      "mean_extra_calls": 1,
+      "selection_utility": -40,
+      "meets_loss_limit": true
+    }
+  ],
+  "calibration_results": {
+    "workflow_fixed_top1": {
+      "queries": 2440,
+      "evidence_hit_rate": 0.802869,
+      "mean_tool_calls": 1,
+      "mean_context_words": 129.14
+    },
+    "workflow_fixed_top3": {
+      "queries": 2440,
+      "evidence_hit_rate": 0.902049,
+      "mean_tool_calls": 1,
+      "mean_context_words": 395.84
+    },
+    "adaptive_rule_based": {
+      "queries": 2440,
+      "evidence_hit_rate": 0.895902,
+      "mean_tool_calls": 1.826639,
+      "mean_context_words": 349.1
+    }
+  },
+  "evaluation_results": {
+    "workflow_fixed_top1": {
+      "queries": 8130,
+      "evidence_hit_rate": 0.738499,
+      "mean_tool_calls": 1,
+      "mean_context_words": 126.37
+    },
+    "workflow_fixed_top3": {
+      "queries": 8130,
+      "evidence_hit_rate": 0.86925,
+      "mean_tool_calls": 1,
+      "mean_context_words": 387.71
+    },
+    "adaptive_rule_based": {
+      "queries": 8130,
+      "evidence_hit_rate": 0.864207,
+      "mean_tool_calls": 1.890652,
+      "mean_context_words": 357.57
+    }
+  },
+  "retrieval_evaluation": {
+    "recall_at_1": 0.738499,
+    "recall_at_3": 0.86925,
+    "recall_at_5": 0.905412,
+    "mrr_at_10": 0.810636
+  },
+  "seconds_local_bm25_and_processing": 15.542,
+  "data_sha256": {
+    "corpus": "790cb18ce71196816180bcca2c95fcb39bfde9c7e788af7d3a45574b1a31fd1f",
+    "queries": "f056e38b29b0e05bdb78c657addc101b535e3bcc27138b44a88d8c8bb9486e45",
+    "qrels": "398fe99fa5ae2d0af9064fd8b406462c47237e3a9737e6639709ae1b9e40c5b7",
+    "answers": "6e59dbce8f3c1ecae71f9672317ea6664e07717714bf17477212790cdf08b4ac"
+  },
+  "not_measured": [
+    "corrección semántica de respuestas",
+    "eficacia de un agente LLM",
+    "precio de API"
+  ],
+  "limitations": [
+    "Qrels identifican pasaje con respuesta, no relevancia exhaustiva",
+    "Los 48 artículos pertenecen a SQuAD dev público, no a su test oculto",
+    "B usa el mismo ranking y por construcción no supera top-3 en hit",
+    "No confundir la simulación offline de políticas con inferencia LLM"
+  ]
+}
