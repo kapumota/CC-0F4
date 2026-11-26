@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Limpieza segura de caches generadas por Python y Jupyter en CC-0F4.
 
-Por defecto solo muestra candidatos. --apply los elimina. No borra datos,
-resultados de experimentos, notebooks, modelos, entornos virtuales ni .build.
+Por defecto solo muestra candidatos. --apply los elimina. No borra datos, resultados de experimentos, notebooks, modelos, entornos virtuales ni .build.
 Puede ejecutarse desde Git Bash o desde el terminal del contenedor Docker.
 """
 from __future__ import annotations
