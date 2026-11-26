@@ -1,0 +1,11 @@
+# Fuentes oficiales regenerables, no incluir copias de transcripciones en el commit.
+datos/*.jsonl
+# SQLite persistente, no un artefacto fuente.
+datos/*.sqlite3
+datos/*.sqlite3-journal
+datos/*.sqlite3-wal
+datos/*.sqlite3-shm
+# Cachés de Python y Jupyter.
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/

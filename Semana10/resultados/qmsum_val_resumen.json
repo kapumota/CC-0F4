@@ -1,0 +1,33 @@
+{
+  "benchmark": "QMSum",
+  "source_commit": "83d7768c1f2b4dfeb091385d3dc7e239b8e5bb7e",
+  "domains": [
+    "Academic",
+    "Committee"
+  ],
+  "official_split": "val",
+  "limit": 48,
+  "n_meetings": 15,
+  "n_evaluated_query_policy_rows": 224,
+  "results": {
+    "working_recent": {
+      "n_queries": 112,
+      "mean_turn_recall": 0.13809685964393384,
+      "any_relevant_rate": 0.16964285714285715,
+      "mean_selected": 48.0
+    },
+    "episodic_bm25": {
+      "n_queries": 112,
+      "mean_turn_recall": 0.4098095801424923,
+      "any_relevant_rate": 0.9642857142857143,
+      "mean_selected": 48.0
+    }
+  },
+  "scope": "Localización de evidencia por turno, SIN respuesta de LLM",
+  "limitations": [
+    "Consultas y rangos humanos no son juicios exhaustivos de relevancia",
+    "La partición test es la oficial dentro del QMSum público, no un test oculto",
+    "La recuperación léxica BM25 no equivale a embeddings semánticos",
+    "No se mide vigencia factual, resumen ni calidad de un agente LLM"
+  ]
+}
