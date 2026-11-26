@@ -8,7 +8,8 @@ Aprender a distinguir un workflow fijo, un controlador adaptativo y un agente qu
 
 - **Fuente:** SQuAD 1.1 dev, Wikipedia y preguntas/respuestas humanas originales.
 - **Alcance obligatorio:** 48 artículos, 2.067 pasajes y 10.570 preguntas. No se permite sustituir por 16 preguntas.
-- **Calibración:** 12 artículos seleccionados mediante hash de título antes de observar resultados. **Evaluación:** otros 36 artículos. No comparten artículos.
+- **Calibración:** 12 artículos seleccionados mediante hash de título antes de observar resultados.
+- **Evaluación:** otros 36 artículos. No comparten artículos.
 - **Recuperador:** BM25 idéntico en las tres políticas, indexa los 2.067 pasajes.
 - **Políticas A0 / A1 / B:** top-1; top-3; top-1 y expansión a top-3 si la cobertura léxica es insuficiente. El umbral se selecciona solo en calibración.
 - **Evaluación de recuperación:** Recall@1/3/5, MRR@10, acierto por política, contexto transportado, llamadas, errores por consulta. Los qrels identifican el **pasaje original** de cada respuesta, no son relevancia exhaustiva.
