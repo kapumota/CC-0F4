@@ -1,4 +1,4 @@
-### Semana 10 · Memoria de agentes, persistencia y recuperación sobre QMSum
+### Semana 10: Memoria de agentes, persistencia y recuperación sobre QMSum
 
 **Dos horas de teoría y cuatro de laboratorio.** Mantiene los tres recursos centrales del curso: `Lectura10-CC-0F4.md`, `Cuaderno10-CC-0F4.ipynb` y `Laboratorio10-CC-0F4.ipynb`. Los módulos de Python son apoyos para no copiar implementaciones extensas dentro de cada cuaderno.
 
@@ -72,21 +72,15 @@ python -m Semana10.memoria_real --evaluar val
 python -m Semana10.memoria_real --evaluar test
 ```
 
-Las pruebas unitarias deben terminar en `OK`; en el entorno de preparación
-pasaron 12 pruebas. **No hay resultados de QMSum pregrabados**. Si falla la descarga,
-no se reemplaza QMSum por datos sintéticos. Revisa los resultados reales en
-`Semana10/resultados/` después de ejecutar.
+Las pruebas unitarias deben terminar en `OK`; en el entorno de preparación pasaron 12 pruebas. **No hay resultados de QMSum pregrabados**. Si falla la descarga, no se reemplaza QMSum por datos sintéticos. Revisa los resultados reales en `Semana10/resultados/` después de ejecutar.
 
 Abre luego desde el explorador de JupyterLab:
 
 - `Semana10/Cuaderno10-CC-0F4.ipynb` (teoría).
 - `Semana10/Laboratorio10-CC-0F4.ipynb` (laboratorio).
 
-El laboratorio es autónomo respecto del cuaderno, pero requiere los seis archivos
-originales. Si JupyterLab sigue mostrando una versión antigua, cierra su pestaña
-**sin sobrescribir el archivo actualizado**, refresca el explorador y vuelve a abrir.
-No necesitas reconstruir la imagen Docker mientras el volumen de Windows ya esté
-montado en `/workspace/CC-0F4`.
+El laboratorio es autónomo respecto del cuaderno, pero requiere los seis archivos originales. Si JupyterLab sigue mostrando una versión antigua, cierra su pestaña **sin sobrescribir el archivo actualizado**, refresca el explorador y vuelve a abrir.
+No necesitas reconstruir la imagen Docker mientras el volumen de Windows ya esté montado en `/workspace/CC-0F4`.
 
 Para comprobar el contenido en Docker:
 
@@ -106,14 +100,9 @@ python scripts/limpiar_caches.py           # vista previa
 python scripts/limpiar_caches.py --apply   # eliminación segura
 ```
 
-No utilices `make clean` si quieres conservar `.build`, que puede contener notebooks
-ejecutados. El limpiador preserva datos, resultados, SQLite, notebooks y modelos.
+No utilices `make clean` si quieres conservar `.build`, que puede contener notebooks ejecutados. El limpiador preserva datos, resultados, SQLite, notebooks y modelos.
 
-**No subas todavía la Semana 10**: primero ejecuta los tests y las evaluaciones en
-Docker y revisa los resultados. Para preparar un commit selectivo desde Git Bash,
-usa `git status --short -- Semana10/` y `git diff --cached --name-only`;
-**no uses `git add .`, `git clean -fd` ni `git reset --hard`**, porque otras semanas
-tienen trabajo local pendiente. No añadas los seis JSONL originales ni la base SQLite.
+**No subas todavía la Semana 10**: primero ejecuta los tests y las evaluaciones en Docker y revisa los resultados. Para preparar un commit selectivo desde Git Bash, usa `git status --short -- Semana10/` y `git diff --cached --name-only`, **no uses `git add .`, `git clean -fd` ni `git reset --hard`**, porque otras semanas tienen trabajo local pendiente. No añadas los seis JSONL originales ni la base SQLite.
 
 #### Archivos generados
 
