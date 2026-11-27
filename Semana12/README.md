@@ -6,9 +6,11 @@ Dos horas de teoría y cuatro horas de laboratorio. Se utilizan preguntas humana
 
 Comparar políticas de contexto fijo y adaptativo, estudiar el compromiso calidad-costo, calibrar sin etiquetas de prueba, calcular incertidumbre por conglomerados y analizar errores reales. Distinguir recuperación, generación, adaptación de pesos y test-time compute.
 
-#### Instalación del paquete v2 (docente)
+#### Instalación del paquete v2
 
-Extraer el ZIP en Downloads. Desde Git Bash de Windows, ejecutar `find /c/Users/kapum/Downloads -maxdepth 5 -name instalar_semana12.py`. Desde la raíz de CC-0F4, ejecutar `py -3 RUTA_AL_INSTALADOR --repo .` con la ruta devuelta (entre comillas si tiene espacios). Revisar el DRY-RUN; para aplicar añadir `--apply`. El instalador solo escribe los archivos enumerados de Semana12, respalda los reemplazados en `.ccf04/semana12-backups/` y no toca datasets, CSV de resultados, otras semanas ni Git. No es necesario instalar de nuevo si los archivos ya coinciden.
+Extraer el ZIP en Downloads. Desde Git Bash de Windows, ejecutar `find /c/Users/kapum/Downloads -maxdepth 5 -name instalar_semana12.py`. Desde la raíz de CC-0F4, ejecutar `py -3 RUTA_AL_INSTALADOR --repo .` con la ruta devuelta (entre comillas si tiene espacios). Revisar el DRY-RUN; para aplicar añadir `--apply`. 
+
+El instalador solo escribe los archivos enumerados de Semana12, respalda los reemplazados en `.ccf04/semana12-backups/` y no toca datasets, CSV de resultados, otras semanas ni Git. No es necesario instalar de nuevo si los archivos ya coinciden.
 
 #### Datos y preparación
 
