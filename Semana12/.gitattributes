@@ -1,4 +1,4 @@
-# Preservar bytes de evidencia y código entre Windows y Docker.
+# Preservar los bytes de evidencia y código entre Windows y Docker.
 *.py text eol=lf
 *.csv text eol=lf
 *.json text eol=lf
