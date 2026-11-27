@@ -24,11 +24,11 @@ $$\lambda^*=\frac{\overline H_a-\overline H_b}{\overline k_a-\overline k_b}.$$
 
 La envolvente superior identifica qué política obtiene mayor utilidad observada para cada costo. Es un análisis descriptivo del test, no una regla para elegir retrospectivamente la política. Se distingue de recalibrar B en desarrollo para cada lambda.
 
-Una comparación adicional iguala el presupuesto medio de B. Si el costo medio es $c$ entre $j$ y $j+1$, se compara con una mezcla independiente de la pregunta que usa top-$j+1$ con probabilidad $c-j$. El acierto esperado es la interpolación de ambos aciertos. Esta comparación no utiliza etiquetas para fijar el peso ni simula nuevos datos.
+Una comparación adicional iguala el presupuesto medio de B. Si el costo medio es $c$ entre $j$ y $j+1$, se compara con una mezcla independiente de la pregunta que usa top-(j+1) con probabilidad $c-j$. El acierto esperado es la interpolación de ambos aciertos. Esta comparación no utiliza etiquetas para fijar el peso ni simula nuevos datos.
 
 #### 3. Calibración y estimación estadística
 
-Las preguntas de un artículo están correlacionadas. La separación se hace por artículo: 24 de desarrollo, 24 de prueba. El índice TF-IDF utiliza todos los textos sin etiquetas, como catálogo de búsqueda. Solo desarrollo se usa para optimizar el umbral o escoger el baseline fijo principal. En un empate exacto se prefiere el menor umbral o k. Un margen pequeño entre utilidades de desarrollo indica una decisión sensible.
+Las preguntas de un artículo están correlacionadas. La separación se hace por artículo: 24 de desarrollo, 24 de prueba. El índice TF-IDF utiliza todos los textos sin etiquetas, como catálogo de búsqueda. Solo desarrollo se usa para optimizar el umbral o escoger el baseline fijo principal. En un empate exacto se prefiere el menor umbral o $k$. Un margen pequeño entre utilidades de desarrollo indica una decisión sensible.
 
 El promedio micro por pregunta es el estimando principal. El promedio macro por artículo asigna el mismo peso a cada artículo y puede diferir. Para el IC95 micro, se remuestrean artículos con reemplazo y se divide la suma de diferencias de sus preguntas entre el total de preguntas de los artículos seleccionados en esa réplica. No se remuestrean preguntas aisladas. El intervalo percentil refleja variabilidad entre artículos, no corrige comparaciones múltiples ni incluye toda la incertidumbre de calibración.
 
