@@ -70,7 +70,9 @@ python -m Semana12.retrieval_real --run
 python -m Semana12.retrieval_real --check-results
 ```
 
-La primera ejecución v2 calcula TF-IDF y el ranking una sola vez para las 10570 preguntas frente a 2067 párrafos. Las políticas, remuestreos y semillas reutilizan ese ranking. Los resultados se guardan en `Semana12/resultados/v2/`, sin tocar los archivos de la versión anterior. Las siguientes ejecuciones de `--run` reutilizan las salidas completas si las huellas del código, los datos declarados y los CSV coinciden. Si el código o las salidas cambiaron, se detiene; conservar la carpeta v2 antes de regenerar deliberadamente una nueva ejecución. El comando `--check` verifica los bytes del dataset; `--check-results` verifica los artefactos almacenados, sin inferencia ni ranking.
+La primera ejecución v2 calcula TF-IDF y el ranking una sola vez para las 10570 preguntas frente a 2067 párrafos. Las políticas, remuestreos y semillas reutilizan ese ranking. Los resultados se guardan en `Semana12/resultados/v2/`, sin tocar los archivos de la versión anterior. Las siguientes ejecuciones de `--run` reutilizan las salidas completas si las huellas del código, los datos declarados y los CSV coinciden. Si el código o las salidas cambiaron, se detiene; conservar la carpeta v2 antes de regenerar deliberadamente una nueva ejecución. 
+
+El comando `--check` verifica los bytes del dataset; `--check-results` verifica los artefactos almacenados, sin inferencia ni ranking.
 
 #### Diseño experimental
 
