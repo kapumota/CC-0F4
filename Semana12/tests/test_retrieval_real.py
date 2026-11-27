@@ -87,5 +87,4 @@ class TestContracts(unittest.TestCase):
             self.assertEqual(groups,{'development':24,'test':24})
             self.assertEqual(split.groupby('article').split.nunique().max(),1)
 
-
 if __name__=='__main__': unittest.main()
