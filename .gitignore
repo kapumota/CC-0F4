@@ -74,3 +74,7 @@ Thumbs.db
 /Semana11/datos/*.tmp
 
 /Semana11/datos/importacion/
+/Semana12/datos/dev-v1.1.json
+/Semana12/datos/importacion/
+/Semana12/datos/*.tmp
+/Semana12/datos/*.part
