@@ -63,3 +63,14 @@ Thumbs.db
 # Entorno y artefactos locales de CC-0F4
 .ccf04/
 .build/
+# Datos reproducibles descargados para las semanas 10 y 11.
+/Semana10/datos/*.jsonl
+/Semana10/datos/*.sqlite3
+/Semana10/datos/*.sqlite3-journal
+/Semana10/datos/*.sqlite3-wal
+/Semana10/datos/*.sqlite3-shm
+/Semana11/datos/hotpot_dev_distractor_v1.json
+/Semana11/datos/*.part
+/Semana11/datos/*.tmp
+
+/Semana11/datos/importacion/
