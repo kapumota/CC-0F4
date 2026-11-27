@@ -1,0 +1,46 @@
+{
+  "source": "HotpotQA dev distractor",
+  "dataset_sha256": "4e9ecb5c8d3b719f624d66b60f8d56bf227f03914f5f0753d6fa1b359d7104ea",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "questions": 16,
+  "total_public_questions": 7405,
+  "sampling": "Orden fijo por SHA-256 de ID, sin selección por resultado",
+  "status": "PILOTO_REAL_EXPLORATORIO",
+  "architectures": {
+    "single": {
+      "answer_em": 0.3125,
+      "answer_f1": 0.45625,
+      "support_f1": 0.5208333333333333,
+      "valid_finish_rate": 0.9375,
+      "mean_model_calls": 1.0,
+      "mean_prompt_tokens": 741.75,
+      "mean_generated_tokens": 20.1875,
+      "mean_elapsed_s": 68.26127097937524,
+      "stop_reasons": {
+        "FINALIZACION_ESTRUCTURAL": 15,
+        "JSON_INVALIDO": 1
+      }
+    },
+    "supervisor_workers": {
+      "answer_em": 0.0,
+      "answer_f1": 0.015625,
+      "support_f1": 0.11458333333333333,
+      "valid_finish_rate": 0.1875,
+      "mean_model_calls": 1.1875,
+      "mean_prompt_tokens": 763.0,
+      "mean_generated_tokens": 16.375,
+      "mean_elapsed_s": 69.13183646956247,
+      "stop_reasons": {
+        "WORKER_JSON_INVALIDO": 13,
+        "FINALIZACION_ESTRUCTURAL": 3
+      }
+    }
+  },
+  "limitations": [
+    "Una y dos llamadas al modelo no igualan presupuesto de inferencia",
+    "Ambas arquitecturas usan los mismos 14 fragmentos recuperados; no comparan recuperación abierta",
+    "EM y F1 sobre respuestas humanas no prueban soporte factual de las citas",
+    "Piloto sin potencia estadística ni afirmaciones de superioridad"
+  ]
+}

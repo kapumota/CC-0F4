@@ -1,0 +1,40 @@
+{
+  "benchmark": "HotpotQA dev distractor original",
+  "questions": 7405,
+  "source_sha256": "4e9ecb5c8d3b719f624d66b60f8d56bf227f03914f5f0753d6fa1b359d7104ea",
+  "top_k": 14,
+  "retrieval": {
+    "questions": 7405,
+    "mean_support_recall": 0.8190024436513295,
+    "any_support_rate": 0.9817690749493585,
+    "all_support_rate": 0.6187711006076975
+  },
+  "by_type": {
+    "bridge": {
+      "questions": 5918,
+      "mean_support_recall": 0.8055313490722412,
+      "any_support_rate": 0.9815816154106117,
+      "all_support_rate": 0.587360594795539
+    },
+    "comparison": {
+      "questions": 1487,
+      "mean_support_recall": 0.8726150446728792,
+      "any_support_rate": 0.9825151311365165,
+      "all_support_rate": 0.7437794216543376
+    }
+  },
+  "by_level": {
+    "hard": {
+      "questions": 7405,
+      "mean_support_recall": 0.8190024436513295,
+      "any_support_rate": 0.9817690749493585,
+      "all_support_rate": 0.6187711006076975
+    }
+  },
+  "scope": "Recuperación de oraciones del contexto provisto; SIN generación de respuestas",
+  "limitations": [
+    "Cada pregunta trae su propio conjunto de párrafos distractores; no es recuperación sobre un corpus abierto",
+    "No se utiliza el gold para recuperar, solo para calificar",
+    "La presencia de evidencia no equivale a una respuesta correcta"
+  ]
+}
