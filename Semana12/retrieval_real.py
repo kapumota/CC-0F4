@@ -1,7 +1,6 @@
 """Semana 12 CC-0F4: políticas de contexto sobre SQuAD 1.1 dev completo.
 
-No contiene datos ni resultados fabricados. Se compara recuperación, no un LLM.
-Nombres de funciones en inglés, mensajes y documentación en español.
+No contiene datos ni resultados fabricados. Se compara recuperación, no un LLM. Nombres de funciones en inglés, mensajes y documentación en español.
 """
 from __future__ import annotations
 
